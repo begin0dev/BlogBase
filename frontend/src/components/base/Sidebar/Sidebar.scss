@@ -1,0 +1,23 @@
+.sidebar {
+  position: fixed;
+  width: 240px;
+  left: -240px;
+  user-select: none;
+  min-height: calc(100vh - 60px);
+  margin-top: 60px;
+  background-color: #ffffff;
+  backface-visibility: hidden;
+  z-index: 100;
+  opacity: 0;
+  overflow: hidden;
+  border: 0 solid #ecedef;
+  transition: all .40s ease;
+  will-change: transform;
+  &.open {
+    opacity: 1;
+    left: 0;
+  }
+  .divider {
+    margin: 0 15px !important;
+  }
+}

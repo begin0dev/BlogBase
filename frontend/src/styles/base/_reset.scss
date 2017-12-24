@@ -1,0 +1,33 @@
+@import 'utils';
+$body-color: #f3f8fc;
+
+body {
+  font-family: "Montserrat", "Nanum Square", sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $body-color;
+  padding: 0;
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+}
+* {
+  margin: 0;
+  vertical-align: baseline;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+ol, ul {
+  list-style: none;
+}
+div, article, main, header, footer, nav, section {
+  padding: 0;
+  border: 0 solid black;
+  position: relative;
+}

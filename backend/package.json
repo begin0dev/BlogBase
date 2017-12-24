@@ -1,0 +1,39 @@
+{
+  "name": "beginner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node scripts/development.js",
+    "test-client": "node scripts/test-client.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "beginner",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.0",
+    "joi": "^10.6.0",
+    "jsonwebtoken": "^7.4.3",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.8.2",
+    "sha512": "0.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.25.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.4.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^21.2.1",
+    "nodemon": "^1.11.0"
+  }
+}
