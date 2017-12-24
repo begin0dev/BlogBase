@@ -1,4 +1,7 @@
 import HeaderContainer from './HeaderContainer';
 import SidebarContainer from './SidebarContainer';
 
-export {HeaderContainer, SidebarContainer};
+export {
+  HeaderContainer,
+  SidebarContainer,
+};

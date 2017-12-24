@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import {MainPage, TestPage} from 'components';
+import { MainPage, TestPage } from 'components';
 
 class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path ="/" component={MainPage}/>
-        <Route path="/test" component={TestPage}/>
+        <Route exact path="/" component={MainPage} />
+        <Route path="/test" component={TestPage} />
       </Switch>
     );
   }

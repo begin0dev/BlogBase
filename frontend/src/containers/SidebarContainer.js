@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import {Sidebar} from 'components';
+import { Sidebar } from 'components';
 import * as uiActions from 'store/reducers/ui';
 
 class SidebarContainer extends Component {
   render() {
-    const {sidebar} = this.props;
+    const { sidebar } = this.props;
     return (
-      <Sidebar sidebar={sidebar}/>
+      <Sidebar sidebar={sidebar} />
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader';
 import Promise from 'promise';
 
 import Root from './Root';
@@ -17,7 +17,7 @@ if(!window.Promise) {
 const render = (Component) => ReactDOM.render(
   (
     <AppContainer>
-      <Component store={store}/>
+      <Component store={store} />
     </AppContainer>
   ), 
   document.getElementById('react-root')

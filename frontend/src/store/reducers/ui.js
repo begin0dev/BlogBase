@@ -3,10 +3,10 @@ import { createAction, handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
 // action types
-const CONTROLL_SIDEBAR = 'ui/CONTROLL_SIDEBAR';
+const CONTROL_SIDEBAR = 'ui/CONTROL_SIDEBAR';
 
 // action create
-export const controllSidebar = createAction(CONTROLL_SIDEBAR);
+export const controlSidebar = createAction(CONTROL_SIDEBAR);
 
 // initial state
 const initialState = Map({
@@ -17,7 +17,7 @@ const initialState = Map({
 
 // reducer
 export default handleActions({
-  [CONTROLL_SIDEBAR] : (state, action) => {
+  [CONTROL_SIDEBAR] : (state, action) => {
     return state.setIn(['sidebar', 'visible'], action.payload);
   }
 }, initialState)
