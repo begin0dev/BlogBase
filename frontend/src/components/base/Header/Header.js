@@ -1,17 +1,17 @@
-import React from 'react';
-import classNames from 'classnames/bind';
+import React from 'react'
+import classNames from 'classnames/bind'
 
-import styles from './Header.scss';
-import Title from './Title';
+import styles from './Header.scss'
+import Title from './Title'
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
 const Header = ({ sidebar }) => {
   return (
     <header className={cx('header')}>
       <Title />
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

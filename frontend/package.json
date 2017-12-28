@@ -4,6 +4,11 @@
   "author": "Beginner",
   "private": true,
   "devDependencies": {
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6"
   },
@@ -24,7 +29,6 @@
     "eslint-config-react-app": "^2.0.1",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.35.0",
-    "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "7.1.0",
     "extract-text-webpack-plugin": "3.0.0",
@@ -106,9 +110,6 @@
     "presets": [
       "react-app"
     ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "proxy": "http://localhost:3001"
 }

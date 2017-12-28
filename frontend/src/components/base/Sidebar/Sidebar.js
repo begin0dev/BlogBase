@@ -1,10 +1,10 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import classNames from 'classnames/bind'
+import { Link } from 'react-router-dom'
 import { Grid, Divider, Search } from 'semantic-ui-react'
 
-import styles from './Sidebar.scss';
-const cx = classNames.bind(styles);
+import styles from './Sidebar.scss'
+const cx = classNames.bind(styles)
 
 const Sidebar = ({ sidebar }) => {
   return (
@@ -15,9 +15,9 @@ const Sidebar = ({ sidebar }) => {
             <Search size='mini' icon='search' placeholder='Search...' />
           </Grid.Column>
         </Grid.Row>
-  
+
         <Divider className={cx('divider')} />
-        
+
         <Grid.Row>
           <Grid.Column>
             <Link to="/">Home</Link>
@@ -30,7 +30,7 @@ const Sidebar = ({ sidebar }) => {
         </Grid.Row>
       </Grid>
     </aside>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

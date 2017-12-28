@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-import { Header } from 'components';
-import * as uiActions from 'store/reducers/ui';
+import { Header } from 'components'
+import * as uiActions from 'store/reducers/ui'
 
 class HeaderContainer extends Component {
   render() {
-    const { sidebar } = this.props;
+    const { sidebar } = this.props
     return (
       <Header sidebar={sidebar} />
-    );
+    )
   }
 }
 
@@ -21,4 +21,4 @@ export default connect(
   (dispatch) => ({
     UiActions: bindActionCreators(uiActions, dispatch),
   })
-)(HeaderContainer);
+)(HeaderContainer)
