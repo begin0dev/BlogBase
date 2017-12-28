@@ -8,7 +8,7 @@ import reducers from './reducers'
 const logger = createLogger()
 
 const middlewares = [thunk, promiseMiddleware()]
-if(process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger)
 }
 

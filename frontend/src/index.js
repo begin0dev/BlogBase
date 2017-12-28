@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker'
 import 'semantic-ui-css/semantic.min.css'
 import './styles/main.scss'
 
-if(!window.Promise) {
+if (!window.Promise) {
   window.Promise = Promise
 }
 
@@ -25,7 +25,7 @@ const render = (Component) => ReactDOM.render(
 
 render(Root)
 
-if(module.hot) {
+if (module.hot) {
   module.hot.accept('./Root', () => render(Root))
 }
 

@@ -18,4 +18,3 @@ const PageTemplate = ({ children }) => {
 }
 
 export default PageTemplate
-
