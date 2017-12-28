@@ -11,6 +11,7 @@
   opacity: 0;
   overflow: hidden;
   border: 0 solid #ecedef;
+  border-right: 1px solid #ecedef;
   transition: all .40s ease;
   will-change: transform;
   &.open {
