@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const { JWT_SECRET: secret } = process.env;
+const jwt = require('jsonwebtoken')
+const { JWT_SECRET: secret } = process.env
 
 exports.generateToken = (payload, subject) => {
   return new Promise((resolve, reject) => {
@@ -9,22 +9,22 @@ exports.generateToken = (payload, subject) => {
       subject
     }, (err, token) => {
       if(err) {
-        console.log(err);
-        reject(err);
+        console.log(err)
+        reject(err)
       }
-      resolve(token);
-    });
-  });
-};
+      resolve(token)
+    })
+  })
+}
 
 exports.decodeToken = (token) => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, secret, (err, decoded) => {
       if(err) {
-        console.log(err);
-        reject(err);
+        console.log(err)
+        reject(err)
       }
-      resolve(decoded);
-    });
-  });
-};
+      resolve(decoded)
+    })
+  })
+}

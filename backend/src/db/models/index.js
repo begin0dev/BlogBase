@@ -1,3 +1,3 @@
 module.exports = function loadModels() {
-  require('./user');
-};
+  require('./user')
+}

@@ -1,21 +1,9 @@
 module.exports = {
   "extends": "standard",
   "rules": {
-    "indent": [
-      "warn",
-      2
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "camelcase": [
-      2,
-      {properties: "never"}
-    ],
     "no-unused-vars": 1,
     "space-before-function-paren": 0,
-    "no-trailing-spaces": 0,
-    "keyword-spacing": 0
+    "keyword-spacing": 0,
+    "comma-dangle": 0
   }
 };
