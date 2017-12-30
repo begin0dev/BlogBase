@@ -6,7 +6,7 @@ import Title from './Title'
 
 const cx = classNames.bind(styles)
 
-const Header = ({ sidebar }) => {
+const Header = ({ sidebar, sidebarChangeState }) => {
   return (
     <header className={cx('header')}>
       <Title />

@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader'
 import Promise from 'promise'
 
 import Root from './Root'
-import store from './store/store'
+import store from './store'
 import registerServiceWorker from './registerServiceWorker'
 
 import 'semantic-ui-css/semantic.min.css'
