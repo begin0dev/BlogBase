@@ -16,8 +16,8 @@ exports.generatePassword = (password) => {
 exports.comparePassword = (getPassword, password, salt) => {
   return new Promise((resolve, reject) => {
     crypto.pbkdf2(getPassword, salt, 100000, 64, 'sha512', (err, key) => {
-      if(err) return reject(err)
-      if(key.toString('base64') === password) {
+      if (err) return reject(err)
+      if (key.toString('base64') === password) {
         return resolve({result: true})
       } else {
         return resolve({result: false})

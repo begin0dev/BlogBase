@@ -38,11 +38,11 @@ app.use((err, req, res, next) => {
 connect()
 
 // ENABLE DEBUG WHEN DEV ENVIRONMENT
-if(process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   mongoose.set('debug', true)
   app.use(morgan('tiny')) // server logger
 }
 
 app.listen(port, () => {
   console.log(`Express is running on port ${port}`)
-});
+})

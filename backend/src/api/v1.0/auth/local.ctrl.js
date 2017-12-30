@@ -15,9 +15,9 @@ code 3 - success
 */
 
 router.get('/', async (req, res) => {
-  if(req.user) {
+  if (req.user) {
     return res.status(200).json({state: 'login'})
-  }else {
+  } else {
     return res.status(200).json({state: 'not logged'})
   }
 })
@@ -34,7 +34,7 @@ router.post('/register', async (req, res) => {
     password: Joi.string().min(6).max(15),
   })
   const validResult = Joi.validate(body, schema)
-  if(validResult.error) {
+  if (validResult.error) {
     console.log(validResult.error)
     return res.status(200).json({code: 1, success: false, message: validResult.error.details[0].message})
   }
@@ -78,7 +78,7 @@ router.post('/register', async (req, res) => {
     })
 
     return res.status(200).json({code: 3, success: true, message: 'success local register'})
-  }catch(err) {
+  } catch (err) {
     console.log(err)
     return res.status(500).json({code: 0, success: false, message: err})
   }
@@ -94,7 +94,7 @@ router.post('/login', async (req, res) => {
     password: Joi.string().min(6).max(15),
   })
   const validResult = Joi.validate(body, schema)
-  if(validResult.error) {
+  if (validResult.error) {
     console.log(validResult.error)
     return res.status(200).json({code: 1, success: false, message: validResult.error.details[0].message})
   }
@@ -102,7 +102,7 @@ router.post('/login', async (req, res) => {
   try {
     // find by username
     const user = await User.findByUsername(userName)
-    if(!user) {
+    if (!user) {
       return res.status(200).json({code: 2, success: false, message: 'not find user data'})
     }
 
@@ -112,7 +112,7 @@ router.post('/login', async (req, res) => {
       user.password,
       user.salt,
     )
-    if(!result.result) {
+    if (!result.result) {
       return res.status(200).json({code: 2, success: false, message: 'password is incorrect'})
     }
 
@@ -131,7 +131,7 @@ router.post('/login', async (req, res) => {
     })
 
     return res.status(200).json({code: 3, success: true, message: 'success local login'})
-  }catch(err) {
+  } catch (err) {
     console.log(err)
     return res.status(500).json({code: 0, success: false, message: err})
   }

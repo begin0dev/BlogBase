@@ -11,7 +11,7 @@ export const controlSidebar = createAction(CONTROL_SIDEBAR)
 // initial state
 const initialState = Map({
   sidebar: Map({
-    visible: true
+    visible: true,
   })
 })
 

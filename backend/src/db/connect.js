@@ -6,9 +6,9 @@ mongoose.Promise = global.Promise
 module.exports = () => {
   const connect = () => {
     mongoose.connect(process.env.MONGO_URI, (err) => {
-      if(err) {
+      if (err) {
         console.error('mongodb connection error', err)
-      }else {
+      } else {
         console.log('mongodb connected')
       }
     })

@@ -8,7 +8,7 @@ exports.generateToken = (payload, subject) => {
       expiresIn: '3d',
       subject
     }, (err, token) => {
-      if(err) {
+      if (err) {
         console.log(err)
         reject(err)
       }
@@ -20,7 +20,7 @@ exports.generateToken = (payload, subject) => {
 exports.decodeToken = (token) => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, secret, (err, decoded) => {
-      if(err) {
+      if (err) {
         console.log(err)
         reject(err)
       }
