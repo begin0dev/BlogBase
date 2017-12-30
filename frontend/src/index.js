@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
 import Promise from 'promise'
+import { AppContainer } from 'react-hot-loader'
 
-import Root from './Root'
+import Router from './Router'
 import store from './store'
 import registerServiceWorker from './registerServiceWorker'
 
+// semantic-ui apply
 import 'semantic-ui-css/semantic.min.css'
 import './styles/main.scss'
 
@@ -23,10 +24,10 @@ const render = (Component) => ReactDOM.render(
   document.getElementById('react-root')
 )
 
-render(Root)
+render(Router)
 
 if (module.hot) {
-  module.hot.accept('./Root', () => render(Root))
+  module.hot.accept('./Router', () => render(Router))
 }
 
 registerServiceWorker()

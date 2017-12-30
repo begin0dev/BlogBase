@@ -6,10 +6,6 @@ import { Header } from 'components'
 import * as uiActions from 'store/reducers/ui'
 
 class HeaderContainer extends Component {
-  componentDidMount() {
-    const { sidebar } = this.props
-    console.log(sidebar)
-  }
   sidebarChangeState = () => {
     const { UiActions, sidebar } = this.props
     UiActions.controlSidebar(!sidebar)

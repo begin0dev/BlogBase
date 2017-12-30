@@ -2,14 +2,18 @@ import React from 'react'
 import classNames from 'classnames/bind'
 
 import styles from './Header.scss'
-import Title from './Title'
 
 const cx = classNames.bind(styles)
 
 const Header = ({ sidebar, sidebarChangeState }) => {
   return (
     <header className={cx('header')}>
-      <Title />
+      <div className={cx('title-wrap')}>
+        Beginner
+      </div>
+      <div className={cx('nav')}>
+        login / sign up
+      </div>
     </header>
   )
 }

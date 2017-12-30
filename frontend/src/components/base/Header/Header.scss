@@ -1,3 +1,5 @@
+@import 'utils';
+
 .header {
   position: fixed;
   left: 0;
@@ -9,4 +11,23 @@
   z-index: 100;
   opacity: 1;
   box-shadow: 0 2px 4px -1px rgba(0,0,0,.1);
+  display: flex;
+  flex-direction: row;
+    .title-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include media('>=medium') {
+        width: 240px;
+      }
+      @include media('<medium') {
+
+      }
+    }
+    .nav {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      align-items: center;
+    }
 }
