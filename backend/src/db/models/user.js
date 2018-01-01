@@ -37,26 +37,26 @@ const User = new mongoose.Schema({
 
 // static methods
 User.statics.findUserInfo = function(id) {
-  return this.findOne({'_id': id}).exec()
+  return this.findOne({'_id': id})
 }
 
 User.statics.findByUsername = function(userName) {
-  return this.findOne({'userName': userName}).exec()
+  return this.findOne({'userName': userName})
 }
 
 User.statics.findByEmail = function(email) {
-  return this.findOne({'common_profile.email': email}).exec()
+  return this.findOne({'common_profile.email': email})
 }
 
 User.statics.findById = function(id) {
-  return this.findOne({'_id': id}).exec()
+  return this.findOne({'_id': id})
 }
 
 User.statics.findBySocialId = function({provider, id}) {
   const key = `social.${provider}.id`
   return this.findOne({
     [key]: id
-  }).exec()
+  })
 }
 
 User.statics.localRegister = function({userName, password, salt, displayName, email}) {

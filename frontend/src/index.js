@@ -7,8 +7,6 @@ import Router from './Router'
 import store from './store'
 import registerServiceWorker from './registerServiceWorker'
 
-// semantic-ui apply
-import 'semantic-ui-css/semantic.min.css'
 import './styles/main.scss'
 
 if (!window.Promise) {

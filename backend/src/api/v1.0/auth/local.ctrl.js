@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
   if (req.user) {
     return res.status(200).json({state: 'login'})
   } else {
-    return res.status(200).json({state: 'not logged'})
+    return res.status(401)
   }
 })
 
@@ -42,13 +42,13 @@ router.post('/register', async (req, res) => {
   try {
     // check username
     const userNameExists = await User.findByUsername(userName)
-    if(userNameExists) {
+    if (userNameExists) {
       return res.status(200).json({code: 2, success: false, message: 'userName is already exists'})
     }
 
     // check email
     const emailExists = await User.findByEmail(email)
-    if(emailExists) {
+    if (emailExists) {
       return res.status(200).json({code: 2, success: false, message: 'email is already exists'})
     }
 

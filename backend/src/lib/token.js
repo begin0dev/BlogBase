@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET: secret } = process.env
 
-exports.generateToken = (payload, subject) => {
+exports.generateToken = (payload, options) => {
   return new Promise((resolve, reject) => {
     jwt.sign(payload, secret, {
       issuer: 'beginnerblog.com',
       expiresIn: '3d',
-      subject
+      options
     }, (err, token) => {
       if (err) {
         console.log(err)
