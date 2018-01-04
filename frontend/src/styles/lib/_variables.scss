@@ -1,0 +1,14 @@
+$breakpoints: (
+  small: 450px, 
+  medium: 768px, 
+  large: 1024px, 
+  huge: 1200px
+);
+$z-indexes: (
+  'header': 100,
+  'sidebar': 80,
+  'hamburger': 120,
+);
+@function z-index($key) {
+  @return map-get($z-indexes, $key);
+}

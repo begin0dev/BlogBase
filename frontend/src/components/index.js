@@ -1,11 +1,7 @@
-import Header from './base/Header'
-import Sidebar from './base/Sidebar'
-import Input from './common/SearchInput'
-import PageTemplate from './templates/PageTemplate'
+// https://github.com/diegohaz/arc/wiki/Atomic-Design#do-not-worry
+const req = require.context('.', true, /\.\/[^/]+\/[^/]+\/index\.js$/)
 
-export {
-  Header,
-  Sidebar,
-  Input,
-  PageTemplate,
-}
+req.keys().forEach((key) => {
+  const componentName = key.replace(/^.+\/([^/]+)\/index\.js/, '$1')
+  module.exports[componentName] = req(key).default
+})

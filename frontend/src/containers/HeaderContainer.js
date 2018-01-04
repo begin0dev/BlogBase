@@ -6,16 +6,31 @@ import { Header } from 'components'
 import * as uiActions from 'store/reducers/ui'
 
 class HeaderContainer extends Component {
-  sidebarChangeState = () => {
+  componentDidMount() {
+    window.addEventListener('resize', this.sidebarToggleResizeEvent)
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.sidebarToggleResizeEvent)
+  }
+
+  sidebarOnToggle = () => {
     const { UiActions, sidebar } = this.props
     UiActions.controlSidebar(!sidebar)
   }
+  sidebarToggleResizeEvent = () => {
+    const { UiActions, sidebar } = this.props
+    if (!sidebar && window.innerWidth >= 768) {
+      UiActions.controlSidebar(true)
+    }
+  }
+
   render() {
+    const { sidebarOnToggle } = this
     const { sidebar } = this.props
     return (
       <Header
         sidebar={sidebar}
-        sidebarChangeState={this.sidebarChangeState}
+        sidebarOnToggle={sidebarOnToggle}
       />
     )
   }

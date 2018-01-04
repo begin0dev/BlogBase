@@ -7,11 +7,11 @@ const cx = classNames.bind(styles)
 
 const SearchInput = ({ loading, placeholder, value }) => {
   return (
-    <div className={cx('wrap')}>
+    <div className={cx('wrapper')}>
       <input type='text' className={cx('input', 'icon')} value={value} placeholder={placeholder}/>
       {
         loading
-          ? <i aria-hidden="true" className={cx('icon', 'loading')}> </i>
+          ? <i aria-hidden="true" className={cx('icon', 'loading')} />
           : <i aria-hidden="true" className={cx('icon')}><Search /></i>
       }
     </div>

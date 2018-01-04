@@ -8,11 +8,15 @@
   height: 60px;
   background-color: #ffffff;
   overflow: hidden;
-  z-index: 100;
+  z-index: z-index('header');
   opacity: 1;
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px -1px material-color('grey', '100');
   display: flex;
   flex-direction: row;
+  @include media('<medium') {
+    height: 48px;
+    justify-content: center;
+  }
     .title-wrap {
       display: flex;
       justify-content: center;
@@ -21,7 +25,7 @@
         width: 240px;
       }
       @include media('<medium') {
-
+        width: 60px;
       }
     }
     .nav {
@@ -29,5 +33,8 @@
       flex: 1;
       justify-content: flex-end;
       align-items: center;
+      @include media('<medium') {
+        display: none;
+      }
     }
 }

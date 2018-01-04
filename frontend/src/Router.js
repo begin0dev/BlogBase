@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import { MainPage, TestPage } from 'pages'
 
-const Root = ({ store }) => {
+const Router = ({ store }) => {
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -17,4 +17,4 @@ const Root = ({ store }) => {
   )
 }
 
-export default Root
+export default Router

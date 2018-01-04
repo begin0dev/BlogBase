@@ -1,3 +1,5 @@
+@import 'utils';
+
 .sidebar {
   position: fixed;
   width: 240px;
@@ -7,17 +9,22 @@
   margin-top: 60px;
   background-color: #ffffff;
   backface-visibility: hidden;
-  z-index: 80;
+  z-index: z-index('sidebar');
   opacity: 0;
   overflow: hidden;
-  border: 0 solid #ecedef;
-  border-right: 1px solid #ecedef;
+  border: 0 solid material-color('grey', '200');
+  border-right: 1px solid material-color('grey', '200');
   transition: all .40s ease;
   will-change: transform;
   &.open {
     opacity: 1;
     left: 0;
   }
+  @include media ('<medium') {
+    min-height: calc(100vh - 48px);
+    margin-top: 48px;
+  }
+
   .nav-search {
     display: flex;
     justify-content: center;
