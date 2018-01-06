@@ -1,4 +1,4 @@
-// https://github.com/diegohaz/arc/wiki/Atomic-Design#do-not-worry
+// https://github.com/diegohaz/arc/wiki/Atomic-Design
 const req = require.context('.', true, /\.\/[^/]+\/[^/]+\/index\.js$/)
 
 req.keys().forEach((key) => {

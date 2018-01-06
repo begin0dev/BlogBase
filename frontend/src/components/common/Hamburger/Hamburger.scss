@@ -41,7 +41,7 @@ $hamburger-hover-filter    : opacity(50%) !default;
 // Types (Remove or comment out what you don’t need)
 // ==================================================
 $hamburger-types: (
-  spin,
+  slider,
 ) !default;
 
 :global {
@@ -50,5 +50,5 @@ $hamburger-types: (
   @import "~hamburgers/_sass/hamburgers/base";
   // Hamburger types
   // ==================================================
-  @import "~hamburgers/_sass/hamburgers/types/spin";
+  @import "~hamburgers/_sass/hamburgers/types/slider";
 }

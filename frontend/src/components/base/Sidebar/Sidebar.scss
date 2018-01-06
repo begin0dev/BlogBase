@@ -3,28 +3,23 @@
 .sidebar {
   position: fixed;
   width: 240px;
-  left: -240px;
-  user-select: none;
-  min-height: calc(100vh - 60px);
+  left: 0;
+  top: 0;
   margin-top: 60px;
+  height: calc(100vh - 60px);
   background-color: #ffffff;
   backface-visibility: hidden;
   z-index: z-index('sidebar');
-  opacity: 0;
-  overflow: hidden;
-  border: 0 solid material-color('grey', '200');
   border-right: 1px solid material-color('grey', '200');
-  transition: all .40s ease;
-  will-change: transform;
-  &.open {
-    opacity: 1;
-    left: 0;
-  }
+  transform: translate(-100%);
+  transition: all .2s ease-in-out;
   @include media ('<medium') {
     min-height: calc(100vh - 48px);
     margin-top: 48px;
   }
-
+  &.open {
+    transform: translate(0%);
+  }
   .nav-search {
     display: flex;
     justify-content: center;

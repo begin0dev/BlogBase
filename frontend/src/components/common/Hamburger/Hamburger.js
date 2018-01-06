@@ -7,7 +7,7 @@ const cx = classNames.bind(styles)
 const Hamburger = ({ sidebar, sidebarOnToggle }) => {
   return (
     <div className={cx('wrapper')} onClick={sidebarOnToggle}>
-      <div className={classNames('hamburger hamburger--spin', {'is-active': sidebar}, cx('spin'))}>
+      <div className={classNames('hamburger hamburger--slider', {'is-active': sidebar}, cx('spin'))}>
         <span className='hamburger-box'>
           <span className='hamburger-inner' />
         </span>
