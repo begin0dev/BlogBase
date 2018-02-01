@@ -1,7 +1,7 @@
 const express = require('express')
 const Joi = require('joi')
 
-const { generatePassword, comparePassword } = require('../../../lib/crypto')
+const { generatePassword, comparePassword } = require('../../../lib/bcrypt')
 const { generateToken } = require('../../../lib/token')
 const User = require('../../../db/models/user')
 
@@ -33,10 +33,10 @@ router.post('/register', async (req, res) => {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(15),
   })
-  const validResult = Joi.validate(body, schema)
-  if (validResult.error) {
-    console.log(validResult.error)
-    return res.status(200).json({code: 1, success: false, message: validResult.error.details[0].message})
+  const validate = Joi.validate(body, schema)
+  if (validate.error) {
+    console.log(validate.error)
+    return res.status(200).json({code: 1, success: false, message: validate.error.details[0].message})
   }
 
   try {
@@ -54,13 +54,13 @@ router.post('/register', async (req, res) => {
 
     // generate password
     const hashPassword = await generatePassword(password)
+
     // create user
     const user = await User.localRegister({
       userName,
+      password: hashPassword,
       displayName,
       email,
-      password: hashPassword.password,
-      salt: hashPassword.salt,
     })
 
     // create access token
@@ -93,10 +93,10 @@ router.post('/login', async (req, res) => {
     userName: Joi.string().email().required(),
     password: Joi.string().min(6).max(15),
   })
-  const validResult = Joi.validate(body, schema)
-  if (validResult.error) {
-    console.log(validResult.error)
-    return res.status(200).json({code: 1, success: false, message: validResult.error.details[0].message})
+  const validate = Joi.validate(body, schema)
+  if (validate.error) {
+    console.log(validate.error)
+    return res.status(200).json({code: 1, success: false, message: validate.error.details[0].message})
   }
 
   try {
@@ -110,9 +110,8 @@ router.post('/login', async (req, res) => {
     const result = await comparePassword(
       password,
       user.password,
-      user.salt,
     )
-    if (!result.result) {
+    if (!result) {
       return res.status(200).json({code: 2, success: false, message: 'password is incorrect'})
     }
 

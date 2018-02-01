@@ -6,7 +6,6 @@ const User = new mongoose.Schema({
   type: {type: String, enum: type},
   userName: String,
   password: String,
-  salt: String,
   common_profile: {
     displayName: String,
     email: String,
@@ -59,12 +58,11 @@ User.statics.findBySocialId = function({provider, id}) {
   })
 }
 
-User.statics.localRegister = function({userName, password, salt, displayName, email}) {
+User.statics.localRegister = function({userName, password, displayName, email}) {
   const user = new this({
     type: 'local',
     userName,
     password,
-    salt,
     common_profile: {
       displayName,
       email,
