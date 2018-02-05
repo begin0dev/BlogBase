@@ -103,7 +103,7 @@ router.post('/login', async (req, res) => {
     // find by username
     const user = await User.findByUsername(userName)
     if (!user) {
-      return res.status(200).json({code: 2, success: false, message: 'not find user data'})
+      return res.status(200).json({code: 2, success: false, message: 'user is incorrect!'})
     }
 
     // find one user compare password
@@ -112,7 +112,7 @@ router.post('/login', async (req, res) => {
       user.password,
     )
     if (!result) {
-      return res.status(200).json({code: 2, success: false, message: 'password is incorrect'})
+      return res.status(200).json({code: 2, success: false, message: 'user is incorrect!'})
     }
 
     // create access token

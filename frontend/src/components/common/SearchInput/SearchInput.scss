@@ -24,7 +24,7 @@
         padding-right: 1.5rem;
       }
       &:focus {
-        border-color: material-color('light-blue', '400');
+        border-color: material-color('red', '500');
         &::placeholder {
           color: inherit;
         }
@@ -53,7 +53,7 @@
         border-radius: 500rem;
         animation: spin .9s linear;
         animation-iteration-count: infinite;
-        border-color: material-color('light-blue', '400') transparent material-color('light-blue', '400') transparent;
+        border-color: material-color('red', '500') transparent material-color('red', '500') transparent;
         border-style: solid;
         border-width: .15rem;
         box-shadow: 0 0 0 1px transparent;

@@ -9,10 +9,19 @@ const Header = () => {
   return (
     <header className={cx('header')}>
       <div className={cx('title-wrap')}>
-        Beginner
+        BEGINNER
       </div>
-      <div className={cx('nav')}>
-        login / sign up
+      <div className={cx('spacer')}></div>
+      <div className={cx('nav-wrap')}>
+        <div className={cx('nav-item')}>
+          로그인
+        </div>
+        <div className={cx('nav-item')}>
+          /
+        </div>
+        <div className={cx('nav-item')}>
+          회원가입
+        </div>
       </div>
     </header>
   )

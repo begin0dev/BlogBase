@@ -1,13 +1,13 @@
 import React from 'react'
 import classNames from 'classnames/bind'
-import { Link } from 'react-router-dom'
+
+import { SearchInput } from 'components'
+import Navi from './Navi/Navi'
 
 import styles from './Sidebar.scss'
-import { SearchInput } from 'components'
-
 const cx = classNames.bind(styles)
 
-const Sidebar = ({ sidebar }) => {
+const Sidebar = ({ sidebar, active }) => {
   return (
     <aside className={cx('sidebar', {open: sidebar})}>
       <div className={cx('nav-search')}>
@@ -17,8 +17,9 @@ const Sidebar = ({ sidebar }) => {
         />
       </div>
       <div className={cx('nav-wrap')}>
-        <Link to="/">Home</Link>
-        <Link to="/test">Test</Link>
+        <Navi
+          active={active}
+        />
       </div>
     </aside>
   )

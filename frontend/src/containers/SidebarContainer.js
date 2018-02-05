@@ -7,35 +7,46 @@ import * as uiActions from 'store/reducers/ui'
 
 class SidebarContainer extends Component {
   componentDidMount() {
-    window.addEventListener('resize', this.sidebarToggleResizeEvent)
+    window.addEventListener('resize', this.sidebarResizeEvent)
+    this.sidebarResizeEvent()
   }
   componentWillUnmount() {
-    window.removeEventListener('resize', this.sidebarToggleResizeEvent)
+    window.removeEventListener('resize', this.sidebarResizeEvent)
   }
 
-  sidebarOnToggle = () => {
+  toggleSidebar = () => {
     const { UiActions, sidebar } = this.props
-    UiActions.controlSidebar(!sidebar)
+    if (window.innerWidth < 768) {
+      UiActions.toggleSidebar(!sidebar)
+    }
   }
-  sidebarToggleResizeEvent = () => {
+  sidebarResizeEvent = () => {
     const { UiActions, sidebar } = this.props
     if (!sidebar && window.innerWidth >= 768) {
-      UiActions.controlSidebar(true)
+      UiActions.toggleSidebar(true)
     }
     if (sidebar && window.innerWidth < 768) {
-      UiActions.controlSidebar(false)
+      UiActions.toggleSidebar(false)
     }
   }
+  toggleNavi = (index) => {
+    const { UiActions, active } = this.props
+    if (active === index) return
+    UiActions.toggleNavi(index)
+  }
   render() {
-    const { sidebarOnToggle } = this
-    const { sidebar } = this.props
+    const { toggleSidebar } = this
+    const { sidebar, active } = this.props
     return [
       <Hamburger
         sidebar={sidebar}
-        sidebarOnToggle={sidebarOnToggle}
+        toggleSidebar={toggleSidebar}
+        key='hamburger'
       />,
       <Sidebar
         sidebar={sidebar}
+        active={active}
+        key='sidebar'
       />
     ]
   }
@@ -43,7 +54,8 @@ class SidebarContainer extends Component {
 
 export default connect(
   (state) => ({
-    sidebar: state.ui.getIn(['sidebar', 'visible'])
+    sidebar: state.ui.sidebar.visible,
+    active: state.ui.sidebar.active
   }),
   (dispatch) => ({
     UiActions: bindActionCreators(uiActions, dispatch),

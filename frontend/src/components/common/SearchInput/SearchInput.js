@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames/bind'
-import Search from 'react-icons/lib/md/search'
+import SearchIcon from 'react-icons/lib/md/search'
 
 import styles from './SearchInput.scss'
 const cx = classNames.bind(styles)
@@ -12,7 +12,7 @@ const SearchInput = ({ loading, placeholder, value }) => {
       {
         loading
           ? <i aria-hidden="true" className={cx('icon', 'loading')} />
-          : <i aria-hidden="true" className={cx('icon')}><Search /></i>
+          : <i aria-hidden="true" className={cx('icon')}><SearchIcon /></i>
       }
     </div>
   )

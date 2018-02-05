@@ -2,6 +2,8 @@
 
 .sidebar {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   width: 240px;
   left: 0;
   top: 0;
@@ -24,5 +26,9 @@
     display: flex;
     justify-content: center;
     padding: 1rem 1.7rem;
+  }
+  .nav-wrap {
+    display: flex;
+    flex-direction: column;
   }
 }
