@@ -1,30 +1,28 @@
-const express = require('express')
-const Joi = require('joi')
+const express = require('express');
+const Joi = require('joi');
 
-const { generatePassword, comparePassword } = require('../../../lib/bcrypt')
-const { generateToken } = require('../../../lib/token')
-const User = require('../../../db/models/user')
+const { generatePassword, comparePassword } = require('../../../lib/bcrypt');
+const { generateToken } = require('../../../lib/token');
+const User = require('../../../db/models/user');
 
-const router = express.Router()
+const router = express.Router();
 
-/*
-code 0 - sever error
-code 1 - valid error
-code 2 - wrong data
-code 3 - success
-*/
-
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   if (req.user) {
-    return res.status(200).json({state: 'login'})
+    res.status(200).json({ state: 'login' });
   } else {
-    return res.status(401)
+    res.status(401);
   }
-})
+});
 
-router.post('/register', async (req, res) => {
-  const { body } = req
-  const { userName, displayName, email, password } = body
+router.post('/register', async (req, res, next) => {
+  const { body } = req;
+  const {
+    userName,
+    displayName,
+    email,
+    password,
+  } = body;
 
   // check validate user info
   const schema = Joi.object({
@@ -32,28 +30,28 @@ router.post('/register', async (req, res) => {
     displayName: Joi.string().regex(/^[a-zA-Z0-9ㄱ-힣]{3,12}$/).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(15),
-  })
-  const validate = Joi.validate(body, schema)
+  });
+  const validate = Joi.validate(body, schema);
   if (validate.error) {
-    console.log(validate.error)
-    return res.status(200).json({code: 1, success: false, message: validate.error.details[0].message})
+    console.log(validate.error);
+    return res.status(400).json({ success: false, message: validate.error.details[0].message });
   }
 
   try {
     // check username
-    const userNameExists = await User.findByUsername(userName)
+    const userNameExists = await User.findByUsername(userName);
     if (userNameExists) {
-      return res.status(200).json({code: 2, success: false, message: 'userName is already exists'})
+      return res.status(400).json({ success: false, message: 'userName is already exists' });
     }
 
     // check email
-    const emailExists = await User.findByEmail(email)
+    const emailExists = await User.findByEmail(email);
     if (emailExists) {
-      return res.status(200).json({code: 2, success: false, message: 'email is already exists'})
+      return res.status(400).json({ success: false, message: 'email is already exists' });
     }
 
     // generate password
-    const hashPassword = await generatePassword(password)
+    const hashPassword = await generatePassword(password);
 
     // create user
     const user = await User.localRegister({
@@ -61,79 +59,79 @@ router.post('/register', async (req, res) => {
       password: hashPassword,
       displayName,
       email,
-    })
+    });
 
     // create access token
     const accessToken = await generateToken({
       user: {
-        _id: user._id,
+        id: user._id,
         displayName: user.common_profile.displayName,
-      }
-    }, 'user')
+      },
+    }, 'user');
 
     // access token set cookie
     res.cookie('access_token', accessToken, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 3,
-    })
+    });
 
-    return res.status(200).json({code: 3, success: true, message: 'success local register'})
+    return res.status(200).json({ success: true, message: 'success local register' });
   } catch (err) {
-    console.log(err)
-    return res.status(500).json({code: 0, success: false, message: err})
+    console.error(err);
+    next(err);
   }
-})
+});
 
-router.post('/login', async (req, res) => {
-  const { body } = req
-  const { userName, password } = body
+router.post('/login', async (req, res, next) => {
+  const { body } = req;
+  const { userName, password } = body;
 
   // check validate user info
   const schema = Joi.object({
     userName: Joi.string().email().required(),
     password: Joi.string().min(6).max(15),
-  })
-  const validate = Joi.validate(body, schema)
+  });
+  const validate = Joi.validate(body, schema);
   if (validate.error) {
-    console.log(validate.error)
-    return res.status(200).json({code: 1, success: false, message: validate.error.details[0].message})
+    console.log(validate.error);
+    return res.status(400).json({ success: false, message: validate.error.details[0].message });
   }
 
   try {
     // find by username
-    const user = await User.findByUsername(userName)
+    const user = await User.findByUsername(userName);
     if (!user) {
-      return res.status(200).json({code: 2, success: false, message: 'user is incorrect!'})
+      return res.status(400).json({ success: false, message: 'user is incorrect!' });
     }
 
     // find one user compare password
     const result = await comparePassword(
       password,
       user.password,
-    )
+    );
     if (!result) {
-      return res.status(200).json({code: 2, success: false, message: 'user is incorrect!'})
+      return res.status(400).json({ success: false, message: 'user is incorrect!' });
     }
 
     // create access token
     const accessToken = await generateToken({
       user: {
-        _id: user._id,
+        id: user._id,
         displayName: user.common_profile.displayName,
-      }
-    }, 'user')
+      },
+    }, 'user');
 
     // access token set cookie
     res.cookie('access_token', accessToken, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 3,
-    })
+    });
 
-    return res.status(200).json({code: 3, success: true, message: 'success local login'})
+    return res.status(200).json({ success: true, message: 'success local login' });
   } catch (err) {
-    console.log(err)
-    return res.status(500).json({code: 0, success: false, message: err})
+    console.error(err);
+    next(err);
   }
-})
+});
 
-module.exports = router
+module.exports = router;

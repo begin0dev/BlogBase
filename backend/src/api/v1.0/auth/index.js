@@ -1,9 +1,9 @@
-const express = require('express')
+const express = require('express');
 
-const localCtrl = require('./local.ctrl')
+const localCtrl = require('./local.ctrl');
 
-const router = express.Router()
+const router = express.Router();
 
-router.use('/local', localCtrl)
+router.use('/local', localCtrl);
 
-module.exports = router
+module.exports = router;

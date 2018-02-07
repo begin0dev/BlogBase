@@ -1,9 +1,19 @@
 module.exports = {
-  "extends": "standard",
+  "extends": "airbnb-base",
   "rules": {
-    "no-unused-vars": 1,
-    "space-before-function-paren": 0,
-    "key-spacing": 0,
-    "comma-dangle": 0
-  }
+    "import/prefer-default-export": 0,
+    "no-console": 0,
+    "consistent-return": 0,
+    "arrow-body-style": 0,
+    "object-property-newline": 0,
+    "object-curly-newline": 0,
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_id"
+        ]
+      }
+    ],
+  },
 };

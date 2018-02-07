@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const type = ['local', 'facebook', 'google', 'naver', 'kakao']
+const type = ['local', 'facebook', 'google', 'naver', 'kakao'];
 
 const User = new mongoose.Schema({
-  type: {type: String, enum: type},
+  type: { type: String, enum: type },
   userName: String,
   password: String,
   common_profile: {
@@ -32,33 +32,31 @@ const User = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-})
+});
 
 // static methods
-User.statics.findUserInfo = function(id) {
-  return this.findOne({'_id': id})
-}
+User.statics.findUserInfo = function findUserInfo(id) {
+  return this.findOne({ _id: id });
+};
 
-User.statics.findByUsername = function(userName) {
-  return this.findOne({'userName': userName})
-}
+User.statics.findByUsername = function findByUsername(userName) {
+  return this.findOne({ userName });
+};
 
-User.statics.findByEmail = function(email) {
-  return this.findOne({'common_profile.email': email})
-}
+User.statics.findByEmail = function findByEmail(email) {
+  return this.findOne({ 'common_profile.email': email });
+};
 
-User.statics.findById = function(id) {
-  return this.findOne({'_id': id})
-}
+User.statics.findById = function findById(id) {
+  return this.findOne({ _id: id });
+};
 
-User.statics.findBySocialId = function({provider, id}) {
-  const key = `social.${provider}.id`
-  return this.findOne({
-    [key]: id
-  })
-}
+User.statics.findBySocialId = function findBySocialId({ provider, id }) {
+  const key = `social.${provider}.id`;
+  return this.findOne({ [key]: id });
+};
 
-User.statics.localRegister = function({userName, password, displayName, email}) {
+User.statics.localRegister = function localRegister({ userName, password, displayName, email }) {
   const user = new this({
     type: 'local',
     userName,
@@ -66,9 +64,9 @@ User.statics.localRegister = function({userName, password, displayName, email}) 
     common_profile: {
       displayName,
       email,
-    }
-  })
-  return user.save()
-}
+    },
+  });
+  return user.save();
+};
 
-module.exports = mongoose.model('User', User)
+module.exports = mongoose.model('User', User);
