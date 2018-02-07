@@ -19,7 +19,6 @@ module.exports = async (req, res, next) => {
       console.log('token is expired!');
       req.user = null;
     } else {
-      console.log('token is abled!');
       req.user = user;
     }
   } catch (e) {
