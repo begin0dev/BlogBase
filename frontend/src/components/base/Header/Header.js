@@ -1,9 +1,9 @@
-import React from 'react'
-import classNames from 'classnames/bind'
+import React from 'react';
+import classNames from 'classnames/bind';
 
-import styles from './Header.scss'
+import styles from './Header.scss';
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const Header = () => {
   return (
@@ -11,7 +11,7 @@ const Header = () => {
       <div className={cx('title-wrap')}>
         BEGINNER
       </div>
-      <div className={cx('spacer')}></div>
+      <div className={cx('spacer')} />
       <div className={cx('nav-wrap')}>
         <div className={cx('nav-item')}>
           로그인
@@ -24,7 +24,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

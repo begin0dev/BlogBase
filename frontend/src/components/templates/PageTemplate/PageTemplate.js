@@ -1,9 +1,9 @@
-import React from 'react'
-import classNames from 'classnames/bind'
-import { HeaderContainer, SidebarContainer } from 'containers'
-import styles from './PageTemplate.scss'
+import React from 'react';
+import classNames from 'classnames/bind';
+import { HeaderContainer, SidebarContainer } from 'containers';
+import styles from './PageTemplate.scss';
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const PageTemplate = ({ children }) => {
   return (
@@ -14,7 +14,7 @@ const PageTemplate = ({ children }) => {
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PageTemplate
+export default PageTemplate;

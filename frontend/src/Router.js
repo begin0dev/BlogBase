@@ -1,8 +1,8 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { MainPage, ProfilePage, TestPage } from 'pages'
+import { MainPage, ProfilePage, TestPage } from 'pages';
 
 const Router = ({ store }) => {
   return (
@@ -16,7 +16,7 @@ const Router = ({ store }) => {
         </Switch>
       </BrowserRouter>
     </Provider>
-  )
-}
+  );
+};
 
-export default Router
+export default Router;

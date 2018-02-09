@@ -1,31 +1,33 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Promise from 'promise'
-import { AppContainer } from 'react-hot-loader'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Promise from 'promise';
+import { AppContainer } from 'react-hot-loader';
 
-import Router from './Router'
-import store from './store'
-import registerServiceWorker from './registerServiceWorker'
+import Router from './Router';
+import store from './store';
+import registerServiceWorker from './registerServiceWorker';
 
-import './styles/main.scss'
+import './styles/main.scss';
 
 if (!window.Promise) {
-  window.Promise = Promise
+  window.Promise = Promise;
 }
 
-const render = (Component) => ReactDOM.render(
-  (
-    <AppContainer>
-      <Component store={store} />
-    </AppContainer>
-  ),
-  document.getElementById('react-root')
-)
+const render = (Component) => {
+  ReactDOM.render(
+    (
+      <AppContainer>
+        <Component store={store} />
+      </AppContainer>
+    ),
+    document.getElementById('react-root'),
+  );
+};
 
-render(Router)
+render(Router);
 
 if (module.hot) {
-  module.hot.accept('./Router', () => render(Router))
+  module.hot.accept('./Router', () => render(Router));
 }
 
-registerServiceWorker()
+registerServiceWorker();

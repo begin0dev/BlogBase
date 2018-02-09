@@ -1,19 +1,19 @@
-import React from 'react'
-import classNames from 'classnames/bind'
+import React from 'react';
+import classNames from 'classnames/bind';
 
-import { SearchInput } from 'components'
-import Navi from './Navi/Navi'
+import { SearchInput } from 'components';
+import Navi from './Navi/Navi';
+import styles from './Sidebar.scss';
 
-import styles from './Sidebar.scss'
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const Sidebar = ({ sidebar, active }) => {
   return (
-    <aside className={cx('sidebar', {open: sidebar})}>
+    <aside className={cx('sidebar', { open: sidebar })}>
       <div className={cx('nav-search')}>
         <SearchInput
           loading={false}
-          placeholder={'Search...'}
+          placeholder="Search..."
         />
       </div>
       <div className={cx('nav-wrap')}>
@@ -22,7 +22,7 @@ const Sidebar = ({ sidebar, active }) => {
         />
       </div>
     </aside>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

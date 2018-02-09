@@ -1,10 +1,10 @@
-import React from 'react'
-import classNames from 'classnames/bind'
+import React from 'react';
+import classNames from 'classnames/bind';
 
-import { PageTemplate } from 'components'
-import styles from './TestPage.scss'
+import { PageTemplate } from 'components';
+import styles from './TestPage.scss';
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const TestPage = () => {
   return (
@@ -13,7 +13,7 @@ const TestPage = () => {
         test
       </main>
     </PageTemplate>
-  )
-}
+  );
+};
 
-export default TestPage
+export default TestPage;

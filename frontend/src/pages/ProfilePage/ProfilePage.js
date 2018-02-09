@@ -1,10 +1,10 @@
-import React from 'react'
-import classNames from 'classnames/bind'
+import React from 'react';
+import classNames from 'classnames/bind';
 
-import { PageTemplate } from 'components'
-import styles from './ProfilePage.scss'
+import { PageTemplate } from 'components';
+import styles from './ProfilePage.scss';
 
-const cx = classNames.bind(styles)
+const cx = classNames.bind(styles);
 
 const ProfilePage = () => {
   return (
@@ -13,7 +13,7 @@ const ProfilePage = () => {
         profile
       </main>
     </PageTemplate>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
