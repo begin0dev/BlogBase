@@ -1,5 +1,7 @@
-import configure from './configure';
+import commonStore from './commonStore';
 
-const store = configure();
+const store = {
+  commonStore,
+};
 
 export default store;

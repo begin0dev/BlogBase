@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
 import { Hamburger, Sidebar } from 'components';
-import * as uiActions from 'store/reducers/ui';
 
 class SidebarContainer extends Component {
   componentDidMount() {
@@ -52,12 +48,4 @@ class SidebarContainer extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    sidebar: state.ui.sidebar.visible,
-    active: state.ui.sidebar.active,
-  }),
-  dispatch => ({
-    UiActions: bindActionCreators(uiActions, dispatch),
-  }),
-)(SidebarContainer);
+export default SidebarContainer;

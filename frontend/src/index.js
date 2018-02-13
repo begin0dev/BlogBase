@@ -9,6 +9,9 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './styles/main.scss';
 
+// For easier debugging
+window._____APP_STATE_____ = store;
+
 if (!window.Promise) {
   window.Promise = Promise;
 }
