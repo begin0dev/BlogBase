@@ -1,15 +1,12 @@
 import React from 'react';
-import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { MainPage, ProfilePage, TestPage } from 'pages';
 
-useStrict(true);
-
 const Router = ({ store }) => {
   return (
-    <Provider store={store}>
+    <Provider {...store}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={MainPage} />
