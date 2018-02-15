@@ -1,13 +1,10 @@
 import { observable, action } from 'mobx';
 
 class CommonStore {
-  @observable sidebar ={
-    visible: true,
-    active: 1,
-  }
+  @observable sidebar = true;
 
   @action toggleSidebar(visible) {
-    this.sidebar.visible = visible;
+    this.sidebar = visible;
   }
 }
 

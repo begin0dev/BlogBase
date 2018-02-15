@@ -7,7 +7,6 @@ import { Hamburger, Sidebar } from 'components';
 class SidebarContainer extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.sidebarResizeEvent);
-    this.sidebarResizeEvent();
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.sidebarResizeEvent);
@@ -17,16 +16,16 @@ class SidebarContainer extends Component {
     const { commonStore } = this.props;
     const { sidebar } = commonStore;
     if (window.innerWidth < 768) {
-      commonStore.toggleSidebar(!sidebar.visible);
+      commonStore.toggleSidebar(!sidebar);
     }
   }
   sidebarResizeEvent = () => {
     const { commonStore } = this.props;
     const { sidebar } = commonStore;
-    if (!sidebar.visible && window.innerWidth >= 768) {
+    if (!sidebar && window.innerWidth >= 768) {
       commonStore.toggleSidebar(true);
     }
-    if (sidebar.visible && window.innerWidth < 768) {
+    if (sidebar && window.innerWidth < 768) {
       commonStore.toggleSidebar(false);
     }
   }
@@ -40,13 +39,12 @@ class SidebarContainer extends Component {
     const { sidebar } = this.props.commonStore;
     return [
       <Hamburger
-        sidebar={sidebar.visible}
+        sidebar={sidebar}
         toggleSidebar={toggleSidebar}
         key="hamburger"
       />,
       <Sidebar
-        sidebar={sidebar.visible}
-        active={sidebar.active}
+        sidebar={sidebar}
         key="sidebar"
       />,
     ];

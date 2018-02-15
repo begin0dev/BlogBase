@@ -1,10 +1,19 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { observable, action } from 'mobx';
 import { Link } from 'react-router-dom';
 
 import styles from './Navi.scss';
 
 const cx = classNames.bind(styles);
+
+class NaviStore {
+  @observable active = 1;
+
+  @action toggleActive(index) {
+    this.active = index;
+  }
+}
 
 const Navi = ({ active }) => {
   return (
