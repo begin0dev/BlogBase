@@ -6,7 +6,6 @@ import styles from './Navi.scss';
 
 const cx = classNames.bind(styles);
 
-
 const Navi = ({ active }) => {
   return (
     <ul className={cx('ul')}>

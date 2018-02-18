@@ -4,8 +4,8 @@ import { inject, observer } from 'mobx-react';
 import { Hamburger, Sidebar } from 'components';
 
 @inject('commonStore')
-@observer
 @withRouter
+@observer
 class SidebarContainer extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.sidebarResizeEvent);
