@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Promise from 'promise';
 import { AppContainer } from 'react-hot-loader';
 import { useStrict } from 'mobx';
@@ -22,7 +23,9 @@ const render = (Component) => {
   ReactDOM.render(
     (
       <AppContainer>
-        <Component store={store} />
+        <BrowserRouter>
+          <Component store={store} />
+        </BrowserRouter>
       </AppContainer>
     ),
     document.getElementById('react-root'),

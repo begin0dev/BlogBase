@@ -1,19 +1,11 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { observable, action } from 'mobx';
 import { Link } from 'react-router-dom';
 
 import styles from './Navi.scss';
 
 const cx = classNames.bind(styles);
 
-class NaviStore {
-  @observable active = 1;
-
-  @action toggleActive(index) {
-    this.active = index;
-  }
-}
 
 const Navi = ({ active }) => {
   return (
@@ -28,9 +20,11 @@ const Navi = ({ active }) => {
           프로필
         </li>
       </Link>
-      <li className={cx('li', { active: active === 3 })}>
-        전체글
-      </li>
+      <Link to="/category/all">
+        <li className={cx('li', { active: active === 3 })}>
+          전체글
+        </li>
+      </Link>
       <ul className={cx('ul', 'cd-ul')}>
         <li className={cx('li')}>
           Test

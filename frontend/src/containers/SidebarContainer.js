@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import { Hamburger, Sidebar } from 'components';
 
 @inject('commonStore')
 @observer
+@withRouter
 class SidebarContainer extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.sidebarResizeEvent);
@@ -28,11 +30,6 @@ class SidebarContainer extends Component {
     if (sidebar && window.innerWidth < 768) {
       commonStore.toggleSidebar(false);
     }
-  }
-  toggleNavi = (index) => {
-    // const { UiActions, active } = this.props;
-    // if (active === index) return;
-    // UiActions.toggleNavi(index);
   }
   render() {
     const { toggleSidebar } = this;
