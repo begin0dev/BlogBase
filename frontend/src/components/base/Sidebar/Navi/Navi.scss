@@ -3,20 +3,21 @@
 .ul {
   user-select: none;
   .li {
-    display: flex;
-    align-items: center;
-    height: 2.5rem;
-    box-sizing: border-box;
     padding: 0 20px;
     cursor: pointer;
     &.active {
       font-weight: 500;
       color: material-color('red', '500');
     }
-  }
-  &.cd-ul {
-    font-size: 0.9rem;
-    .li {
+    a {
+      display: block;
+      line-height: 2.5rem;
+      transition: all .3s ease-in-out;
+    }
+    .child-ul {
+      font-size: 0.9rem;
+      .li {
+      }
     }
   }
 }

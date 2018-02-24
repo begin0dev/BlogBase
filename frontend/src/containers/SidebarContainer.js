@@ -14,34 +14,41 @@ class SidebarContainer extends Component {
     window.removeEventListener('resize', this.sidebarResizeEvent);
   }
 
+  setSearchValue = (e) => {
+    const { commonStore } = this.props;
+    commonStore.setSearchValue(e.target.value);
+  }
   toggleSidebar = () => {
     const { commonStore } = this.props;
-    const { sidebar } = commonStore;
+    const { visible } = commonStore.sidebar;
     if (window.innerWidth < 768) {
-      commonStore.toggleSidebar(!sidebar);
+      commonStore.toggleSidebar(!visible);
     }
   }
   sidebarResizeEvent = () => {
     const { commonStore } = this.props;
-    const { sidebar } = commonStore;
-    if (!sidebar && window.innerWidth >= 768) {
+    const { visible } = commonStore.sidebar;
+    if (!visible && window.innerWidth >= 768) {
       commonStore.toggleSidebar(true);
     }
-    if (sidebar && window.innerWidth < 768) {
+    if (visible && window.innerWidth < 768) {
       commonStore.toggleSidebar(false);
     }
   }
   render() {
-    const { toggleSidebar } = this;
+    const { toggleSidebar, setSearchValue } = this;
+    const { url } = this.props.match;
     const { sidebar } = this.props.commonStore;
     return [
       <Hamburger
-        sidebar={sidebar}
+        visible={sidebar.visible}
         toggleSidebar={toggleSidebar}
         key="hamburger"
       />,
       <Sidebar
+        url={url}
         sidebar={sidebar}
+        setSearchValue={setSearchValue}
         key="sidebar"
       />,
     ];
