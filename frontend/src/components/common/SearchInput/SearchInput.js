@@ -5,10 +5,16 @@ import styles from './SearchInput.scss';
 
 const cx = classNames.bind(styles);
 
-const SearchInput = ({ loading, placeholder, value }) => {
+const SearchInput = ({ loading, placeholder, value, setValue }) => {
   return (
     <div className={cx('wrapper')}>
-      <input type="text" className={cx('input', 'icon')} value={value} placeholder={placeholder} />
+      <input
+        type="text"
+        className={cx('input', 'icon')}
+        value={value}
+        placeholder={placeholder}
+        onChange={setValue}
+      />
       {
         loading
           ? <i aria-hidden="true" className={cx('icon', 'loading')} />

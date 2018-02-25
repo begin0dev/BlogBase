@@ -3,20 +3,40 @@
 .ul {
   user-select: none;
   .li {
-    display: flex;
-    align-items: center;
-    height: 2.5rem;
-    box-sizing: border-box;
-    padding: 0 20px;
     cursor: pointer;
+    position: relative;
     &.active {
       font-weight: 500;
       color: material-color('red', '500');
+      .li-wrap {
+        border-left: 2px solid material-color('red', '500');
+      }
     }
-  }
-  &.cd-ul {
-    font-size: 0.9rem;
-    .li {
+    &:hover {
+      .child-ul {
+        display: block;
+      }
+    }
+    .li-wrap {
+      display: block;
+      padding: 0 20px;
+      line-height: 2.5rem;
+      border-left: 2px solid transparent;
+    }
+    .drop {
+      position: absolute;
+      right: 13px;
+      top: 13px;
+    }
+
+    .child-ul {
+      display: none;
+      font-size: 0.9rem;
+      color: material-color('grey', '900');
+      .child-active {
+        font-weight: 500;
+        color: material-color('red', '500');
+      }
     }
   }
 }

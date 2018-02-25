@@ -12,6 +12,7 @@ module.exports = {
   },
   "rules": {
     "arrow-body-style": 0,
+    "object-curly-newline": 0,
     "function-paren-newline": 0,
     "react/prop-types": 0,
     "react/jsx-filename-extension": 0,
@@ -24,7 +25,7 @@ module.exports = {
       "error",
       {
         "allow": [
-          "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
+          "_____APP_STATE_____"
         ]
       }
     ],
