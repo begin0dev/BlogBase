@@ -7,19 +7,19 @@ import styles from './Sidebar.scss';
 
 const cx = classNames.bind(styles);
 
-const Sidebar = ({ sidebar, active }) => {
+const Sidebar = ({ sidebar, setSearchValue }) => {
   return (
-    <aside className={cx('sidebar', { open: sidebar })}>
+    <aside className={cx('sidebar', { open: sidebar.visible })}>
       <div className={cx('nav-search')}>
         <SearchInput
-          loading={false}
+          value={sidebar.searchValue}
+          loading={sidebar.searchLoading}
+          setValue={setSearchValue}
           placeholder="Search..."
         />
       </div>
       <div className={cx('nav-wrap')}>
-        <Navi
-          active={active}
-        />
+        <Navi />
       </div>
     </aside>
   );

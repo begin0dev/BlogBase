@@ -10,7 +10,7 @@ const TestPage = () => {
   return (
     <PageTemplate>
       <main className={cx('main')}>
-        test
+        category
       </main>
     </PageTemplate>
   );

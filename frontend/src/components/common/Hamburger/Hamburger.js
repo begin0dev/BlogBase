@@ -4,10 +4,10 @@ import styles from './Hamburger.scss';
 
 const cx = classNames.bind(styles);
 
-const Hamburger = ({ sidebar, toggleSidebar }) => {
+const Hamburger = ({ visible, toggleSidebar }) => {
   return (
     <div className={cx('wrapper')} onClick={toggleSidebar}>
-      <div className={classNames('hamburger hamburger--slider', { 'is-active': sidebar }, cx('spin'))}>
+      <div className={classNames('hamburger hamburger--slider', { 'is-active': visible }, cx('spin'))}>
         <span className="hamburger-box">
           <span className="hamburger-inner" />
         </span>
