@@ -6,7 +6,13 @@ class CommonStore {
     searchValue: '',
     searchLoading: false,
   }
+  @observable menu = {
+    expand: false,
+  }
 
+  @action toggleExpand(expand) {
+    this.menu = expand;
+  }
   @action toggleSidebar(visible) {
     this.sidebar.visible = visible;
   }

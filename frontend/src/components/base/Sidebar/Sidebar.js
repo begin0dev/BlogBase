@@ -7,7 +7,7 @@ import styles from './Sidebar.scss';
 
 const cx = classNames.bind(styles);
 
-const Sidebar = ({ url, sidebar, setSearchValue }) => {
+const Sidebar = ({ sidebar, setSearchValue }) => {
   return (
     <aside className={cx('sidebar', { open: sidebar.visible })}>
       <div className={cx('nav-search')}>
@@ -19,9 +19,7 @@ const Sidebar = ({ url, sidebar, setSearchValue }) => {
         />
       </div>
       <div className={cx('nav-wrap')}>
-        <Navi
-          url={url}
-        />
+        <Navi />
       </div>
     </aside>
   );

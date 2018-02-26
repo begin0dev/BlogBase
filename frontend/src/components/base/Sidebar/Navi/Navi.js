@@ -1,36 +1,32 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import ArrowDown from 'react-icons/lib/md/arrow-drop-down';
-import { Link } from 'react-router-dom';
-import { observable, action } from 'mobx';
+import { inject, observer } from 'mobx-react';
+import { Link, withRouter } from 'react-router-dom';
 
 import styles from './Navi.scss';
 
 const cx = classNames.bind(styles);
+const menu = [
+  { name: 'HOME', url: '/', child: null },
+  { name: '프로필', url: '/profile', child: null },
+  {
+    name: '끄적끄적',
+    url: null,
+    child: [
+      { name: 'All', url: '/category/all' },
+      { name: 'Node', url: '/category/node' },
+      { name: 'Javascript', url: '/category/javascript' },
+    ],
+  },
+];
 
+@inject('commonStore')
+@withRouter
+@observer
 class Navi extends Component {
-  @observable expand = false;
-
-  @action toggleExpand = () => {
-    this.expand = !this.expand;
-  }
-
   render() {
-    const menu = [
-      { name: 'HOME', url: '/', child: null },
-      { name: '프로필', url: '/profile', child: null },
-      {
-        name: '끄적끄적',
-        url: null,
-        child: [
-          { name: 'All', url: '/category/all' },
-          { name: 'Node', url: '/category/node' },
-          { name: 'Javascript', url: '/category/javascript' },
-        ],
-      },
-    ];
-    const { toggleExpand } = this;
-    const { url } = this.props;
+    const { url } = this.props.match;
     return (
       <ul className={cx('ul')}>
         {menu.map((item) => {
@@ -45,7 +41,7 @@ class Navi extends Component {
               ) :
               (
                 <li className={cx('li')} key={item.name}>
-                  <div className={cx('li-wrap')} onClick={toggleExpand}>
+                  <div className={cx('li-wrap')}>
                     {item.name}
                   </div>
                   <ArrowDown className={cx('drop')} />

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import { Hamburger, Sidebar } from 'components';
 
 @inject('commonStore')
-@withRouter
 @observer
 class SidebarContainer extends Component {
   componentDidMount() {
@@ -37,7 +35,6 @@ class SidebarContainer extends Component {
   }
   render() {
     const { toggleSidebar, setSearchValue } = this;
-    const { url } = this.props.match;
     const { sidebar } = this.props.commonStore;
     return [
       <Hamburger
@@ -46,7 +43,6 @@ class SidebarContainer extends Component {
         key="hamburger"
       />,
       <Sidebar
-        url={url}
         sidebar={sidebar}
         setSearchValue={setSearchValue}
         key="sidebar"
