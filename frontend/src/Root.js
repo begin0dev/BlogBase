@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStrict } from 'mobx';
+import { Provider } from 'mobx-react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Router from './Router';
@@ -11,9 +12,11 @@ useStrict(true);
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Router store={store} />
-    </BrowserRouter>
+    <Provider {...store}>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </Provider>
   );
 };
 

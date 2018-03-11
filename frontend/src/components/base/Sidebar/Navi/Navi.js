@@ -32,32 +32,32 @@ class Navi extends Component {
         {menu.map((item) => {
           return (
             !item.child ?
-              (
-                <li className={cx('li', { active: url === item.url })} key={item.name}>
-                  <Link className={cx('li-wrap')} to={item.url}>
-                    {item.name}
-                  </Link>
-                </li>
-              ) :
-              (
-                <li className={cx('li')} key={item.name}>
-                  <div className={cx('li-wrap')}>
-                    {item.name}
-                  </div>
-                  <ArrowDown className={cx('drop')} />
-                  <ul className={cx('child-ul')}>
-                    {item.child.map((child) => {
-                      return (
-                        <li className={cx('li', { 'child-active': url === child.url })} key={child.name}>
-                          <Link className={cx('li-wrap')} to={child.url}>
-                            {child.name}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              )
+            (
+              <li className={cx('li', { active: url === item.url })} key={item.name}>
+                <Link className={cx('li-wrap')} to={item.url}>
+                  {item.name}
+                </Link>
+              </li>
+            ) :
+            (
+              <li className={cx('li')} key={item.name}>
+                <div className={cx('li-wrap')}>
+                  {item.name}
+                </div>
+                <ArrowDown className={cx('drop')} />
+                <ul className={cx('child-ul')}>
+                  {item.child.map((child) => {
+                    return (
+                      <li className={cx('li', { 'child-active': url === child.url })} key={child.name}>
+                        <Link className={cx('li-wrap')} to={child.url}>
+                          {child.name}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            )
           );
         })}
       </ul>

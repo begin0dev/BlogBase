@@ -36,18 +36,20 @@ class SidebarContainer extends Component {
   render() {
     const { toggleSidebar, setSearchValue } = this;
     const { sidebar } = this.props.commonStore;
-    return [
-      <Hamburger
-        visible={sidebar.visible}
-        toggleSidebar={toggleSidebar}
-        key="hamburger"
-      />,
-      <Sidebar
-        sidebar={sidebar}
-        setSearchValue={setSearchValue}
-        key="sidebar"
-      />,
-    ];
+    return (
+      <React.Fragment>
+        <Hamburger
+          visible={sidebar.visible}
+          toggleSidebar={toggleSidebar}
+          key="hamburger"
+        />
+        <Sidebar
+          sidebar={sidebar}
+          setSearchValue={setSearchValue}
+          key="sidebar"
+        />
+      </React.Fragment>
+    );
   }
 }
 
