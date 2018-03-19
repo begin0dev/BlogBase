@@ -11,6 +11,7 @@ module.exports = {
     },
   },
   "rules": {
+    "global-require": 0,
     "arrow-body-style": 0,
     "object-curly-newline": 0,
     "function-paren-newline": 0,
@@ -21,13 +22,5 @@ module.exports = {
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": [
-          "_____APP_STATE_____"
-        ]
-      }
-    ],
   }
 };

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
+import { connect } from 'react-redux';
+
 import { Hamburger, Sidebar } from 'components';
 
-@inject('commonStore')
-@observer
 class SidebarContainer extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.sidebarResizeEvent);
@@ -12,30 +11,29 @@ class SidebarContainer extends Component {
     window.removeEventListener('resize', this.sidebarResizeEvent);
   }
 
-  setSearchValue = (e) => {
-    const { commonStore } = this.props;
-    commonStore.setSearchValue(e.target.value);
-  }
+  // setSearchValue = (e) => {
+  //   const { sidebar } = this.props;
+  //   commonStore.setSearchValue(e.target.value);
+  // }
   toggleSidebar = () => {
-    const { commonStore } = this.props;
-    const { visible } = commonStore.sidebar;
+    const { sidebar, dispatchToggleSidebar } = this.props;
     if (window.innerWidth < 768) {
-      commonStore.toggleSidebar(!visible);
+      dispatchToggleSidebar(!sidebar.visible);
     }
   }
   sidebarResizeEvent = () => {
-    const { commonStore } = this.props;
-    const { visible } = commonStore.sidebar;
+    const { sidebar, dispatchToggleSidebar } = this.props;
+    const { visible } = sidebar;
     if (!visible && window.innerWidth >= 768) {
-      commonStore.toggleSidebar(true);
+      dispatchToggleSidebar(true);
     }
     if (visible && window.innerWidth < 768) {
-      commonStore.toggleSidebar(false);
+      dispatchToggleSidebar(false);
     }
   }
   render() {
     const { toggleSidebar, setSearchValue } = this;
-    const { sidebar } = this.props.commonStore;
+    const { sidebar } = this.props;
     return (
       <React.Fragment>
         <Hamburger
@@ -53,4 +51,14 @@ class SidebarContainer extends Component {
   }
 }
 
-export default SidebarContainer;
+const mapStateToProps = state => ({
+  sidebar: state.sidebar,
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatchToggleSidebar: (boolean) => {
+    dispatch({ type: 'TOGGLE_SIDEBAR', boolean });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);

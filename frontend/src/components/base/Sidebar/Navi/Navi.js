@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 import ArrowDown from 'react-icons/lib/md/arrow-drop-down';
-import { inject, observer } from 'mobx-react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './Navi.scss';
 
@@ -21,43 +20,40 @@ const menu = [
   },
 ];
 
-@inject('commonStore')
-@withRouter
-@observer
 class Navi extends Component {
   render() {
-    const { url } = this.props.match;
+    const { url } = 'aaaaa';
     return (
       <ul className={cx('ul')}>
         {menu.map((item) => {
           return (
             !item.child ?
-            (
-              <li className={cx('li', { active: url === item.url })} key={item.name}>
-                <Link className={cx('li-wrap')} to={item.url}>
-                  {item.name}
-                </Link>
-              </li>
-            ) :
-            (
-              <li className={cx('li')} key={item.name}>
-                <div className={cx('li-wrap')}>
-                  {item.name}
-                </div>
-                <ArrowDown className={cx('drop')} />
-                <ul className={cx('child-ul')}>
-                  {item.child.map((child) => {
-                    return (
-                      <li className={cx('li', { 'child-active': url === child.url })} key={child.name}>
-                        <Link className={cx('li-wrap')} to={child.url}>
-                          {child.name}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </li>
-            )
+              (
+                <li className={cx('li', { active: url === item.url })} key={item.name}>
+                  <Link className={cx('li-wrap')} to={item.url}>
+                    {item.name}
+                  </Link>
+                </li>
+              ) :
+              (
+                <li className={cx('li')} key={item.name}>
+                  <div className={cx('li-wrap')}>
+                    {item.name}
+                  </div>
+                  <ArrowDown className={cx('drop')} />
+                  <ul className={cx('child-ul')}>
+                    {item.child.map((child) => {
+                      return (
+                        <li className={cx('li', { 'child-active': url === child.url })} key={child.name}>
+                          <Link className={cx('li-wrap')} to={child.url}>
+                            {child.name}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              )
           );
         })}
       </ul>

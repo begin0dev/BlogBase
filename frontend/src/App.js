@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { MainPage, ProfilePage, TestPage } from 'pages';
 
-const Router = () => {
+const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={MainPage} />
@@ -14,4 +14,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default App;
