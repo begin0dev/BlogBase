@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   if (req.user) {
     res.status(200).json({ state: 'login' });
   } else {
-    res.status(401);
+    res.status(401).end();
   }
 });
 
@@ -72,7 +72,7 @@ router.post('/register', async (req, res, next) => {
     // access token set cookie
     res.cookie('access_token', accessToken, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 3,
+      maxAge: 1000 * 60 * 60 * 24,
     });
 
     return res.status(200).json({ success: true, message: 'success local register' });
@@ -124,7 +124,7 @@ router.post('/login', async (req, res, next) => {
     // access token set cookie
     res.cookie('access_token', accessToken, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 3,
+      maxAge: 1000 * 60 * 60 * 24,
     });
 
     return res.status(200).json({ success: true, message: 'success local login' });
