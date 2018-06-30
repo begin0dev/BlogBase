@@ -5,6 +5,7 @@ import { Hamburger, Sidebar } from 'components';
 
 class SidebarContainer extends Component {
   componentDidMount() {
+    this.toggleSidebar();
     window.addEventListener('resize', this.sidebarResizeEvent);
   }
   componentWillUnmount() {

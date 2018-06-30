@@ -1,17 +1,17 @@
 @import 'utils';
 
 .sidebar {
+  z-index: z-index('sidebar');
   position: fixed;
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   width: 240px;
-  left: 0;
-  top: 0;
   margin-top: 60px;
   height: calc(100vh - 60px);
   background-color: #ffffff;
   backface-visibility: hidden;
-  z-index: z-index('sidebar');
   border-right: 1px solid material-color('grey', '200');
   transform: translate(-100%);
   transition: all .2s ease-in-out;

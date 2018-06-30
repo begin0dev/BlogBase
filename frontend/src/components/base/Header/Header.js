@@ -14,13 +14,13 @@ const Header = () => {
       <div className={cx('spacer')} />
       <div className={cx('nav-wrap')}>
         <div className={cx('nav-item')}>
-          로그인
+          LOGIN
         </div>
         <div className={cx('nav-item')}>
-          /
+          or
         </div>
         <div className={cx('nav-item')}>
-          회원가입
+          SIGN UP
         </div>
       </div>
     </header>

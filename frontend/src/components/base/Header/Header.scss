@@ -1,33 +1,33 @@
 @import 'utils';
 
 .header {
+  z-index: z-index('header');
+  display: flex;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  height: 60px;
+  height: 48px;
   background-color: #ffffff;
-  overflow: hidden;
-  z-index: z-index('header');
-  opacity: 1;
-  box-shadow: 0 2px 4px -1px material-color('grey', '100');
-  display: flex;
   flex-direction: row;
-  @include media('<medium') {
-    height: 48px;
+  //box-shadow: 0 2px 4px -1px material-color('grey', '100');
+  border-bottom: 1px solid material-color('grey', '200');
+  overflow: hidden;
+  @include media('>=medium') {
+    height: 60px;
   }
     .title-wrap {
       display: flex;
-      height: 100%;
       justify-content: center;
       align-items: center;
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-left: 48px;
+      letter-spacing: 0.3rem;
       @include media('>=medium') {
+        margin-left: 0;
+        letter-spacing: 0.5rem;
         width: 240px;
-      }
-      @include media('<medium') {
-        margin-left: 48px;
       }
     }
     .spacer {
@@ -35,13 +35,13 @@
     }
     .nav-wrap {
       display: flex;
-      height: 100%;
+      font-size: .8rem;
       justify-content: flex-start;
       align-items: center;
       user-select: none;
-      margin-right: 25px;
-      @include media('<medium') {
-        margin-right: 15px;
+      margin-right: 15px;
+      @include media('>=medium') {
+        margin-right: 25px;
       }
       .nav-item {
         + .nav-item {
