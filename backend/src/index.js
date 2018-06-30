@@ -1,16 +1,17 @@
 require('dotenv').config(); // LOAD CONFIG
 
+const { NODE_ENV, PORT } = process.env;
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-
 const jwtMiddleware = require('./lib/middlewares/jwt');
 const api = require('./api');
 const db = require('./db');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = PORT || 3000;
 
 /* SETUP MIDDLEWARE */
 // Allows express to read `x-www-form-urlencoded` data:
@@ -44,7 +45,7 @@ app.use((err, req, res, next) => {
 });
 
 // ENABLE DEBUG WHEN DEV ENVIRONMENT
-if (process.env.NODE_ENV === 'development') {
+if (NODE_ENV === 'development') {
   mongoose.set('debug', true);
   app.use(morgan('tiny')); // server logger
 }

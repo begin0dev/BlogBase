@@ -28,11 +28,7 @@ const User = new mongoose.Schema({
       access_token: String,
     },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+}, { timestamps: true });
 
 // static methods
 User.statics.findUserInfo = function findUserInfo(id) {
