@@ -1,5 +1,6 @@
-const { JWT_SECRET: secret } = process.env;
 const jwt = require('jsonwebtoken');
+
+const { JWT_SECRET: secret } = process.env;
 
 exports.generateToken = (payload, subject) => {
   return new Promise(async (resolve, reject) => {
