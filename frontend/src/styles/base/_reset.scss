@@ -1,12 +1,12 @@
+@import 'utils';
 body {
-  font-family: "Montserrat", "Nanum Square", sans-serif;
+  font-family: 'Ubuntu', 'Nanum Square', sans-serif;
   font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   padding: 0;
   position: relative;
   height: 100%;
   overflow: scroll;
+  color: material-color('grey', '700');
 }
 * {
   margin: 0;
@@ -25,6 +25,6 @@ ol, ul {
 }
 div, article, main, header, footer, nav, section {
   padding: 0;
-  border: 0 solid black;
+  border: 0;
   position: relative;
 }
