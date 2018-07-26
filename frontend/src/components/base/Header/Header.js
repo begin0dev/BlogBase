@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
 import styles from './Header.scss';
@@ -9,19 +10,21 @@ const Header = () => {
   return (
     <header className={cx('header')}>
       <div className={cx('title-wrap')}>
-        BEGINNER
+        <Link to="/">
+          <span>B</span>EGINNER
+        </Link>
       </div>
       <div className={cx('spacer')} />
       <div className={cx('nav-wrap')}>
-        <div className={cx('nav-item')}>
+        <span className={cx('nav-item')}>
           LOGIN
-        </div>
-        <div className={cx('nav-item')}>
+        </span>
+        <span className={cx('nav-item')}>
           or
-        </div>
-        <div className={cx('nav-item')}>
+        </span>
+        <span className={cx('nav-item')}>
           SIGN UP
-        </div>
+        </span>
       </div>
     </header>
   );

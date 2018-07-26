@@ -1,12 +1,13 @@
 @import 'utils';
+
 body {
   font-family: 'Ubuntu', 'Nanum Square', sans-serif;
   font-size: 14px;
+  font-weight: 300;
   padding: 0;
   position: relative;
   height: 100%;
   overflow: scroll;
-  color: material-color('grey', '700');
 }
 * {
   margin: 0;

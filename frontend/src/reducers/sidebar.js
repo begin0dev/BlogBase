@@ -1,5 +1,7 @@
 export const defaultState = {
-  visible: true,
+  visible: window.innerWidth >= 768,
+  expanded: false,
+  searchLoading: true,
 };
 
 export default (state = defaultState, action) => {
@@ -8,6 +10,11 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         visible: action.boolean,
+      };
+    case 'EXPANDED_NAVI':
+      return {
+        ...state,
+        expanded: action.boolean,
       };
     default:
       return state;

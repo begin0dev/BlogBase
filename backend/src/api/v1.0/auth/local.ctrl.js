@@ -40,15 +40,11 @@ router.post('/register', async (req, res, next) => {
   try {
     // check username
     const userNameExists = await User.findByUsername(userName);
-    if (userNameExists) {
-      return res.status(400).json({ success: false, message: 'userName is already exists' });
-    }
+    if (userNameExists) return res.status(400).json({ success: false, message: 'userName is already exists' });
 
     // check email
     const emailExists = await User.findByEmail(email);
-    if (emailExists) {
-      return res.status(400).json({ success: false, message: 'email is already exists' });
-    }
+    if (emailExists) return res.status(400).json({ success: false, message: 'email is already exists' });
 
     // generate password
     const hashPassword = await generatePassword(password);
@@ -100,18 +96,11 @@ router.post('/login', async (req, res, next) => {
   try {
     // find by username
     const user = await User.findByUsername(userName);
-    if (!user) {
-      return res.status(400).json({ success: false, message: 'user is incorrect!' });
-    }
+    if (!user) return res.status(400).json({ success: false, message: 'user is incorrect!' });
 
     // find one user compare password
-    const result = await comparePassword(
-      password,
-      user.password,
-    );
-    if (!result) {
-      return res.status(400).json({ success: false, message: 'user is incorrect!' });
-    }
+    const result = await comparePassword(password, user.password);
+    if (!result) return res.status(400).json({ success: false, message: 'user is incorrect!' });
 
     // create access token
     const accessToken = await generateToken({

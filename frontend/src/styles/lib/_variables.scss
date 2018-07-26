@@ -2,13 +2,20 @@ $breakpoints: (
   small: 450px, 
   medium: 768px, 
   large: 1024px, 
-  huge: 1200px
+  huge: 1200px,
+);
+$themes: (
+  primary: material-color('blue-grey', '600'),
+  secondary: material-color('red', 'a400'),
 );
 $z-indexes: (
   'header': 100,
   'sidebar': 80,
   'hamburger': 120,
 );
+@function theme($key) {
+  @return map-get($themes, $key);
+}
 @function z-index($key) {
   @return map-get($z-indexes, $key);
 }

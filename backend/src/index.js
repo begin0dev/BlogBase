@@ -14,6 +14,7 @@ const port = PORT || 3000;
 
 /* mongoose connected */
 db.connect();
+
 /* SETUP MIDDLEWARE */
 // Allows express to read `x-www-form-urlencoded` data:
 app.use(cookieParser());

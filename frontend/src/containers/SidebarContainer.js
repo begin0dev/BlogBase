@@ -5,7 +5,6 @@ import { Hamburger, Sidebar } from 'components';
 
 class SidebarContainer extends Component {
   componentDidMount() {
-    this.toggleSidebar();
     window.addEventListener('resize', this.sidebarResizeEvent);
   }
   componentWillUnmount() {
@@ -18,34 +17,33 @@ class SidebarContainer extends Component {
   // }
   toggleSidebar = () => {
     const { sidebar, dispatchToggleSidebar } = this.props;
-    if (window.innerWidth < 768) {
-      dispatchToggleSidebar(!sidebar.visible);
-    }
+    if (window.innerWidth < 768) dispatchToggleSidebar(!sidebar.visible);
   }
   sidebarResizeEvent = () => {
     const { sidebar, dispatchToggleSidebar } = this.props;
     const { visible } = sidebar;
-    if (!visible && window.innerWidth >= 768) {
-      dispatchToggleSidebar(true);
-    }
-    if (visible && window.innerWidth < 768) {
-      dispatchToggleSidebar(false);
-    }
+    if (!visible && window.innerWidth >= 768) dispatchToggleSidebar(true);
+    if (visible && window.innerWidth < 768) dispatchToggleSidebar(false);
+  }
+  expandedNavi = boolean => () => {
+    this.props.dispatchExpandedNavi(boolean);
   }
   render() {
-    const { toggleSidebar, setSearchValue } = this;
+    const { toggleSidebar, expandedNavi, setSearchValue } = this;
     const { sidebar } = this.props;
     return (
       <React.Fragment>
+        <Sidebar
+          sidebar={sidebar}
+          setSearchValue={setSearchValue}
+          toggleSidebar={toggleSidebar}
+          expandedNavi={expandedNavi}
+          key="sidebar"
+        />
         <Hamburger
           visible={sidebar.visible}
           toggleSidebar={toggleSidebar}
           key="hamburger"
-        />
-        <Sidebar
-          sidebar={sidebar}
-          setSearchValue={setSearchValue}
-          key="sidebar"
         />
       </React.Fragment>
     );
@@ -59,6 +57,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchToggleSidebar: (boolean) => {
     dispatch({ type: 'TOGGLE_SIDEBAR', boolean });
+  },
+  dispatchExpandedNavi: (boolean) => {
+    dispatch({ type: 'EXPANDED_NAVI', boolean });
   },
 });
 

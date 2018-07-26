@@ -1,16 +1,18 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { MainPage, ProfilePage, TestPage } from 'pages';
+import { MainPage, ProfilePage, CategoryPage } from 'pages';
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path="/" component={MainPage} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route path="/category/:name" component={TestPage} />
-      <Route path="/*" component={TestPage} />
-    </Switch>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        <Route path="/profile" component={ProfilePage} />
+        <Route path="/category/:name" component={CategoryPage} />
+        <Route path="/*" component={CategoryPage} />
+      </Switch>
+    </BrowserRouter>
   );
 };
 

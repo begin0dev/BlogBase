@@ -5,38 +5,31 @@
   .li {
     cursor: pointer;
     position: relative;
-    &.active {
-      font-weight: 500;
-      color: material-color('red', '500');
-      .li-wrap {
-        border-left: 2px solid material-color('red', '500');
-      }
-    }
-    &:hover {
-      .child-ul {
-        display: block;
-      }
-    }
+    color: theme('primary');
     .li-wrap {
       display: block;
+      font-weight: 300;
       padding: 0 20px;
       line-height: 2.5rem;
       border-left: 2px solid transparent;
+      &.active {
+        border-left: 2px solid theme('secondary');
+        color: theme('secondary');
+      }
+      &.expanded {
+        ~.children-ul {
+          display: block;
+        }
+      }
+      .expand-icon {
+        position: absolute;
+        right: 13px;
+        top: 13px;
+      }
     }
-    .drop {
-      position: absolute;
-      right: 13px;
-      top: 13px;
-    }
-
-    .child-ul {
+    .children-ul {
       display: none;
       font-size: 0.9rem;
-      color: material-color('grey', '900');
-      .child-active {
-        font-weight: 500;
-        color: material-color('red', '500');
-      }
     }
   }
 }

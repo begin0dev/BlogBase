@@ -1,9 +1,9 @@
 import MainPage from './MainPage';
 import ProfilePage from './ProfilePage';
-import TestPage from './TestPage';
+import CategoryPage from './CategoryPage';
 
 export {
   MainPage,
   ProfilePage,
-  TestPage,
+  CategoryPage,
 };

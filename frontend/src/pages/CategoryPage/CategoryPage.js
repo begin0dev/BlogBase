@@ -2,11 +2,11 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import { PageTemplate } from 'components';
-import styles from './TestPage.scss';
+import styles from './CategoryPage.scss';
 
 const cx = classNames.bind(styles);
 
-const TestPage = () => {
+const CategoryPage = () => {
   return (
     <PageTemplate>
       <main className={cx('main')}>
@@ -16,4 +16,4 @@ const TestPage = () => {
   );
 };
 
-export default TestPage;
+export default CategoryPage;
