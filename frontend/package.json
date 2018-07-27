@@ -24,7 +24,7 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.2",
     "sass-loader": "^6.0.7"
   },
   "dependencies": {
@@ -63,7 +63,7 @@
     "sass-material-colors": "0.0.5",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
-    "url-loader": "0.5.9",
+    "url-loader": "^1.0.1",
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
     "webpack-manifest-plugin": "1.2.1",

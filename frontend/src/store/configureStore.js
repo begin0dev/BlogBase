@@ -2,8 +2,8 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from '../reducers';
-import rootSaga from '../sagas';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
 
 /*
  * @param {Object} initial state to bootstrap our stores with for server-side rendering
@@ -25,8 +25,8 @@ export default function configureStore(history) {
   sagaMiddleware.run(rootSaga);
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers');
+    module.hot.accept('./reducers', () => {
+      const nextReducer = require('./reducers');
       store.replaceReducer(nextReducer);
     });
   }
