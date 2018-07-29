@@ -25,9 +25,4 @@ const renderDOM = Component => render(
 );
 
 renderDOM(App);
-
-if (module.hot) {
-  module.hot.accept('./App', () => renderDOM(App));
-}
-
 registerServiceWorker();

@@ -5,16 +5,25 @@
   .li {
     cursor: pointer;
     position: relative;
-    color: theme('primary');
+    .spacer {
+      margin: 1rem 1.3rem;
+      border-bottom: 1px solid material-color('grey', '100');
+    }
     .li-wrap {
       display: block;
       font-weight: 300;
-      padding: 0 20px;
+      padding: 0 1.3rem;
       line-height: 2.5rem;
       border-left: 2px solid transparent;
+      &.expand-li {
+        font-weight: 400;
+        font-size: .7rem;
+        line-height: 1.5rem;
+        color: material-color('blue-grey', '200')
+      }
       &.active {
-        border-left: 2px solid theme('secondary');
         color: theme('secondary');
+        border-left: 2px solid theme('secondary');
       }
       &.expanded {
         ~.children-ul {
@@ -23,13 +32,13 @@
       }
       .expand-icon {
         position: absolute;
-        right: 13px;
-        top: 13px;
+        right: 1.3rem;
+        top: .15rem;
+        font-size: 1rem;
       }
     }
     .children-ul {
       display: none;
-      font-size: 0.9rem;
     }
   }
 }

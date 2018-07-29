@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import ArrowDown from 'react-icons/lib/md/arrow-drop-down';
+import ArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
+import ArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Navi.scss';
@@ -8,10 +9,10 @@ import styles from './Navi.scss';
 const cx = classNames.bind(styles);
 
 const menu = [
-  { name: 'HOME', url: '/', children: null },
+  { name: 'MAIN', url: '/', children: null },
   { name: 'PROFILE', url: '/profile', children: null },
   {
-    name: 'DEV',
+    name: 'DEVELOPMENT',
     url: null,
     children: [
       { name: 'All', url: '/category/all' },
@@ -34,16 +35,20 @@ const Navi = ({ expanded, expandedNavi }) => {
             </li>
             :
             <li className={cx('li')} key={item.name}>
-              <div className={cx('li-wrap', { expanded })} onClick={expandedNavi(!expanded)}>
+              <div className={cx('spacer')} />
+              <div className={cx('li-wrap', 'expand-li', { expanded })} onClick={expandedNavi(!expanded)}>
                 {item.name}
-                <ArrowDown className={cx('expand-icon')} />
+                {expanded ?
+                  <ArrowUp className={cx('expand-icon')} /> :
+                  <ArrowDown className={cx('expand-icon')} />
+                }
               </div>
               <ul className={cx('children-ul')}>
                 {item.children.map((children) => {
                   return (
                     <li className={cx('li')} key={children.name}>
-                      <NavLink className={cx('li-wrap')} activeClassName={cx('active')} to={children.url}>
-                        {`- ${children.name}`}
+                      <NavLink className={cx('li-wrap', 'children-li')} activeClassName={cx('active')} to={children.url}>
+                        {children.name}
                       </NavLink>
                     </li>
                   );

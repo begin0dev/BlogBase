@@ -4,7 +4,7 @@ body {
   font-family: 'Ubuntu', 'Nanum Square', sans-serif;
   font-size: 14px;
   font-weight: 300;
-  padding: 0;
+  -webkit-font-smoothing: antialiased;
   position: relative;
   height: 100%;
   overflow: scroll;

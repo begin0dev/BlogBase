@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import onClickOutside from 'react-onclickoutside';
+import { withRouter } from 'react-router-dom';
 
 import { Hamburger, Sidebar } from 'components';
 
@@ -10,7 +12,12 @@ class SidebarContainer extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.sidebarResizeEvent);
   }
-
+  handleClickOutside = () => {
+    const { toggleSidebar } = this;
+    const { sidebar } = this.props;
+    if (!sidebar.visible || window.innerWidth >= 768) return;
+    toggleSidebar();
+  };
   // setSearchValue = (e) => {
   //   const { sidebar } = this.props;
   //   commonStore.setSearchValue(e.target.value);
@@ -26,13 +33,14 @@ class SidebarContainer extends Component {
     if (visible && window.innerWidth < 768) dispatchToggleSidebar(false);
   }
   expandedNavi = boolean => () => {
-    this.props.dispatchExpandedNavi(boolean);
+    const { dispatchExpandedNavi } = this.props;
+    dispatchExpandedNavi(boolean);
   }
   render() {
     const { toggleSidebar, expandedNavi, setSearchValue } = this;
     const { sidebar } = this.props;
     return (
-      <React.Fragment>
+      <div>
         <Sidebar
           sidebar={sidebar}
           setSearchValue={setSearchValue}
@@ -45,7 +53,7 @@ class SidebarContainer extends Component {
           toggleSidebar={toggleSidebar}
           key="hamburger"
         />
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -63,4 +71,5 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);
+const outsideWrap = onClickOutside(SidebarContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(outsideWrap));

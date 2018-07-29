@@ -1,6 +1,6 @@
 export const defaultState = {
   visible: window.innerWidth >= 768,
-  expanded: false,
+  expanded: true,
   searchLoading: true,
 };
 

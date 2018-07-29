@@ -9,8 +9,9 @@ $themes: (
   secondary: material-color('red', 'a400'),
 );
 $z-indexes: (
-  'header': 100,
-  'sidebar': 80,
+  'header': 60,
+  'overlay': 90,
+  'sidebar': 100,
   'hamburger': 120,
 );
 @function theme($key) {
