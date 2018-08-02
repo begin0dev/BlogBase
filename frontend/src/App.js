@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { PageTemplate } from 'components/index';
-import { MainPage, ProfilePage, CategoryPage } from 'pages';
+import { PageTemplate } from 'components';
+import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
         <Route exact path="/" component={MainPage} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/category/:name" component={CategoryPage} />
-        <Route path="/*" component={CategoryPage} />
+        <Route path="/*" component={NotFoundPage} />
       </Switch>
     </PageTemplate>
   );

@@ -51,7 +51,9 @@
     .nav-item {
       + .nav-item {
         margin-left: 5px;
-
+      }
+      &.sign {
+        cursor: pointer;
       }
     }
   }

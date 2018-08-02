@@ -11,8 +11,9 @@ $themes: (
 $z-indexes: (
   'header': 60,
   'overlay': 90,
-  'sidebar': 100,
-  'hamburger': 120,
+  'sidebar': 120,
+  'hamburger': 150,
+  'modal': 180,
 );
 @function theme($key) {
   @return map-get($themes, $key);

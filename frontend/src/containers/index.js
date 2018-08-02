@@ -1,9 +1,9 @@
 import HeaderContainer from './HeaderContainer';
 import SidebarContainer from './SidebarContainer';
-import OverlayContainer from './OverlayContainer';
+import AccountContainer from './AccountContainer';
 
 export {
   HeaderContainer,
   SidebarContainer,
-  OverlayContainer,
+  AccountContainer,
 };

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import onClickOutside from 'react-onclickoutside';
 import { withRouter } from 'react-router-dom';
+import onClickOutside from 'react-onclickoutside';
 
-import { Hamburger, Sidebar } from 'components';
+import { Hamburger, Sidebar, Overlay } from 'components';
 
 class SidebarContainer extends Component {
   componentDidMount() {
@@ -12,16 +12,13 @@ class SidebarContainer extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.sidebarResizeEvent);
   }
-  handleClickOutside = () => {
-    const { toggleSidebar } = this;
+  handleClickOutside = (e) => {
+    const { toggleSidebar, hamburgerRef } = this;
     const { sidebar } = this.props;
+    if (hamburgerRef.contains(e.target)) return;
     if (!sidebar.visible || window.innerWidth >= 768) return;
     toggleSidebar();
   };
-  // setSearchValue = (e) => {
-  //   const { sidebar } = this.props;
-  //   commonStore.setSearchValue(e.target.value);
-  // }
   toggleSidebar = () => {
     const { sidebar, dispatchToggleSidebar } = this.props;
     if (window.innerWidth < 768) dispatchToggleSidebar(!sidebar.visible);
@@ -40,7 +37,7 @@ class SidebarContainer extends Component {
     const { toggleSidebar, expandedNavi, setSearchValue } = this;
     const { sidebar } = this.props;
     return (
-      <div>
+      <React.Fragment>
         <Sidebar
           sidebar={sidebar}
           setSearchValue={setSearchValue}
@@ -48,12 +45,14 @@ class SidebarContainer extends Component {
           expandedNavi={expandedNavi}
           key="sidebar"
         />
+        { window.innerWidth < 768 && <Overlay visible={sidebar.visible} key="sidebar-overlay" /> }
         <Hamburger
           visible={sidebar.visible}
           toggleSidebar={toggleSidebar}
+          hamburgerRef={(hamburger) => { this.hamburgerRef = hamburger; }}
           key="hamburger"
         />
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -61,7 +60,6 @@ class SidebarContainer extends Component {
 const mapStateToProps = state => ({
   sidebar: state.sidebar,
 });
-
 const mapDispatchToProps = dispatch => ({
   dispatchToggleSidebar: (boolean) => {
     dispatch({ type: 'TOGGLE_SIDEBAR', boolean });

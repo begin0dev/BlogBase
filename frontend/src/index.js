@@ -13,16 +13,15 @@ import './styles/main.scss';
 
 const store = configureStore(createBrowserHistory);
 
-const renderDOM = Component => render(
+render(
   <AppContainer>
     <Provider store={store}>
       <Router>
-        <Component />
+        <App />
       </Router>
     </Provider>
   </AppContainer>,
   document.getElementById('react-root'),
 );
 
-renderDOM(App);
 registerServiceWorker();

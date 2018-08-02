@@ -1,12 +1,23 @@
 # BEGINNER BLOG
+This project is the framework on which the blog is based.
 
-- frontend: reactJs
-- backend: express
+- Frontend: ReactJS (branch: redux-saga, redux-thunk, mobx)
+- Backend: Express (auth: JWT token)
+- Database: MongoDB
 
-### Database
-- mongo DB
-
-### node global install list
+### - Global install
 ~~~~
-$ npm install -g nodemon eslint
+$ npm i -g nodemon eslint
+~~~~
+### - Frontend
+~~~~
+$ cd frontend
+$ npm i
+$ npm start
+~~~~
+### - Backend
+~~~~
+$ cd backend
+$ npm i
+$ npm start
 ~~~~
