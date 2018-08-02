@@ -6,7 +6,7 @@ import { Modal } from 'components';
 class AccountContainer extends Component {
   render() {
     return (
-      <Modal active modalStyle={{ width: '400px', height: '400px' }}>
+      <Modal modalStyle={{ width: '400px', height: '400px' }}>
         asdasdas
       </Modal>
     );
