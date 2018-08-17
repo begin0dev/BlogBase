@@ -19,22 +19,21 @@
   }
   .title-wrap {
     display: flex;
-    height: 48px;
     align-items: center;
     font-size: 1.4rem;
     font-weight: 400;
-    padding-left: 54px;
-    letter-spacing: 0.3rem;
-    border-bottom: 1px solid material-color('grey', '100');
+    letter-spacing: 0.5rem;
     user-select: none;
-    span {
-      color: material-color('red', 'a400');
+    border-bottom: 1px solid material-color('grey', '100');
+    padding-left: 48px;
+    height: 48px;
+    :first-letter {
+      color: theme('secondary');
     }
     @include media('>=medium') {
       height: 60px;
       margin-left: 0;
       padding-left: 0.5rem;
-      letter-spacing: 0.5rem;
       justify-content: center;
     }
   }

@@ -11,6 +11,13 @@ module.exports = {
     },
   },
   "rules": {
+    "react/jsx-no-bind": [
+      2,
+      {
+        "ignoreRefs": true,
+        "allowArrowFunctions": true,
+      }
+    ],
     "global-require": 0,
     "arrow-body-style": 0,
     "object-curly-newline": 0,
@@ -24,7 +31,9 @@ module.exports = {
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
-    "operator-linebreak": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/label-has-associated-control": 0,
     "lines-between-class-members": 0,
+    "operator-linebreak": 0,
   }
 };

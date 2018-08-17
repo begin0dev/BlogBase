@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Modal } from 'components';
+import { Modal, Account } from 'components';
 
 class AccountContainer extends Component {
   render() {
     return (
-      <Modal modalStyle={{ width: '400px', height: '400px' }}>
-        asdasdas
+      <Modal active fullScreen={window.innerWidth < 450} size={{ width: '350px' }}>
+        <Account />
       </Modal>
     );
   }

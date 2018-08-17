@@ -1,7 +1,7 @@
 export const defaultState = {
   visible: window.innerWidth >= 768,
   expanded: true,
-  searchLoading: true,
+  searchLoading: false,
 };
 
 export default (state = defaultState, action) => {

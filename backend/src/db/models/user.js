@@ -1,25 +1,21 @@
 const mongoose = require('mongoose');
 
-const type = ['local', 'facebook', 'google', 'naver', 'kakao'];
-
 const User = new mongoose.Schema({
-  type: { type: String, enum: type },
-  userName: String,
+  email: String,
   password: String,
   common_profile: {
     displayName: String,
-    email: String,
   },
   o_auth: {
+    github: {
+      id: String,
+      access_token: String,
+    },
     facebook: {
       id: String,
       access_token: String,
     },
     google: {
-      id: String,
-      access_token: String,
-    },
-    naver: {
       id: String,
       access_token: String,
     },
@@ -35,10 +31,6 @@ User.statics.findUserInfo = function findUserInfo(id) {
   return this.findOne({ _id: id });
 };
 
-User.statics.findByUsername = function findByUsername(userName) {
-  return this.findOne({ userName });
-};
-
 User.statics.findByEmail = function findByEmail(email) {
   return this.findOne({ 'common_profile.email': email });
 };
@@ -52,14 +44,12 @@ User.statics.findBySocialId = function findBySocialId({ provider, id }) {
   return this.findOne({ [key]: id });
 };
 
-User.statics.localRegister = function localRegister({ userName, password, displayName, email }) {
+User.statics.localRegister = function localRegister({ email, password, displayName }) {
   const user = new this({
-    type: 'local',
-    userName,
+    email,
     password,
     common_profile: {
       displayName,
-      email,
     },
   });
   return user.save();

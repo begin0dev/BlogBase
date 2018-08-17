@@ -10,16 +10,15 @@
   bottom: 0;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,.4);
+  background-color: rgba(0,0,0,.4);
   &.active {
     display: flex;
   }
   &.hide-overlay {
-    background: #fff;
+    background-color: rgba(0,0,0,0);
   }
   .modal {
-    width: 500px;
-    height: 500px;
+    min-width: 280px;
     overflow-y: hidden;
     &.scrollable {
       overflow-y: scroll;

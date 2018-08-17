@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import ArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
-import ArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 import { NavLink } from 'react-router-dom';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
 import styles from './Navi.scss';
 
@@ -39,8 +38,8 @@ const Navi = ({ expanded, expandedNavi }) => {
               <div className={cx('li-wrap', 'expand-li', { expanded })} onClick={expandedNavi(!expanded)}>
                 {item.name}
                 {expanded ?
-                  <ArrowUp className={cx('expand-icon')} /> :
-                  <ArrowDown className={cx('expand-icon')} />
+                  <MdKeyboardArrowUp className={cx('expand-icon')} /> :
+                  <MdKeyboardArrowDown className={cx('expand-icon')} />
                 }
               </div>
               <ul className={cx('children-ul')}>

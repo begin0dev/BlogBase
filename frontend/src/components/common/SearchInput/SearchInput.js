@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import SearchIcon from 'react-icons/lib/md/search';
+import { MdSearch } from 'react-icons/md';
+
 import Spinner from '../Spinner';
 import styles from './SearchInput.scss';
 
@@ -22,7 +23,7 @@ const SearchInput = ({ loading, placeholder, value, setValue }) => {
             <Spinner size=".8rem" />
           </div>
           :
-          <i aria-hidden="true" className={cx('icon')}><SearchIcon /></i>
+          <i aria-hidden="true" className={cx('icon')}><MdSearch /></i>
       }
     </div>
   );

@@ -3,7 +3,6 @@
 .wrapper {
   position: relative;
   display: inline-flex;
-  font-style: normal;
   font-size: 1rem;
   font-weight: 400;
   width: 100%;
@@ -32,16 +31,14 @@
           color: inherit;
         }
         ~i.icon {
-          //color: theme('secondary');
           opacity: 1;
         }
       }
   }
   i.icon {
     position: absolute;
-    top: 50%;
+    top: calc(50% - .45rem);
     right: 0.6rem;
-    margin-top: -.65rem;
     opacity: .3;
   }
   .loading-wrap {

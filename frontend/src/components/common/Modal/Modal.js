@@ -5,10 +5,10 @@ import styles from './Modal.scss';
 
 const cx = classNames.bind(styles);
 
-const Modal = ({ active, modalStyle, hideOverlay, fullScreen, scrollable, children }) => {
+const Modal = ({ active, size, style, hideOverlay, fullScreen, scrollable, children }) => {
   return (
     <div className={cx('modal-overlay', { 'hide-overlay': hideOverlay }, { active })}>
-      <div className={cx('modal', { 'full-screen': fullScreen }, { scrollable })} style={modalStyle}>
+      <div className={cx('modal', { 'full-screen': fullScreen }, { scrollable })} style={{ ...style, ...(!fullScreen && size) }}>
         {children}
       </div>
     </div>

@@ -11,7 +11,7 @@ const Header = () => {
     <header className={cx('header')}>
       <div className={cx('title-wrap')}>
         <Link to="/">
-          <span>B</span>EGINNER
+          BEGINNER
         </Link>
       </div>
       <div className={cx('spacer')} />

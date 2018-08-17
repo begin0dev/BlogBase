@@ -13,7 +13,7 @@ const Sidebar = ({ sidebar, setSearchValue, expandedNavi }) => {
     <aside className={cx('sidebar', { open: sidebar.visible })}>
       <div className={cx('title-wrap')}>
         <Link to="/">
-          <span>B</span>EGINNER
+          BEGINNER
         </Link>
       </div>
       <div className={cx('nav-wrapper')}>
