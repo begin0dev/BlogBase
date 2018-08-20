@@ -29,7 +29,7 @@ class TextInput extends Component {
     let position = {};
     if (focus || placeholder || (inputRef && inputRef.value.length > 0)) {
       position = {
-        transform: 'translateY(-18px) scale(0.8)',
+        transform: 'translateY(-1.2rem) scale(0.8)',
         fontWeight: '400',
       };
     }
@@ -39,7 +39,7 @@ class TextInput extends Component {
   render() {
     const { focus } = this.state;
     const { toggleInputFocus, labelPosition, labelClick } = this;
-    const { type, label, placeholder, value, color, setValue, fontSize } = this.props;
+    const { type, name, label, placeholder, value, color, setValue, fontSize } = this.props;
     return (
       <div className={cx('wrapper')}>
         <div className={cx('input-slot', { 'input-focus': focus })} style={{ color }}>
@@ -56,6 +56,7 @@ class TextInput extends Component {
           <input
             className={cx('input')}
             type={type}
+            name={name}
             value={value}
             placeholder={placeholder}
             onFocus={toggleInputFocus(true)}

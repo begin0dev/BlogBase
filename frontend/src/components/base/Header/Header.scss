@@ -20,17 +20,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     font-weight: 400;
     margin-left: 48px;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.45rem;
     user-select: none;
     :first-letter {
       color: theme('secondary');
     }
     @include media('>=medium') {
       margin-left: 0;
-      padding-left: 0.5rem;
+      padding-left: 0.45rem;
       width: 240px;
     }
   }

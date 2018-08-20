@@ -3,11 +3,11 @@
 .account {
   font-size: 14px;
   position: relative;
-  background-color: material-color('grey', '50');
+  padding: 4.5rem 2rem;
   color: theme('primary');
-  padding: 4rem 2rem;
+  background-color: material-color('grey', '50');
   @include media('>=medium') {
-    border-radius: 5px;
+    border-radius: .5rem;
   }
   .log-in, .sign-up {
     display: flex;
@@ -27,38 +27,31 @@
     }
     .title {
       position: relative;
-      height: 2.7rem;
+      height: 2.2rem;
       span{
         position: absolute;
         font-size: 2rem;
         font-weight: 500;
         letter-spacing: -1px;
+        margin-left: -1px;
         top: 0;
         left: 0;
         &.disabled {
           opacity: .3;
-          transform: translateX(90px) translateY(.4rem) scale(.6);
+          transform: translateX(75px) translateY(.5rem) scale(.5);
           cursor: pointer;
         }
-      }
-    }
-    .forgot-row {
-      span{
-        color: theme('secondary');
-        font-weight: 400;
-        padding-left: 2px;
       }
     }
     .input-wrap {
       position: relative;
       text-align: center;
-      padding: 2.5rem 1rem;
-      margin-top: 2.2rem;
-      margin-bottom: 1rem;
+      padding: 2.3rem 1rem;
+      margin: 2rem 0 1.3rem;
       background-color: #fff;
       box-shadow: 0 3px 2px -2px rgba(0,0,0,.02), 0 2px 2px 0 rgba(0,0,0,.03), 0 2px 3px 0 rgba(0,0,0,.03);
       .input-row:not(:last-child) {
-        padding-bottom: .8rem;
+        padding-bottom: 1rem;
       }
       &:before {
         content: '';
@@ -79,37 +72,28 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
-        padding-top: .4rem;
-        padding-bottom: 2rem;
+        padding: .3rem 0 2.5rem;
         .social-btn {
           display: flex;
-          padding: .5rem;
+          padding: .35rem;
           justify-content: center;
           align-items: center;
           line-height: 0;
-          &.kakao-icon {
-            color: #231816;
-          }
-          &.facebook-icon {
-            color: #3B5998;
-          }
-          &.github-icon {
-            color: #24292e;
-          }
-          &.google-icon {
-            color: #DC4E41;
-          }
           svg {
             width: 1.6rem;
             height: 1.6rem;
           }
+          &.kakao-icon {color: #231816;}
+          &.facebook-icon {color: #3B5998;}
+          &.github-icon {color: #24292e;}
+          &.google-icon {color: #DC4E41;}
           &:before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
-            border-radius: 50%;
             color: inherit;
+            border-radius: 50%;
             height: 100%;
             width: 100%;
             opacity: .1;
@@ -136,17 +120,16 @@
         height: 40px;
         min-width: 70%;
         outline: 0;
-        font-size: 15px;
+        font-size: .95rem;
         font-weight: 400;
         color: #fff;
         background-color: theme('secondary');
       }
     }
-    .close-row {
+    .forgot-row {
       text-align: center;
       span {
-        font-size: 15px;
-        text-decoration: underline;
+        letter-spacing: .05rem;
       }
     }
   }

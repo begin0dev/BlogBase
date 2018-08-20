@@ -1,13 +1,12 @@
-const initFormState = {
-  userName: '',
-  displayName: '',
+const initFormData = {
   email: '',
   password: '',
+  displayName: '',
 };
 
 export const defaultState = {
   form: {
-    ...initFormState,
+    ...initFormData,
   },
   state: {
     form: 'login',
@@ -18,10 +17,20 @@ export const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case 'INITIALIZE_FORM_DATA':
+      return {
+        ...state,
+        form: {
+          ...initFormData,
+        },
+      };
     case 'CHANGE_ACCOUNT_FORM_VALUE':
       return {
         ...state,
-        [action.name]: action.value,
+        form: {
+          ...state.form,
+          [action.name]: action.value,
+        },
       };
     default:
       return state;

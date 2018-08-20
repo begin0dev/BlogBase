@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
   connect() {
-    return mongoose.connect(mongoUri, { useMongoClient: true }, (err) => {
+    return mongoose.connect(mongoUri, { useNewUrlParser: true }, (err) => {
       if (err) {
         console.error('mongodb connection error', err);
       } else {

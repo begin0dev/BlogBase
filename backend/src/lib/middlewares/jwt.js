@@ -22,8 +22,9 @@ module.exports = async (req, res, next) => {
     } else {
       req.user = user;
     }
+    return next();
   } catch (e) {
     req.user = null;
+    return next();
   }
-  return next();
 };

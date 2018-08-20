@@ -8,7 +8,7 @@ import styles from './Account.scss';
 
 const cx = classNames.bind(styles);
 
-const Account = () => {
+const Account = ({ changeAccountFormValue }) => {
   return (
     <div className={cx('account')}>
       <div className={cx('log-in')}>
@@ -16,15 +16,12 @@ const Account = () => {
           <span>Login</span>
           <span className={cx('disabled')}>Signup</span>
         </div>
-        <div className={cx('row', 'forgot-row')}>
-          <span>forgot your password?</span>
-        </div>
         <div className={cx('row', 'input-wrap')}>
           <div className={cx('input-row')}>
-            <TextInput type="text" label="Email" placeholder="Enter your email" color="#00b0ff" />
+            <TextInput type="text" name="email" label="Email" placeholder="Enter your Email" color="#00b0ff" setValue={changeAccountFormValue} />
           </div>
           <div className={cx('input-row')}>
-            <TextInput type="password" label="Password" placeholder="Enter your password" color="#00b0ff" />
+            <TextInput type="password" name="password" label="Password" placeholder="Enter your Password" color="#00b0ff" setValue={changeAccountFormValue} />
           </div>
         </div>
         <div className={cx('row', 'social-wrap')}>
@@ -39,8 +36,8 @@ const Account = () => {
         <div className={cx('row', 'submit-row')}>
           <button type="button" className={cx('btns', 'submit-btn')}>Login</button>
         </div>
-        <div className={cx('row', 'close-row')}>
-          <span>Back</span>
+        <div className={cx('row', 'forgot-row')}>
+          <span className={cx('btns')}>Forgot your Password?</span>
         </div>
       </div>
     </div>

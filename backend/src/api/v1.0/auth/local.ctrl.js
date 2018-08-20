@@ -1,9 +1,9 @@
 const express = require('express');
 const Joi = require('joi');
 
-const { generatePassword, comparePassword } = require('../../../lib/bcrypt');
-const { generateToken } = require('../../../lib/token');
-const User = require('../../../db/models/user');
+const { generatePassword, comparePassword } = require('lib/bcrypt');
+const { generateToken } = require('lib/token');
+const User = require('db/models/user');
 
 const router = express.Router();
 

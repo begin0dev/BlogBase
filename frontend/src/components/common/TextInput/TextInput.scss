@@ -14,18 +14,19 @@
     .input {
       display: inline-flex;
       color: theme('primary');
-      font-size: .9rem;
+      font-size: inherit;
       flex: 1 1 auto;
       margin: 0;
-      padding: 7px 0;
-      line-height: 1.3rem;
+      line-height: 1rem;
+      padding: .55rem 0;
       background-color: transparent;
       -webkit-tap-highlight-color: transparent;
       border-style: none;
       outline: none;
       &::placeholder {
         color: theme('primary');
-        font-size: .8rem;
+        font-size: inherit;
+        line-height: 1rem;
         opacity: .4;
       }
     }
@@ -51,10 +52,10 @@
       position: absolute;
       color: theme('primary');
       font-size: inherit;
-      top: 7px;
+      line-height: 1rem;
+      top: .55rem;
       left: 0;
       right: auto;
-      line-height: 1.3rem;
       transform-origin: top left;
       text-overflow: ellipsis;
       overflow: hidden;
