@@ -9,7 +9,7 @@ export const defaultState = {
     ...initFormData,
   },
   state: {
-    form: 'login',
+    form: 'signin',
     active: false,
     loading: false,
   },

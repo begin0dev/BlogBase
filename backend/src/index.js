@@ -15,6 +15,12 @@ const port = PORT || 3000;
 /* mongoose connected */
 db.connect();
 
+/* ENABLE DEBUG WHEN DEV ENVIRONMENT */
+if (NODE_ENV === 'development') {
+  mongoose.set('debug', true);
+  app.use(morgan('dev')); // server logger
+}
+
 /* SETUP MIDDLEWARE */
 // Allows express to read `x-www-form-urlencoded` data:
 app.use(cookieParser());
@@ -42,12 +48,6 @@ app.use((err, req, res, next) => {
   });
   next();
 });
-
-/* ENABLE DEBUG WHEN DEV ENVIRONMENT */
-if (NODE_ENV === 'development') {
-  mongoose.set('debug', true);
-  app.use(morgan('tiny')); // server logger
-}
 
 app.listen(port, () => {
   console.log(`Express is running on port ${port}`);

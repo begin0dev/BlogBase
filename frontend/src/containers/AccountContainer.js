@@ -12,7 +12,7 @@ class AccountContainer extends Component {
   render() {
     const { changeAccountFormValue } = this;
     return (
-      <Modal active fullScreen={window.innerWidth < 450} size={{ width: '340px' }}>
+      <Modal active fullScreen={window.innerWidth < 450} size={{ width: '600px' }}>
         <Account changeAccountFormValue={changeAccountFormValue} />
       </Modal>
     );

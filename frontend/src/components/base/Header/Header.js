@@ -17,7 +17,7 @@ const Header = () => {
       <div className={cx('spacer')} />
       <div className={cx('nav-wrap')}>
         <span className={cx('nav-item', 'sign')}>
-          LOGIN
+          SIGN IN
         </span>
         <span className={cx('nav-item')}>
           or
