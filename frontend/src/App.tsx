@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { PageTemplate } from 'components';
-import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
+import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages/index';
 
 const App = () => (
   <PageTemplate>
