@@ -1,19 +1,19 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import * as classNames from "classnames/bind";
 
-import { SearchInput } from "components";
+import {SearchInput} from "components";
 import Navi from "./Navi/Navi";
 import styles from "./Sidebar.scss";
 
-import { ISidebarState } from "store/modules/sidebar";
+import {ISidebarState} from "store/modules/sidebar";
 
 const cx = classNames.bind(styles);
 
 interface IProps {
   sidebarState: ISidebarState;
-  setSearchValue(e: any): void;
   expandedNavi(expand: boolean): () => void;
+  setSearchValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 const Sidebar: React.SFC<IProps> = ({

@@ -1,14 +1,14 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import onClickOutside, {
-  InjectedOnClickOutProps,
-  HandleClickOutside
+  HandleClickOutside,
+  InjectedOnClickOutProps
 } from "react-onclickoutside";
 
 import { IStoreState } from "store/modules";
 import { ISidebarState } from "store/modules/sidebar";
-import { Hamburger, Sidebar, Overlay } from "components";
+import { Hamburger, Overlay, Sidebar } from "components";
 
 interface IProps {
   sidebarState: ISidebarState;
@@ -24,6 +24,10 @@ export type Props = IProps &
 class SidebarContainer extends React.Component<Props> {
   hamburgerRef: any;
 
+  constructor(props: Props) {
+    super(props);
+    this.hamburgerRef = React.createRef();
+  }
   componentDidMount() {
     window.addEventListener("resize", this.sidebarResizeEvent);
   }
@@ -31,12 +35,15 @@ class SidebarContainer extends React.Component<Props> {
     window.removeEventListener("resize", this.sidebarResizeEvent);
   }
 
-  handleClickOutside = (e: any): void => {
+  handleClickOutside = (e: React.MouseEvent<HTMLDivElement>): void => {
     const { toggleSidebar, hamburgerRef } = this;
     const { sidebarState } = this.props;
     if (hamburgerRef.contains(e.target)) return;
     if (!sidebarState.visible || window.innerWidth >= 768) return;
     toggleSidebar();
+  };
+  setSearchValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log(e.target);
   };
   toggleSidebar = (): void => {
     const { sidebarState, dispatchToggleSidebar } = this.props;
@@ -53,9 +60,6 @@ class SidebarContainer extends React.Component<Props> {
     console.log(expand);
     dispatchExpandedNavi(expand);
   };
-  setSearchValue = (e: any): void => {
-    console.log(e.target);
-  };
 
   render() {
     const { toggleSidebar, expandedNavi, setSearchValue } = this;
@@ -71,9 +75,7 @@ class SidebarContainer extends React.Component<Props> {
         <Hamburger
           visible={sidebarState.visible}
           toggleSidebar={toggleSidebar}
-          hamburgerRef={(hamburger: any) => {
-            this.hamburgerRef = hamburger;
-          }}
+          hamburgerRef={(hamburger: any) => (this.hamburgerRef = hamburger)}
           key="hamburger"
         />
         {window.innerWidth < 768 && (

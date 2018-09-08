@@ -2,16 +2,16 @@ import * as React from "react";
 import * as classNames from "classnames/bind";
 
 import {
+  AccountContainer,
   HeaderContainer,
-  SidebarContainer,
-  AccountContainer
+  SidebarContainer
 } from "containers";
 import styles from "./PageTemplate.scss";
 
 const cx = classNames.bind(styles);
 
 interface IProps {
-  children: any;
+  children: React.ReactNode;
 }
 
 const PageTemplate: React.SFC<IProps> = ({ children }) => {

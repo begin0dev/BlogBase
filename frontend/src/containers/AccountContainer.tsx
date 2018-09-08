@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { IStoreState } from "store/modules";
 import { IAccountState } from "store/modules/account";
-import { Modal, Account } from "components";
+import { Account, Modal } from "components";
 
 interface IProps {
   accountState: IAccountState;
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 class AccountContainer extends React.Component<IProps> {
-  changeAccountFormValue = (e: any): void => {
+  changeAccountFormValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { dispatchChangeAccountFormValue } = this.props;
     const { name, value } = e.target;
     dispatchChangeAccountFormValue(name, value);

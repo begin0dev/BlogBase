@@ -12,7 +12,7 @@ interface IProps {
   fullScreen?: boolean;
   scrollable?: boolean;
   hideOverlay?: boolean;
-  children: any;
+  children: React.ReactNode;
 }
 
 const Modal: React.SFC<IProps> = ({

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as classNames from "classnames/bind";
-import { MdSearch } from "react-icons/md";
+import {MdSearch} from "react-icons/md";
 
 import Spinner from "../Spinner";
 import styles from "./SearchInput.scss";
@@ -11,7 +11,7 @@ interface IProps {
   loading?: boolean;
   placeholder?: string;
   value?: string;
-  setValue(e: any): void;
+  setValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 const SearchInput: React.SFC<IProps> = ({

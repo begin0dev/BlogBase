@@ -15,11 +15,11 @@ interface IProps {
   label?: string;
   color?: string;
   placeholder?: string;
-  setValue(e: any): void;
+  setValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 class TextInput extends React.Component<IProps, IState> {
-  inputRef: any;
+  inputRef: HTMLInputElement;
 
   constructor(props: IProps) {
     super(props);
@@ -89,9 +89,7 @@ class TextInput extends React.Component<IProps, IState> {
             onFocus={toggleInputFocus(true)}
             onBlur={toggleInputFocus(false)}
             onChange={setValue}
-            ref={input => {
-              this.inputRef = input;
-            }}
+            ref={(input: HTMLInputElement) => this.inputRef = input}
           />
         </div>
       </div>
