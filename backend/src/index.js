@@ -3,11 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const jwtMiddleware = require('./lib/middlewares/jwt');
+const session = require('express-session');
+
 const api = require('./api');
 const db = require('./db');
+const jwtMiddleware = require('./lib/middlewares/jwt');
 
-const { NODE_ENV, PORT } = process.env;
+const { NODE_ENV, PORT, COOKIE_SECRET } = process.env;
 
 const app = express();
 const port = PORT || 3000;
@@ -23,9 +25,18 @@ if (NODE_ENV === 'development') {
 
 /* SETUP MIDDLEWARE */
 // Allows express to read `x-www-form-urlencoded` data:
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json()); // parses json
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser(COOKIE_SECRET));
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: COOKIE_SECRET,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+  },
+}));
 
 /* SETUP ROUTER */
 app.use(jwtMiddleware);

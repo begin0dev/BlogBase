@@ -1,24 +1,41 @@
-import * as React from 'react';
-import * as classNames from 'classnames/bind';
+import * as React from "react";
+import * as classNames from "classnames/bind";
 
-import styles from './Modal.scss';
+import styles from "./Modal.scss";
 
 const cx = classNames.bind(styles);
 
 interface IProps {
-	size?: object;
+  size?: object;
   style?: object;
-	active?: boolean;
-	fullScreen?: boolean;
-	scrollable?: boolean;
-	hideOverlay?: boolean;
-	children: any;
+  active?: boolean;
+  fullScreen?: boolean;
+  scrollable?: boolean;
+  hideOverlay?: boolean;
+  children: any;
 }
 
-const Modal = ({ active, size, style, hideOverlay, fullScreen, scrollable, children }: IProps) => {
+const Modal: React.SFC<IProps> = ({
+  active,
+  size,
+  style,
+  hideOverlay,
+  fullScreen,
+  scrollable,
+  children
+}) => {
   return (
-    <div className={cx('modal-overlay', { 'hide-overlay': hideOverlay }, { active })}>
-      <div className={cx('modal', { 'full-screen': fullScreen }, { scrollable })} style={{ ...style, ...(!fullScreen && size) }}>
+    <div
+      className={cx(
+        "modal-overlay",
+        { "hide-overlay": hideOverlay },
+        { active }
+      )}
+    >
+      <div
+        className={cx("modal", { "full-screen": fullScreen }, { scrollable })}
+        style={{ ...style, ...(!fullScreen && size) }}
+      >
         {children}
       </div>
     </div>

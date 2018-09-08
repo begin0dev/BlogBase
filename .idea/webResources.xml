@@ -5,9 +5,9 @@
       <entry url="file://$PROJECT_DIR$">
         <entryData>
           <resourceRoots>
+            <path value="file://$PROJECT_DIR$/backend/src" />
             <path value="file://$PROJECT_DIR$/frontend/src" />
             <path value="file://$PROJECT_DIR$/frontend/src/styles" />
-            <path value="file://$PROJECT_DIR$/backend/src" />
           </resourceRoots>
         </entryData>
       </entry>

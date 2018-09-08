@@ -21,8 +21,7 @@ export default function configureStore(history: any) {
 	const enhancer = process.env.NODE_ENV === 'development' ?
     compose(
       applyMiddleware(...middleware),
-	    // @ts-ignore
-      typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f,
+      typeof window === 'object' && typeof (window as any).devToolsExtension !== 'undefined' ? (window as any).devToolsExtension() : (f: any) => f,
     )
     :
     compose(applyMiddleware(...middleware));

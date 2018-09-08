@@ -1,28 +1,34 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import onClickOutside, { InjectedOnClickOutProps, HandleClickOutside } from 'react-onclickoutside';
+import * as React from "react";
+import { connect } from "react-redux";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import onClickOutside, {
+  InjectedOnClickOutProps,
+  HandleClickOutside
+} from "react-onclickoutside";
 
-import { IStoreState } from 'store/modules';
+import { IStoreState } from "store/modules";
 import { ISidebarState } from "store/modules/sidebar";
-import { Hamburger, Sidebar, Overlay } from 'components';
+import { Hamburger, Sidebar, Overlay } from "components";
 
 interface IProps {
-	sidebarState: ISidebarState;
-	dispatchToggleSidebar(visible: boolean): void;
-	dispatchExpandedNavi(expand: boolean): void;
+  sidebarState: ISidebarState;
+  dispatchToggleSidebar(visible: boolean): void;
+  dispatchExpandedNavi(expand: boolean): void;
 }
 
-export type Props = IProps & InjectedOnClickOutProps & HandleClickOutside<any>;
+export type Props = IProps &
+  InjectedOnClickOutProps &
+  HandleClickOutside<any> &
+  RouteComponentProps<any>;
 
 class SidebarContainer extends React.Component<Props> {
   hamburgerRef: any;
 
   componentDidMount() {
-    window.addEventListener('resize', this.sidebarResizeEvent);
+    window.addEventListener("resize", this.sidebarResizeEvent);
   }
-	componentWillUnmount() {
-    window.removeEventListener('resize', this.sidebarResizeEvent);
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.sidebarResizeEvent);
   }
 
   handleClickOutside = (e: any): void => {
@@ -35,21 +41,21 @@ class SidebarContainer extends React.Component<Props> {
   toggleSidebar = (): void => {
     const { sidebarState, dispatchToggleSidebar } = this.props;
     if (window.innerWidth < 768) dispatchToggleSidebar(!sidebarState.visible);
-  }
-	sidebarResizeEvent = (): void => {
+  };
+  sidebarResizeEvent = (): void => {
     const { sidebarState, dispatchToggleSidebar } = this.props;
     const { visible } = sidebarState;
     if (!visible && window.innerWidth >= 768) dispatchToggleSidebar(true);
     if (visible && window.innerWidth < 768) dispatchToggleSidebar(false);
-  }
-	expandedNavi = (expand: boolean) => (): void => {
+  };
+  expandedNavi = (expand: boolean) => (): void => {
     const { dispatchExpandedNavi } = this.props;
     console.log(expand);
     dispatchExpandedNavi(expand);
-  }
+  };
   setSearchValue = (e: any): void => {
-    console.log(e.target)
-  }
+    console.log(e.target);
+  };
 
   render() {
     const { toggleSidebar, expandedNavi, setSearchValue } = this;
@@ -57,7 +63,7 @@ class SidebarContainer extends React.Component<Props> {
     return (
       <React.Fragment>
         <Sidebar
-	        sidebarState={sidebarState}
+          sidebarState={sidebarState}
           expandedNavi={expandedNavi}
           setSearchValue={setSearchValue}
           key="sidebar"
@@ -65,27 +71,35 @@ class SidebarContainer extends React.Component<Props> {
         <Hamburger
           visible={sidebarState.visible}
           toggleSidebar={toggleSidebar}
-          hamburgerRef={(hamburger: any) => { this.hamburgerRef = hamburger; }}
+          hamburgerRef={(hamburger: any) => {
+            this.hamburgerRef = hamburger;
+          }}
           key="hamburger"
         />
-        { window.innerWidth < 768 && <Overlay visible={sidebarState.visible} key="sidebar-overlay" /> }
+        {window.innerWidth < 768 && (
+          <Overlay visible={sidebarState.visible} key="sidebar-overlay" />
+        )}
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = (state: IStoreState) => ({
-  sidebarState: state.sidebar,
+  sidebarState: state.sidebar
 });
 const mapDispatchToProps = (dispatch: any) => ({
   dispatchToggleSidebar(visible: boolean): void {
-    dispatch({ type: 'TOGGLE_SIDEBAR', visible });
+    dispatch({ type: "TOGGLE_SIDEBAR", visible });
   },
   dispatchExpandedNavi(expand: boolean): void {
-    dispatch({ type: 'EXPANDED_NAVI', expand });
-  },
+    dispatch({ type: "EXPANDED_NAVI", expand });
+  }
 });
 
 const outsideWrap = onClickOutside(SidebarContainer);
-// @ts-ignore
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(outsideWrap));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(outsideWrap)
+);

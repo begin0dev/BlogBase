@@ -6,9 +6,6 @@
   padding: 5.5rem 2rem;
   color: theme('primary');
   background: url('../../../assets/images/backgroundSigns.png') no-repeat center;
-  @include media('>=medium') {
-    border-radius: .5rem;
-  }
   .sign-in, .sign-up {
     display: flex;
     flex-flow: row wrap;

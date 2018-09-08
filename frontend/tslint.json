@@ -13,7 +13,10 @@
     "object-literal-sort-keys": false,
     "member-access": false,
     "no-console": false,
+    "no-any": false,
+    "max-line-length": false,
     "jsx-boolean-value": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false
   }
 }

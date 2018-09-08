@@ -1,7 +1,8 @@
+/*eslint-disable */
 process.env.NODE_ENV = 'development';
 const nodemon = require('nodemon');
 
-nodemon('--exec babel-node ./src --watch ./src');
+nodemon('./src --watch ./src');
 
 nodemon
   .on('start', () => { console.log('[nodemon] App has started'); })
