@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 interface IProps {
   visible: boolean;
-  hamburgerRef: any;
+  hamburgerRef: React.RefObject<HTMLDivElement>;
   toggleSidebar: () => void;
 }
 

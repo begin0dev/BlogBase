@@ -22,7 +22,7 @@ class AccountContainer extends React.Component<IProps> {
     const { changeAccountFormValue } = this;
     return (
       <Modal
-        active
+        active={accountState.state.active}
         fullScreen={window.innerWidth < 450}
         size={{ width: "700px" }}
       >

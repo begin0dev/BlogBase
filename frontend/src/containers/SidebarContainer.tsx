@@ -22,7 +22,7 @@ export type Props = IProps &
   RouteComponentProps<any>;
 
 class SidebarContainer extends React.Component<Props> {
-  hamburgerRef: any;
+  hamburgerRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: Props) {
     super(props);
@@ -35,10 +35,11 @@ class SidebarContainer extends React.Component<Props> {
     window.removeEventListener("resize", this.sidebarResizeEvent);
   }
 
-  handleClickOutside = (e: React.MouseEvent<HTMLDivElement>): void => {
+  handleClickOutside = (e: React.MouseEvent<HTMLElement>): void => {
     const { toggleSidebar, hamburgerRef } = this;
     const { sidebarState } = this.props;
-    if (hamburgerRef.contains(e.target)) return;
+    const node = hamburgerRef.current!;
+    if (node.contains(e.target as HTMLElement)) return;
     if (!sidebarState.visible || window.innerWidth >= 768) return;
     toggleSidebar();
   };
@@ -75,7 +76,7 @@ class SidebarContainer extends React.Component<Props> {
         <Hamburger
           visible={sidebarState.visible}
           toggleSidebar={toggleSidebar}
-          hamburgerRef={(hamburger: any) => (this.hamburgerRef = hamburger)}
+          hamburgerRef={this.hamburgerRef}
           key="hamburger"
         />
         {window.innerWidth < 768 && (
