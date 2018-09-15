@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptSettings">
-    <option name="languageLevel" value="JSX" />
+    <option name="languageLevel" value="ES6" />
   </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/newfrontend/src/App.css" />
-    <file url="file://$PROJECT_DIR$/newfrontend/src/App.js" />
-    <file url="file://$PROJECT_DIR$/newfrontend/src/App.test.js" />
-    <file url="file://$PROJECT_DIR$/newfrontend/src/index.css" />
-    <file url="file://$PROJECT_DIR$/newfrontend/src/index.js" />
-    <file url="file://$PROJECT_DIR$/newfrontend/src/logo.svg" />
+    <file url="file://$PROJECT_DIR$/frontend/src/lib/actionHelper.ts" />
   </component>
 </project>

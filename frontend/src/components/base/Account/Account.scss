@@ -3,12 +3,9 @@
 .account {
   position: relative;
   font-size: 14px;
-  padding: 5rem 2rem;
+  padding: 5.5rem 2rem;
   color: theme('primary');
   background: url('../../../assets/images/backgroundSigns.png') no-repeat center;
-  @include media('>=medium') {
-    border-radius: .5rem;
-  }
   .sign-in, .sign-up {
     display: flex;
     flex-flow: row wrap;
@@ -16,13 +13,10 @@
     margin: 0 auto;
     .row {
       flex-basis: 100%;
-      span {
-        font-size: .7rem;
-      }
     }
     .btn {
-      user-select: none;
       cursor: pointer;
+      user-select: none;
       &:active {
         opacity: .8;
       }
@@ -51,11 +45,14 @@
       text-align: center;
       font-size: 1.5rem;
       font-weight: 400;
-      padding-bottom: .9rem;
+      padding-bottom: .7rem;
     }
     .desc-row {
       text-align: center;
       padding-bottom: 2.5rem;
+      span {
+        font-size: .65rem;
+      }
     }
     .input-wrap {
       position: relative;
@@ -68,12 +65,12 @@
     }
     .submit-row {
       .submit-btn {
-        width: 70%;
+        width: 75%;
         color: theme('primary');
         background-color: #fff;
         font-size: .75rem;
         font-weight: 500;
-        padding: .9rem;
+        padding: .85rem;
         display: flex;
         justify-content: center;
         align-items: center;

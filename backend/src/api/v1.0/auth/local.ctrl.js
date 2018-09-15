@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   if (req.user) {
-    res.status(200).json({ state: 'login' });
+    res.status(200).json({ success: true, data: null });
   } else {
     res.status(401).end();
   }
@@ -31,14 +31,16 @@ router.post('/register', async (req, res, next) => {
   });
   const validate = Joi.validate(body, schema);
   if (validate.error) {
-    console.log(validate.error);
-    return res.status(400).json({ success: false, message: validate.error.details[0].message });
+    console.error(validate.error);
+    return res.status(409).json({ success: false, message: validate.error.details[0].message });
   }
 
   try {
     // check email
     const emailExists = await User.findByEmail(email);
-    if (emailExists) return res.status(400).json({ success: false, message: 'email is already exists' });
+    if (emailExists) {
+      return res.status(409).json({ success: false, message: 'email is already exists' });
+    }
 
     // generate password
     const hashPassword = await generatePassword(password);
@@ -50,12 +52,11 @@ router.post('/register', async (req, res, next) => {
       password: hashPassword,
     });
 
+    const userData = { id: user._id, displayName: user.common_profile.displayName };
+
     // create access token
     const accessToken = await generateToken({
-      user: {
-        id: user._id,
-        displayName: user.common_profile.displayName,
-      },
+      user: userData,
     }, 'user');
 
     // access token set cookie
@@ -64,7 +65,7 @@ router.post('/register', async (req, res, next) => {
       maxAge: 1000 * 60 * 60 * 24,
     });
 
-    return res.status(201).json({ success: true, message: 'success local register' });
+    return res.status(201).json({ success: true, data: { user: userData } });
   } catch (err) {
     console.error(err);
     next(err);
@@ -82,18 +83,22 @@ router.post('/login', async (req, res, next) => {
   });
   const validate = Joi.validate(body, schema);
   if (validate.error) {
-    console.log(validate.error);
-    return res.status(400).json({ success: false, message: validate.error.details[0].message });
+    console.error(validate.error);
+    return res.status(409).json({ success: false, message: validate.error.details[0].message });
   }
 
   try {
     // find by username
     const user = await User.findByEmail(email);
-    if (!user) return res.status(400).json({ success: false, message: 'user is incorrect!' });
+    if (!user) {
+      return res.status(409).json({ success: false, message: 'user is incorrect!' });
+    }
 
     // find one user compare password
     const result = await comparePassword(password, user.password);
-    if (!result) return res.status(400).json({ success: false, message: 'user is incorrect!' });
+    if (!result) {
+      return res.status(409).json({ success: false, message: 'user is incorrect!' });
+    }
 
     // create access token
     const accessToken = await generateToken({
