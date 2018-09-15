@@ -2,7 +2,7 @@
 process.env.NODE_ENV = 'development';
 const nodemon = require('nodemon');
 
-nodemon('./src --watch ./src');
+nodemon('--watch ./src ./src/app');
 
 nodemon
   .on('start', () => { console.log('[nodemon] App has started'); })

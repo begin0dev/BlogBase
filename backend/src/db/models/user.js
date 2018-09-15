@@ -3,25 +3,25 @@ const mongoose = require('mongoose');
 const User = new mongoose.Schema({
   email: String,
   password: String,
-  common_profile: {
+  commonProfile: {
     displayName: String,
   },
-  o_auth: {
+  oAuth: {
     github: {
       id: String,
-      access_token: String,
+      accessToken: String,
     },
     facebook: {
       id: String,
-      access_token: String,
+      accessToken: String,
     },
     google: {
       id: String,
-      access_token: String,
+      accessToken: String,
     },
     kakao: {
       id: String,
-      access_token: String,
+      accessToken: String,
     },
   },
 }, { timestamps: true });
@@ -32,7 +32,7 @@ User.statics.findUserInfo = function findUserInfo(id) {
 };
 
 User.statics.findByEmail = function findByEmail(email) {
-  return this.findOne({ 'common_profile.email': email });
+  return this.findOne({ email: email });
 };
 
 User.statics.findById = function findById(id) {
@@ -48,7 +48,7 @@ User.statics.localRegister = function localRegister({ email, password, displayNa
   const user = new this({
     email,
     password,
-    common_profile: {
+    commonProfile: {
       displayName,
     },
   });

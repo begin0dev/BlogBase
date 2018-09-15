@@ -21,6 +21,8 @@ db.connect();
 if (NODE_ENV === 'development') {
   mongoose.set('debug', true);
   app.use(morgan('dev')); // server logger
+} else {
+  app.use(morgan('combined'));
 }
 
 /* SETUP MIDDLEWARE */
@@ -30,11 +32,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(COOKIE_SECRET));
 app.use(session({
   resave: false,
-  saveUninitialized: false,
   secret: COOKIE_SECRET,
+  saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false,
+    secure: NODE_ENV === 'production',
   },
 }));
 
@@ -44,20 +46,19 @@ app.use('/api', api);
 
 /* 404 error */
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error('Not found router');
   err.status = 404;
-  next(err);
+  return next(err);
 });
 
 /* handle error */
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.message);
-  res.status(500).json({
-    error: {
-      message: 'Something Broke!',
-    },
+  res.status(err.status || 500);
+  res.json({
+    success: false,
+    message: err.message,
   });
-  next();
 });
 
 app.listen(port, () => {
