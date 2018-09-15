@@ -2,7 +2,10 @@
   <dictionary name="beginner">
     <words>
       <w>jsend</w>
+      <w>kakao</w>
       <w>navi</w>
+      <w>nodemon</w>
+      <w>resave</w>
       <w>unmount</w>
     </words>
   </dictionary>

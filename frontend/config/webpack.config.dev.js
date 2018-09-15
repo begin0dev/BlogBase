@@ -98,7 +98,6 @@ module.exports = {
       '.jsx',
     ],
     alias: {
-      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -261,8 +260,8 @@ module.exports = {
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
             exclude: [
-              /\.(js|jsx)$/, 
-              /\.html$/, 
+              /\.(js|jsx)$/,
+              /\.html$/,
               /\.css$/,
               /\.json$/,
               /\.bmp$/,
