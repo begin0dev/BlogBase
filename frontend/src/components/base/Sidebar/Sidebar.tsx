@@ -1,5 +1,4 @@
 import * as React from "react";
-import {Link} from "react-router-dom";
 import * as classNames from "classnames/bind";
 
 import {SearchInput} from "components";
@@ -23,21 +22,15 @@ const Sidebar: React.SFC<IProps> = ({
 }) => {
   return (
     <aside className={cx("sidebar", { open: sidebarState.visible })}>
-      <div className={cx("title-wrap")}>
-        <Link to="/">BEGINNER</Link>
+      <div className={cx("nav-search")}>
+        <SearchInput
+          value={sidebarState.searchValue}
+          loading={sidebarState.searchLoading}
+          setValue={setSearchValue}
+          placeholder="Search..."
+        />
       </div>
-      <div className={cx("nav-wrapper")}>
-        <div className={cx("nav-search")}>
-          <SearchInput
-            value={sidebarState.searchValue}
-            loading={sidebarState.searchLoading}
-            setValue={setSearchValue}
-            placeholder="Search..."
-          />
-        </div>
-        <div className={cx("spacer")} />
-        <Navi expanded={sidebarState.expanded} expandedNavi={expandedNavi} />
-      </div>
+      <Navi expanded={sidebarState.expanded} expandedNavi={expandedNavi} />
     </aside>
   );
 };

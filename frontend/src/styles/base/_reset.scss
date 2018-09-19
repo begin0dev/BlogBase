@@ -2,16 +2,14 @@
 
 body {
   position: relative;
-  font-family: 'Roboto', 'Nanum Square', sans-serif;
-  font-size: 13px;
+  font-family: 'Rubik', 'Nanum Square', sans-serif;
+  font-size: 14px;
   font-weight: 300;
   line-height: 1;
   height: 100%;
   overflow: scroll;
-  -webkit-font-smoothing: antialiased;
-  @include media('>=medium') {
-    font-size: 14px;
-  }
+  color: $oc-gray-9;
+  background-color: $oc-gray-0;
 }
 * {
   margin: 0;

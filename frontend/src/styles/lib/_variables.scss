@@ -1,18 +1,20 @@
+@import '~open-color/open-color';
+
 $breakpoints: (
-  small: 450px, 
-  medium: 768px, 
-  large: 1024px, 
+  small: 450px,
+  medium: 768px,
+  large: 1024px,
   huge: 1200px,
 );
 $themes: (
-  primary: material-color('blue-grey', '600'),
-  secondary: material-color('light-blue', 'a400'),
+  primary: $oc-gray-9,
+  secondary: $oc-indigo-5,
 );
 $z-indexes: (
-  'header': 60,
-  'overlay': 90,
-  'sidebar': 120,
-  'hamburger': 150,
+  'header': 100,
+  'overlay': 140,
+  'sidebar': 80,
+  'hamburger': 100,
   'modal': 180,
 );
 @function theme($key) {

@@ -8,7 +8,7 @@ import onClickOutside, {
 
 import { IStoreState } from "store/modules";
 import { ISidebarState } from "store/modules/sidebar";
-import { Hamburger, Overlay, Sidebar } from "components";
+import { Hamburger, Sidebar } from "components";
 
 interface IProps {
   sidebarState: ISidebarState;
@@ -48,7 +48,7 @@ class SidebarContainer extends React.Component<Props> {
   };
   toggleSidebar = (): void => {
     const { sidebarState, dispatchToggleSidebar } = this.props;
-    if (window.innerWidth < 768) dispatchToggleSidebar(!sidebarState.visible);
+    dispatchToggleSidebar(!sidebarState.visible);
   };
   sidebarResizeEvent = (): void => {
     const { sidebarState, dispatchToggleSidebar } = this.props;
@@ -79,9 +79,6 @@ class SidebarContainer extends React.Component<Props> {
           hamburgerRef={this.hamburgerRef}
           key="hamburger"
         />
-        {window.innerWidth < 768 && (
-          <Overlay visible={sidebarState.visible} key="sidebar-overlay" />
-        )}
       </React.Fragment>
     );
   }

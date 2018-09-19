@@ -3,15 +3,16 @@
 .wrapper {
   z-index: z-index('hamburger');
   position: fixed;
-  top: 4px;
-  left: 4px;
+  top: 7px;
+  left: 7px;
   height: 40px;
   width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   @include media('>=medium') {
-    display: none;
+    left: 10px;
+    top: 10px;
   }
   &:before {
     content: '';
@@ -42,7 +43,7 @@ $hamburger-padding-y                       : 3px !default;
 $hamburger-layer-width                     : 20px !default;
 $hamburger-layer-height                    : 2px !default;
 $hamburger-layer-spacing                   : 4px !default;
-$hamburger-layer-color                     : material-color('blue-grey', '500') !default;
+$hamburger-layer-color                     : $oc-gray-4 !default;
 $hamburger-layer-border-radius             : 1px !default;
 $hamburger-hover-opacity                   : .9 !default;
 $hamburger-hover-transition-duration       : 0.15s !default;

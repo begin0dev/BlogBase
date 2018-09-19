@@ -19,7 +19,7 @@ interface IMenuObject {
 }
 
 const menu: IMenuObject[] = [
-  { name: "MAIN", url: "/", hasChildren: false, children: [] },
+  { name: "HOME", url: "/", hasChildren: false, children: [] },
   { name: "PROFILE", url: "/profile", hasChildren: false, children: [] },
   {
     name: "DEVELOPMENT",

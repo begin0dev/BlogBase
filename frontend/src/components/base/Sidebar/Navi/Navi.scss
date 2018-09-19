@@ -6,24 +6,27 @@
     cursor: pointer;
     position: relative;
     .spacer {
-      margin: 1rem 1.3rem;
-      border-bottom: 1px solid material-color('grey', '100');
+      margin: 1.3rem 0;
     }
     .li-wrap {
       display: block;
       font-weight: 300;
-      padding: 0 1.3rem;
-      line-height: 2.3rem;
-      border-left: 2px solid transparent;
+      padding: .8rem 2rem;
+      border-right: 2px solid transparent;
       &.expand-li {
         font-weight: 400;
         font-size: .65rem;
-        line-height: 1.5rem;
-        color: material-color('blue-grey', '200')
+        padding: .6rem 2rem;
+        color: $oc-gray-5;
       }
       &.active {
         color: theme('secondary');
-        border-left: 2px solid theme('secondary');
+        border-right: 2px solid theme('secondary');
+      }
+      &:hover, &:active {
+        &:not(.expand-li) {
+          background-color: $oc-gray-1;
+        }
       }
       &.expanded {
         ~.children-ul {
@@ -32,8 +35,8 @@
       }
       .expand-icon {
         position: absolute;
-        right: 1.3rem;
-        top: .15rem;
+        right: 1.5rem;
+        top: .4rem;
         font-size: 1rem;
       }
     }
