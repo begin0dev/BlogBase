@@ -1,17 +1,17 @@
-import { combineReducers } from 'redux';
-import { routerReducer as routing } from 'react-router-redux';
-import sidebar, { ISidebarState } from './sidebar';
-import account, { IAccountState } from './account';
+import { combineReducers } from "redux";
+import { routerReducer as routing } from "react-router-redux";
+import sidebar, { ISidebarState } from "./sidebar";
+import account, { IAccountState } from "./account";
 
 export interface IStoreState {
-	account: IAccountState,
-	sidebar: ISidebarState,
+  account: IAccountState;
+  sidebar: ISidebarState;
 }
 
 const rootReducer = combineReducers({
   routing,
   account,
-  sidebar,
+  sidebar
 });
 
 export default rootReducer;

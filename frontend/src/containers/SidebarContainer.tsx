@@ -1,4 +1,5 @@
 import * as React from "react";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import onClickOutside, {
@@ -97,9 +98,10 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 const outsideWrap = onClickOutside(SidebarContainer);
-export default withRouter(
+export default compose(
+  withRouter,
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(outsideWrap)
-);
+  )
+)(outsideWrap);
