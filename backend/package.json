@@ -6,8 +6,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=src node src/app",
-    "dev": "NODE_PATH=src node scripts/development",
+    "start": "node src/app",
+    "dev": "node scripts/development",
     "test": "jest"
   },
   "license": "ISC",

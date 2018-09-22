@@ -1,24 +1,14 @@
 @import 'utils';
 
-.app-wrap {
-  position: relative;
+.contents-wrap {
   display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  backface-visibility: hidden;
-  min-height: 100vh;
-
-  .contents-wrap {
-    display: flex;
-    width: 100%;
-    margin-top: 54px;
-    min-height: calc(100vh - 54px);
-
-    @include media ('>=medium') {
-      margin-left: 240px;
-      width: calc(100% - 240px);
-      margin-top: 60px;
-      min-height: calc(100vh - 60px);
-    }
+  width: 100%;
+  margin-top: 54px;
+  min-height: calc(100vh - 54px);
+  @include media ('>=medium') {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
   }
 }

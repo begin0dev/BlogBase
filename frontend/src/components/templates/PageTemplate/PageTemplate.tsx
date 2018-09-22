@@ -16,12 +16,12 @@ interface IProps {
 
 const PageTemplate: React.SFC<IProps> = ({ children }) => {
   return (
-    <div className={cx("app-wrap")}>
+    <React.Fragment>
       <HeaderContainer />
       <SidebarContainer />
       <AccountContainer />
       <div className={cx("contents-wrap")}>{children}</div>
-    </div>
+    </React.Fragment>
   );
 };
 
