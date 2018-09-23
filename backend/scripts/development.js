@@ -1,5 +1,7 @@
-/*eslint-disable */
+/* eslint-disable */
 process.env.NODE_ENV = 'development';
+process.env.NODE_PATH = 'src';
+
 const nodemon = require('nodemon');
 
 nodemon('--watch ./src ./src/app');

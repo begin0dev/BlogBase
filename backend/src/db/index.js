@@ -1,16 +1,26 @@
-const { MONGO_URI: mongoUri } = process.env;
+const { NODE_ENV, MONGO_URI: mongoUri } = process.env;
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
 module.exports = {
   connect() {
-    return mongoose.connect(mongoUri, { useNewUrlParser: true }, (err) => {
-      if (err) {
-        console.error('mongodb connection error', err);
-      } else {
-        console.log('mongodb connected');
+    const connect = () => {
+      if (NODE_ENV !== 'production') {
+        mongoose.set('debug', true);
       }
+      mongoose.connect(mongoUri, { useNewUrlParser: true }, (err) => {
+        if (err) console.error('Mongodb connection error', err);
+        console.log('Mongodb connected');
+      });
+    };
+    connect();
+    mongoose.connection.on('error', (err) => {
+      console.error('Mongodb connection error', err);
+    });
+    mongoose.connection.on('disconnected', () => {
+      console.error('The connection to the Mongodb has been lost. Retry the connection');
+      connect();
     });
   },
   disconnect() {

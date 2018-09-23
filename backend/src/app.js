@@ -1,6 +1,5 @@
 require('dotenv').config(); // LOAD CONFIG
 const express = require('express');
-const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -19,7 +18,6 @@ db.connect();
 
 /* ENABLE DEBUG WHEN DEV ENVIRONMENT */
 if (NODE_ENV === 'development') {
-  mongoose.set('debug', true);
   app.use(morgan('dev')); // server logger
 } else {
   app.use(morgan('combined'));

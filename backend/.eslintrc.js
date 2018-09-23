@@ -1,12 +1,16 @@
 module.exports = {
 	"extends": "airbnb-base",
+  "plugins": ["jest"],
 	"settings": {
-		'import/resolver': {
-			node: {
-				moduleDirectory: ['node_modules', 'src/'],
+		"import/resolver": {
+			"node": {
+        "paths": ["src"]
 			},
 		},
 	},
+  "env": {
+    "jest/globals": true
+  },
 	"rules": {
 		"import/prefer-default-export": 0,
 		"no-console": 0,
