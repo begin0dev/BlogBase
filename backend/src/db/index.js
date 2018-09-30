@@ -1,4 +1,4 @@
-const { NODE_ENV, MONGO_URI: mongoUri } = process.env;
+const { NODE_ENV, MONGO_URI, MONGO_USER, MONGO_PWD } = process.env;
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -9,11 +9,18 @@ module.exports = {
       if (NODE_ENV !== 'production') {
         mongoose.set('debug', true);
       }
-      mongoose.connect(mongoUri, { useNewUrlParser: true }, (err) => {
-        if (err) console.error('Mongodb connection error', err);
+      mongoose.connect(MONGO_URI, {
+        user: MONGO_USER,
+        pass: MONGO_PWD,
+        dbName: `blog-${NODE_ENV}`,
+        useNewUrlParser: true,
+      }).then(() => {
         console.log('Mongodb connected');
+      }).catch((err) => {
+        console.error('Mongodb connection error', err);
       });
     };
+
     connect();
     mongoose.connection.on('error', (err) => {
       console.error('Mongodb connection error', err);

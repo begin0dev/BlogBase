@@ -5,9 +5,6 @@
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
-  "jest": {
-    "verbose": true
-  },
   "scripts": {
     "start": "cross-env node scripts/start",
     "dev": "node scripts/development",

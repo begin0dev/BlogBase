@@ -1,17 +1,18 @@
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET: secret } = process.env;
+const { JWT_SECRET } = process.env;
 
 exports.generateToken = (payload, expiresIn) => {
   return new Promise(async (resolve, reject) => {
     try {
       const token = await jwt.sign(
         payload,
-        secret,
-        { issuer: 'Beginner', expiresIn },
+        JWT_SECRET,
+        { issuer: 'beginner', expiresIn },
       );
       resolve(token);
     } catch (err) {
+      console.error(err);
       reject(err);
     }
   });
@@ -20,11 +21,11 @@ exports.generateToken = (payload, expiresIn) => {
 exports.decodeToken = (token) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const decoded = await jwt.verify(token, secret);
-      console.log(decoded);
+      const decoded = await jwt.verify(token, JWT_SECRET);
       resolve(decoded);
     } catch (err) {
-      reject(err);
+      console.error(err);
+      reject(err.name);
     }
   });
 };

@@ -4,9 +4,9 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const api = require('./api');
-const db = require('./db');
-const jwtMiddleware = require('./lib/middlewares/jwt');
+const api = require('api/index');
+const db = require('db/index');
+const jwtMiddleware = require('lib/middlewares/jwt');
 
 const { NODE_ENV, PORT, COOKIE_SECRET } = process.env;
 
@@ -17,10 +17,10 @@ const port = PORT || 3000;
 db.connect();
 
 /* ENABLE DEBUG WHEN DEV ENVIRONMENT */
-if (NODE_ENV === 'development') {
-  app.use(morgan('dev')); // server logger
-} else {
+if (NODE_ENV === 'production') {
   app.use(morgan('combined'));
+} else {
+  app.use(morgan('dev')); // server logger
 }
 
 /* SETUP MIDDLEWARE */

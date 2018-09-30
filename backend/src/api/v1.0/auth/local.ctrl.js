@@ -50,16 +50,16 @@ router.post('/register', async (req, res, next) => {
       password: hashPassword,
     });
 
-    // create access token
     const userData = {
       id: user._id,
       displayName: user.commonProfile.displayName,
     };
     // access token and refresh token set cookie
-    const accessToken = await generateToken({ user: userData }, '3h');
+    const accessToken = await generateToken({ user: userData }, '1h');
     const refreshToken = await generateToken({ user: userData }, '1d');
-    res.cookie('access_token', accessToken);
+    res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
+
     return res.status(201).json({ success: true, data: { user: userData } });
   } catch (err) {
     console.error(err);
@@ -90,13 +90,16 @@ router.post('/login', async (req, res, next) => {
     const result = await comparePassword(password, user.password);
     if (!result) return res.status(409).json({ success: false, message: 'user is incorrect!' });
 
-    // create access token
-    const userData = { id: user._id, displayName: user.common_profile.displayName };
+    const userData = {
+      id: user._id,
+      displayName: user.commonProfile.displayName,
+    };
     // access token and refresh token set cookie
-    const accessToken = await generateToken({ user: userData }, '3h');
+    const accessToken = await generateToken({ user: userData }, '1h');
     const refreshToken = await generateToken({ user: userData }, '1d');
-    res.cookie('access_token', accessToken);
+    res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
+
     return res.status(200).json({ success: true, message: 'success local login' });
   } catch (err) {
     console.error(err);
