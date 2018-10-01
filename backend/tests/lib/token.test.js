@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './.env.test' });
+require('../../scripts/test');
 
 const jwt = require('jsonwebtoken');
 const { generateToken, decodeToken } = require('lib/token');
@@ -12,6 +12,7 @@ const expiresIn = '1h';
 
 describe('generateToken', () => {
   test('success', async () => {
+    console.log('1');
     await expect(generateToken(payload, expiresIn)).resolves;
   });
   test('failed', async () => {

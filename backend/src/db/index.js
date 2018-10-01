@@ -5,29 +5,34 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
   connect() {
-    const connect = () => {
-      if (NODE_ENV !== 'production') {
-        mongoose.set('debug', true);
-      }
-      mongoose.connect(MONGO_URI, {
-        user: MONGO_USER,
-        pass: MONGO_PWD,
-        dbName: `blog-${NODE_ENV}`,
-        useNewUrlParser: true,
-      }).then(() => {
-        console.log('Mongodb connected');
-      }).catch((err) => {
-        console.error('Mongodb connection error', err);
-      });
-    };
+    return new Promise(async (resolve, reject) => {
+      const connectMongoose = () => {
+        if (NODE_ENV !== 'production') {
+          mongoose.set('debug', true);
+        }
+        return mongoose.connect(MONGO_URI, {
+          user: MONGO_USER,
+          pass: MONGO_PWD,
+          dbName: `blog-${NODE_ENV}`,
+          useNewUrlParser: true,
+        });
+      };
 
-    connect();
-    mongoose.connection.on('error', (err) => {
-      console.error('Mongodb connection error', err);
-    });
-    mongoose.connection.on('disconnected', () => {
-      console.error('The connection to the Mongodb has been lost. Retry the connection');
-      connect();
+      try {
+        await connectMongoose();
+        console.log('Mongodb connected');
+        mongoose.connection.on('error', (err) => {
+          console.error('Mongodb connection error', err);
+        });
+        mongoose.connection.on('disconnected', () => {
+          console.error('The connection to the Mongodb has been lost. Retry the connection');
+          connectMongoose();
+        });
+        resolve();
+      } catch (err) {
+        console.error('Mongodb connection error', err);
+        reject(err);
+      }
     });
   },
   disconnect() {
