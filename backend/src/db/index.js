@@ -7,18 +7,16 @@ module.exports = {
   connect() {
     return new Promise(async (resolve, reject) => {
       const connectMongoose = () => {
-        if (NODE_ENV !== 'production') {
-          mongoose.set('debug', true);
-        }
         return mongoose.connect(MONGO_URI, {
           user: MONGO_USER,
           pass: MONGO_PWD,
-          dbName: `blog-${NODE_ENV}`,
+          dbName: 'beginner-blog',
           useNewUrlParser: true,
         });
       };
 
       try {
+        if (NODE_ENV !== 'production') mongoose.set('debug', true);
         await connectMongoose();
         console.log('Mongodb connected');
         mongoose.connection.on('error', (err) => {
@@ -35,7 +33,7 @@ module.exports = {
       }
     });
   },
-  disconnect() {
-    return mongoose.disconnect();
+  async disconnect() {
+    await mongoose.disconnect();
   },
 };
