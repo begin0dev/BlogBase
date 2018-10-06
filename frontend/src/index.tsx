@@ -7,7 +7,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 import App from './App';
 import configureStore from './store/configureStore';
-import registerServiceWorker from './registerServiceWorker';
+import * as serviceWorker from './serviceWorker';
 import './styles/main.scss';
 
 const store = configureStore(createBrowserHistory);
@@ -23,4 +23,4 @@ ReactDOM.render(
         document.getElementById('react-root'),
 );
 
-registerServiceWorker();
+serviceWorker.unregister();
