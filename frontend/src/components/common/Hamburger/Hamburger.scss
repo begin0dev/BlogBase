@@ -64,8 +64,8 @@ $hamburger-types: (
 :global {
   // Base Hamburger (We need this)
   // ==================================================
-  @import "~hamburgers/_sass/hamburgers/base";
+  @import '~hamburgers/_sass/hamburgers/base';
   // Hamburger types
   // ==================================================
-  @import "~hamburgers/_sass/hamburgers/types/slider";
+  @import '~hamburgers/_sass/hamburgers/types/slider';
 }

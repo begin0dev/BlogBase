@@ -5,20 +5,20 @@ const fs = require('fs');
 const url = require('url');
 
 // Make sure any symlinks in the project folder are resolved:
-// https://github.com/facebookincubator/create-react-app/issues/637
+// https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
 
-function ensureSlash(path, needsSlash) {
-  const hasSlash = path.endsWith('/');
+function ensureSlash(inputPath, needsSlash) {
+  const hasSlash = inputPath.endsWith('/');
   if (hasSlash && !needsSlash) {
-    return path.substr(path, path.length - 1);
+    return inputPath.substr(0, inputPath.length - 1);
   } else if (!hasSlash && needsSlash) {
-    return `${path}/`;
+    return `${inputPath}/`;
   } else {
-    return path;
+    return inputPath;
   }
 }
 
@@ -33,14 +33,15 @@ const getPublicUrl = appPackageJson =>
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
-  const servedUrl = envPublicUrl ||
-    (publicUrl ? url.parse(publicUrl).pathname : '/');
+  const servedUrl =
+    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
   return ensureSlash(servedUrl, true);
 }
 
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
+  appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
@@ -50,6 +51,7 @@ module.exports = {
   globalStyles: resolveApp('src/styles'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.ts'),
+  proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   appTsConfig: resolveApp('tsconfig.json'),
   appTsProdConfig: resolveApp('tsconfig.prod.json'),
