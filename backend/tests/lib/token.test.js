@@ -3,8 +3,6 @@ require('../testHelper');
 const jwt = require('jsonwebtoken');
 const { generateToken, decodeToken } = require('lib/token');
 
-const User = require('db/models/user');
-
 const { JWT_SECRET } = process.env;
 const payload = {
   _id: 'asd12ed3s123',
@@ -14,11 +12,6 @@ const expiresIn = '1h';
 
 describe('generateToken', () => {
   test('success', async () => {
-    await User.localRegister({
-      email: 'test@naver.com',
-      displayName: 'test',
-      password: 'asdasdasd',
-    });
     await expect(generateToken(payload, expiresIn)).resolves;
   });
   test('failed', async () => {
@@ -28,7 +21,6 @@ describe('generateToken', () => {
 
 describe('decodeToken', () => {
   test('success', async () => {
-    console.log(await User.find());
     const token = await generateToken(payload, expiresIn);
 
     const decode = await decodeToken(token);

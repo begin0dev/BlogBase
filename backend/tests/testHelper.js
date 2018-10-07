@@ -3,9 +3,10 @@ require('dotenv').config({ path: './.env.test' });
 const mongoose = require('mongoose');
 const MongodbMemoryServer = require('mongodb-memory-server');
 
-const mongoServer = new MongodbMemoryServer.MongoMemoryServer();
+let mongoServer;
 
-beforeAll(async () => {
+beforeEach(async () => {
+  mongoServer = new MongodbMemoryServer.MongoMemoryServer();
   const mongoUri = await mongoServer.getConnectionString();
   try {
     await mongoose.connect(mongoUri, { useNewUrlParser: true });
@@ -14,7 +15,7 @@ beforeAll(async () => {
   }
 });
 
-afterAll(async () => {
+afterEach(async () => {
   await mongoose.disconnect();
   mongoServer.stop();
 });
