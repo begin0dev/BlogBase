@@ -19,5 +19,5 @@ $ npm start
 ~~~~
 $ cd backend
 $ npm i
-$ npm start
+$ npm run dev
 ~~~~
