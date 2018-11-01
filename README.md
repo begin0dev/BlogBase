@@ -1,7 +1,7 @@
 # BEGINNER BLOG
 This project is the framework on which the blog is based.
 
-- Frontend: ReactJS (branch: redux-saga, redux-thunk, mobx)
+- Frontend: ReactJS - typescript (branch: redux-saga, redux-thunk, mobx)
 - Backend: Express (auth: JWT token)
 - Database: MongoDB
 
