@@ -1,46 +1,60 @@
-const { decodeToken, generateToken } = require('../token');
+const moment = require('moment');
 
-module.exports = async (req, res, next) => {
-  const accessToken = req.get['x-access-token'] || req.cookies.access_token;
+const User = require('db/models/user');
+const { decodeAccessToken, generateAccessToken } = require('../token');
+
+exports.checkedAccessToken = async (req, res, next) => {
+  const accessToken = req.get('x-access-token');
 
   if (!accessToken) {
     req.user = null;
     return next();
   }
   try {
-    const decoded = await decodeToken(accessToken);
+    const decoded = await decodeAccessToken(accessToken);
     req.user = decoded.user;
-    return next();
+    next();
   } catch (err) {
     req.user = null;
-    res.set('x-access-token', '');
-    return next();
+    res.set('x-access-token', null);
+    next();
   }
 };
 
-module.exports = async (req, res, next) => {
-  const refreshToken = req.cookies.refresh_token;
+exports.checkedRefreshToken = async (req, res, next) => {
+  const { refreshToken } = req.cookies;
 
-  if (req.user) return next();
   if (!refreshToken) {
     req.user = null;
     return next();
   }
   try {
-    const decoded = await decodeToken(refreshToken);
-    const { user } = decoded;
-    // generate tokens and setup token
-    const accessToken = await generateToken({ user }, '1h');
-    res.set('x-access-token', accessToken);
-    // extended your refresh token so they do not expire while using your site
-    const compareExp = Math.floor(Date.now() / 1000) + (60 * 5);
-    if (decoded.exp <= compareExp) {
-      const newRefreshToken = await generateToken({ user }, '3h');
-      res.cookie('refresh_token', newRefreshToken);
+    const user = await User.findByLocalRefreshToken(refreshToken);
+    if (!user) {
+      req.user = null;
+      res.clearCookie('refresh_token');
+      return next();
     }
-    req.user = user;
-    return next();
+
+    const { expiredAt } = user.oAuth.local;
+    if (moment() > moment(expiredAt)) {
+      req.user = null;
+      res.clearCookie('refresh_token');
+      user.update({ $set: { oAuth: { local: { refreshToken: null, expiredAt: null } } } }).exec();
+      return next();
+    }
+
+    req.user = user.toJSON();
+    const accessToken = await generateAccessToken({ user: req.user });
+    res.set('x-access-token', accessToken);
+
+    // extended your refresh token so they do not expire while using your site
+    if (moment().diff(expiredAt, 'seconds') <= 300) {
+      user.update({ $set: { oAuth: { local: { expiredAt: moment().add(1, 'hour') } } } }).exec();
+    }
+    next();
   } catch (err) {
+    console.error(err);
     req.user = null;
     res.clearCookie('refresh_token');
     return next();

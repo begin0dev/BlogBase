@@ -12,5 +12,6 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: [
     '<rootDir>/tests/**/?(*.)(spec|test).(j|t)s?(x)',
+    '<rootDir>/__tests__/**/?(*.)(spec|test).(j|t)s?(x)',
   ],
 };

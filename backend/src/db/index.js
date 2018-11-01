@@ -2,6 +2,8 @@ const { NODE_ENV, MONGO_URI, MONGO_USER, MONGO_PWD } = process.env;
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
+if (NODE_ENV !== 'production') mongoose.set('debug', true);
+mongoose.set('useCreateIndex', true);
 
 module.exports = {
   connect() {
@@ -16,7 +18,6 @@ module.exports = {
       };
 
       try {
-        if (NODE_ENV !== 'production') mongoose.set('debug', true);
         await connectMongoose();
         console.log('Mongodb connected');
         mongoose.connection.on('error', (err) => {

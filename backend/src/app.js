@@ -6,7 +6,7 @@ const session = require('express-session');
 
 const api = require('api/index');
 const db = require('db/index');
-const jwtMiddleware = require('lib/middlewares/jwt');
+const { checkedAccessToken, checkedRefreshToken } = require('lib/middlewares/jwt');
 
 const { NODE_ENV, PORT, COOKIE_SECRET } = process.env;
 
@@ -39,14 +39,14 @@ app.use(session({
 }));
 
 /* SETUP ROUTER */
-app.use(jwtMiddleware);
+app.use(checkedAccessToken, checkedRefreshToken);
 app.use('/api', api);
 
 /* 404 error */
 app.use((req, res, next) => {
   const err = new Error('Not found router');
   err.status = 404;
-  return next(err);
+  next(err);
 });
 
 /* handle error */
@@ -54,7 +54,7 @@ app.use((err, req, res) => {
   console.error(err.message);
   res.status(err.status || 500);
   res.json({
-    success: false,
+    status: 'error',
     message: err.message,
   });
 });

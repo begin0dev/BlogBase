@@ -1,7 +1,7 @@
 require('../testHelper');
 
 const jwt = require('jsonwebtoken');
-const { generateToken, decodeToken } = require('lib/token');
+const { generateAccessToken, decodeAccessToken } = require('lib/token');
 
 const { JWT_SECRET } = process.env;
 const payload = {
@@ -12,18 +12,16 @@ const expiresIn = '1h';
 
 describe('generateToken', () => {
   test('success', async () => {
-    await expect(generateToken(payload, expiresIn)).resolves;
-  });
-  test('failed', async () => {
-    await expect(generateToken(payload)).rejects.toThrowError();
+    await expect(generateAccessToken(payload, expiresIn)).resolves;
+    await expect(generateAccessToken(payload)).resolves;
   });
 });
 
 describe('decodeToken', () => {
   test('success', async () => {
-    const token = await generateToken(payload, expiresIn);
+    const token = await generateAccessToken(payload, expiresIn);
 
-    const decode = await decodeToken(token);
+    const decode = await decodeAccessToken(token);
     ['_id', 'displayName', 'iat', 'exp', 'iss'].forEach((key) => {
       expect(decode).toHaveProperty(key);
     });
@@ -37,13 +35,13 @@ describe('decodeToken', () => {
       JWT_SECRET,
       { issuer: 'beginner' },
     );
-    await expect(decodeToken(expiredToken)).rejects.toMatch('TokenExpiredError');
+    await expect(decodeAccessToken(expiredToken)).rejects.toMatch('TokenExpiredError');
 
     const invalidToken = await jwt.sign(
       payload,
-      `not${JWT_SECRET}`,
+      `wrong${JWT_SECRET}`,
       { issuer: 'beginner', expiresIn: '1d' },
     );
-    await expect(decodeToken(invalidToken)).rejects.toMatch('JsonWebTokenError');
+    await expect(decodeAccessToken(invalidToken)).rejects.toMatch('JsonWebTokenError');
   });
 });

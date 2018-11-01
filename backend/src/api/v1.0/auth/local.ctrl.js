@@ -1,16 +1,17 @@
 const express = require('express');
+const moment = require('moment');
 const Joi = require('joi');
 
-const { generatePassword, comparePassword } = require('lib/bcrypt');
-const { generateToken } = require('lib/token');
 const User = require('db/models/user');
+const { comparePassword } = require('lib/bcrypt');
+const { generateAccessToken, generateRefreshToken } = require('lib/token');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
   const { user } = req;
   if (user) {
-    res.status(200).json({ success: true, data: { user } });
+    res.status(200).json({ status: 'success', data: { user } });
   } else {
     res.status(401).end();
   }
@@ -31,39 +32,32 @@ router.post('/register', async (req, res, next) => {
     displayName: Joi.string().regex(/^[a-zA-Z0-9ㄱ-힣]{3,12}$/).required(),
   });
   const validate = Joi.validate(body, schema);
-  if (validate.error) {
-    return res.status(409).json({ success: false, message: validate.error.details[0].message });
-  }
+  if (validate.error) return res.status(409).json({ status: 'fail', message: validate.error.details[0].message });
 
   try {
     // check email
     const emailExists = await User.findByEmail(email);
-    if (emailExists) return res.status(409).json({ success: false, message: 'Email is already exists' });
-
-    // generate password
-    const hashPassword = await generatePassword(password);
+    if (emailExists) return res.status(409).json({ status: 'fail', message: 'Email is already exists' });
 
     // create user
     const user = await User.localRegister({
       email,
       displayName,
-      password: hashPassword,
+      password,
     });
 
-    const userData = {
-      id: user._id,
-      displayName: user.commonProfile.displayName,
-    };
+    const userJson = user.toJSON();
     // access token and refresh token set cookie
-    const accessToken = await generateToken({ user: userData }, '1h');
-    const refreshToken = await generateToken({ user: userData }, '1d');
+    const accessToken = await generateAccessToken({ user: userJson });
+    const refreshToken = await generateRefreshToken();
+    user.update({ $set: { oAuth: { local: { refreshToken, expiredAt: moment().add(12, 'hour') } } } }).exec();
     res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
 
-    return res.status(201).json({ success: true, data: { user: userData } });
+    res.status(201).json({ status: 'success', data: { user: userJson } });
   } catch (err) {
     console.error(err);
-    return next(err);
+    next(err);
   }
 });
 
@@ -77,33 +71,29 @@ router.post('/login', async (req, res, next) => {
     password: Joi.string().min(6).max(15).required(),
   });
   const validate = Joi.validate(body, schema);
-  if (validate.error) {
-    return res.status(409).json({ success: false, message: validate.error.details[0].message });
-  }
+  if (validate.error) return res.status(409).json({ status: 'fail', message: validate.error.details[0].message });
 
   try {
     // find by username
     const user = await User.findByEmail(email);
-    if (!user) return res.status(409).json({ success: false, message: 'user is incorrect!' });
+    if (!user) return res.status(409).json({ status: 'fail', message: 'user is incorrect!' });
 
     // find one user compare password
     const result = await comparePassword(password, user.password);
-    if (!result) return res.status(409).json({ success: false, message: 'user is incorrect!' });
+    if (!result) return res.status(409).json({ status: 'fail', message: 'user is incorrect!' });
 
-    const userData = {
-      id: user._id,
-      displayName: user.commonProfile.displayName,
-    };
+    const userJson = user.toJSON();
     // access token and refresh token set cookie
-    const accessToken = await generateToken({ user: userData }, '1h');
-    const refreshToken = await generateToken({ user: userData }, '1d');
+    const accessToken = await generateAccessToken({ user: userJson });
+    const refreshToken = await generateRefreshToken();
+    user.update({ $set: { oAuth: { local: { refreshToken, expiredAt: moment().add(12, 'hour') } } } }).exec();
     res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
 
-    return res.status(200).json({ success: true, message: 'success local login' });
+    res.status(200).json({ status: 'success', data: { user: userJson } });
   } catch (err) {
     console.error(err);
-    return next(err);
+    next(err);
   }
 });
 

@@ -1,8 +1,10 @@
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = process.env;
+const refreshTokenSize = 24;
 
-exports.generateToken = (payload, expiresIn) => {
+exports.generateAccessToken = (payload, expiresIn = '1h') => {
   return new Promise(async (resolve, reject) => {
     try {
       const token = await jwt.sign(
@@ -18,7 +20,7 @@ exports.generateToken = (payload, expiresIn) => {
   });
 };
 
-exports.decodeToken = (token) => {
+exports.decodeAccessToken = (token) => {
   return new Promise(async (resolve, reject) => {
     try {
       const decoded = await jwt.verify(token, JWT_SECRET);
@@ -26,6 +28,18 @@ exports.decodeToken = (token) => {
     } catch (err) {
       console.error(err);
       reject(err.name);
+    }
+  });
+};
+
+exports.generateRefreshToken = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const token = await crypto.randomBytes(refreshTokenSize).toString('hex');
+      resolve(token);
+    } catch (err) {
+      console.error(err);
+      reject(err);
     }
   });
 };
