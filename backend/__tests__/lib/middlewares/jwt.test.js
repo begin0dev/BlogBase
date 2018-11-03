@@ -110,7 +110,7 @@ describe('Test checkedRefreshToken', () => {
       expect(req.user).toEqual(user.toJSON());
     });
     const updateUser = await User.findByLocalRefreshToken(refreshToken);
-    expect(moment(updateUser.oAuth.local.expiredAt).diff(moment(), 'minute') > 5);
+    expect(moment(updateUser.oAuth.local.expiredAt).diff(moment(), 'minute') > 5).toBeTruthy();
   });
 
   test('Success-3', async () => {
