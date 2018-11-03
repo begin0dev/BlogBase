@@ -1,6 +1,6 @@
 const faker = require('faker');
 
-const userData = () => {
+const MockUserData = () => {
   return {
     email: faker.internet.email(),
     password: faker.internet.password(),
@@ -8,4 +8,4 @@ const userData = () => {
   };
 };
 
-module.exports = userData;
+module.exports = MockUserData;

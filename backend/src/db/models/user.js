@@ -64,20 +64,18 @@ User.set('toJSON', {
 });
 
 // static methods
-User.statics.findById = function findById(id) {
-  return this.findOne({ _id: id });
-};
-
 User.statics.findByEmail = function findByEmail(email) {
   return this.findOne({ email });
 };
 
-User.statics.findBySocialId = function findBySocialId({ provider, id }) {
+User.statics.findBySocialId = function findBySocialId(provider, id) {
   return this.findOne({
-    oAuth: {
-      [provider]: { id },
-    },
+    [`oAuth.${provider}.id`]: id,
   });
+};
+
+User.statics.findByLocalRefreshToken = function findByLocalRefreshToken(refreshToken) {
+  return this.findOne({ 'oAuth.local.refreshToken': refreshToken });
 };
 
 User.statics.localRegister = async function localRegister({ email, password, displayName }) {
@@ -91,14 +89,6 @@ User.statics.localRegister = async function localRegister({ email, password, dis
     },
   });
   return user.save();
-};
-
-User.statics.findByLocalRefreshToken = function findByLocalRefreshToken({ token }) {
-  return this.findOne({
-    oAuth: {
-      local: token,
-    },
-  });
 };
 
 module.exports = mongoose.model('User', User);

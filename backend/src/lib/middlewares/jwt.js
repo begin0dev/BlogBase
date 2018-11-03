@@ -30,6 +30,7 @@ exports.checkedRefreshToken = async (req, res, next) => {
   }
   try {
     const user = await User.findByLocalRefreshToken(refreshToken);
+
     if (!user) {
       req.user = null;
       res.clearCookie('refresh_token');
@@ -40,7 +41,7 @@ exports.checkedRefreshToken = async (req, res, next) => {
     if (moment() > moment(expiredAt)) {
       req.user = null;
       res.clearCookie('refresh_token');
-      await user.update({ $set: { oAuth: { local: { refreshToken: null, expiredAt: null } } } });
+      await user.updateOne({ $set: { oAuth: { local: { refreshToken: null, expiredAt: null } } } });
       return next();
     }
 
@@ -49,8 +50,8 @@ exports.checkedRefreshToken = async (req, res, next) => {
     res.set('x-access-token', accessToken);
 
     // extended your refresh token so they do not expire while using your site
-    if (moment().diff(expiredAt, 'seconds') <= 300) {
-      user.update({ $set: { oAuth: { local: { expiredAt: moment().add(1, 'hour') } } } }).exec();
+    if (moment(expiredAt).diff(moment(), 'minute') <= 5) {
+      await user.updateOne({ $set: { 'oAuth.local.expiredAt': moment().add(1, 'hour') } });
     }
     next();
   } catch (err) {

@@ -18,5 +18,6 @@
     <orderEntry type="library" name="@types/react" level="application" />
     <orderEntry type="library" name="@types/jest" level="application" />
     <orderEntry type="library" name="@types/supertest" level="application" />
+    <orderEntry type="library" name="@types/mongoose" level="application" />
   </component>
 </module>
