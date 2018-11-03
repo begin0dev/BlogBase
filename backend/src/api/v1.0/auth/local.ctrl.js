@@ -29,7 +29,7 @@ router.post('/register', async (req, res, next) => {
   const schema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(15).required(),
-    displayName: Joi.string().regex(/^[a-zA-Z0-9ㄱ-힣]{3,12}$/).required(),
+    displayName: Joi.string().regex(/^[a-zA-Z0-9]{3,12}$/).required(),
   });
   const validate = Joi.validate(body, schema);
   if (validate.error) return res.status(409).json({ status: 'fail', message: validate.error.details[0].message });

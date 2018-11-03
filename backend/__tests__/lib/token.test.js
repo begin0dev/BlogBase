@@ -4,33 +4,33 @@ const jwt = require('jsonwebtoken');
 const { generateAccessToken, decodeAccessToken } = require('lib/token');
 
 const { JWT_SECRET } = process.env;
-const payload = {
-  _id: 'asd12ed3s123',
+const user = {
+  _id: 'id',
   displayName: 'displayName',
 };
 const expiresIn = '1h';
 
-describe('generateToken', () => {
-  test('success', async () => {
-    await expect(generateAccessToken(payload, expiresIn)).resolves;
-    await expect(generateAccessToken(payload)).resolves;
+describe('Test generateToken', () => {
+  test('Success', async () => {
+    await expect(generateAccessToken({ user }, expiresIn)).resolves;
+    await expect(generateAccessToken({ user })).resolves;
   });
 });
 
-describe('decodeToken', () => {
-  test('success', async () => {
-    const token = await generateAccessToken(payload, expiresIn);
+describe('Test decodeToken', () => {
+  test('Success', async () => {
+    const token = await generateAccessToken({ user }, expiresIn);
 
     const decode = await decodeAccessToken(token);
-    ['_id', 'displayName', 'iat', 'exp', 'iss'].forEach((key) => {
+    ['user', 'iat', 'exp', 'iss'].forEach((key) => {
       expect(decode).toHaveProperty(key);
     });
   });
-  test('failed', async () => {
+  test('Failed', async () => {
     const expiredToken = await jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) - 60,
-        data: payload,
+        data: user,
       },
       JWT_SECRET,
       { issuer: 'beginner' },
@@ -38,7 +38,7 @@ describe('decodeToken', () => {
     await expect(decodeAccessToken(expiredToken)).rejects.toMatch('TokenExpiredError');
 
     const invalidToken = await jwt.sign(
-      payload,
+      { user },
       `wrong${JWT_SECRET}`,
       { issuer: 'beginner', expiresIn: '1d' },
     );
