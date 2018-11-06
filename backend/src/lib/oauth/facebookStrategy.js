@@ -1,16 +1,17 @@
 class facebookStrategy {
-  constructor(initOptions, initVerify) {
+  constructor(options, verify) {
     this.name = 'facebook';
-    let options = initOptions;
-    let verify = initVerify;
 
-    if (typeof initOptions === 'function') {
-      verify = initOptions;
+    if (typeof options === 'function') {
+      /* eslint-disable */
+      verify = options;
       options = {};
+      /* eslint-enable */
     }
     if (!verify) throw new Error('Strategy requires a verify callback!');
-    ['domain', 'clientID', 'clientSecret', 'callbackURL'].forEach((k) => {
-      if (!options[k]) throw new Error(`You must provide options the ${k} configuration value`);
+
+    ['domain', 'clientID', 'clientSecret', 'callbackURL'].forEach((key) => {
+      if (!options[key]) throw new Error(`You must provide options the ${key} configuration value`);
     });
   }
 }

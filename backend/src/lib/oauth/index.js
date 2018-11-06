@@ -1,15 +1,19 @@
-class oauth {
+class Oauth {
   constructor() {
     this.strategires = {};
   }
 
   use(name, strategy) {
     if (!name) throw new Error('Authentication strategies must have a name');
-    if (!strategy) throw new Error('Authentication strategies must have a strategy');
-
+    if (!strategy) {
+      /* eslint-disable */
+      strategy = name;
+      name = strategy.name;
+      /* eslint-enable */
+    }
     this.strategires[name] = strategy;
     return this;
   }
 }
 
-export default oauth;
+module.exports = new Oauth();
