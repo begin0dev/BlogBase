@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{@types/express, @types/jest, @types/joi, @types/mongoose, @types/node, @types/react, @types/supertest}" />
+    <file url="file://$PROJECT_DIR$/frontend" libraries="{beginnerblog/frontend/node_modules}" />
+    <file url="PROJECT" libraries="{@types/express, @types/jest, @types/joi, @types/mongoose, @types/node, @types/react, @types/supertest, beginnerblog/backend/node_modules, beginnerblog/frontend/node_modules}" />
     <includedPredefinedLibrary name="HTTP Response Handler" />
+    <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

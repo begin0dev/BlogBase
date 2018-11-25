@@ -2,8 +2,8 @@ const express = require('express');
 const moment = require('moment');
 const Joi = require('joi');
 
-const User = require('db/models/user');
-const { comparePassword } = require('lib/bcrypt');
+const User = require('datebase/models/user');
+const { comparePassword } = require('lib/bcryptHelper');
 const { generateAccessToken, generateRefreshToken } = require('lib/token');
 
 const router = express.Router();
@@ -53,10 +53,8 @@ router.post('/register', async (req, res, next) => {
     await user.updateOne({ $set: { oAuth: { local: { refreshToken, expiredAt: moment().add(12, 'hour') } } } });
     res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
-
     res.status(201).json({ status: 'success', data: { user: userJson } });
   } catch (err) {
-    console.error(err);
     next(err);
   }
 });
@@ -89,10 +87,8 @@ router.post('/login', async (req, res, next) => {
     await user.update({ $set: { oAuth: { local: { refreshToken, expiredAt: moment().add(12, 'hour') } } } });
     res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
-
     res.status(200).json({ status: 'success', data: { user: userJson } });
   } catch (err) {
-    console.error(err);
     next(err);
   }
 });

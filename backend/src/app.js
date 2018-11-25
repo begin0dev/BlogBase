@@ -1,11 +1,13 @@
 require('dotenv').config(); // LOAD CONFIG
+
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
+require('lib/oauth/strategies'); // Set Oauth strategies
 const api = require('api/index');
-const db = require('db/index');
+const db = require('datebase/index');
 const { checkedAccessToken, checkedRefreshToken } = require('lib/middlewares/jwt');
 
 const { NODE_ENV, PORT, COOKIE_SECRET } = process.env;

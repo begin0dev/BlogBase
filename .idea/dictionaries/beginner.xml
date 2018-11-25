@@ -1,6 +1,8 @@
 <component name="ProjectDictionaryState">
   <dictionary name="beginner">
     <words>
+      <w>axios</w>
+      <w>bcrypt</w>
       <w>eslint</w>
       <w>jsend</w>
       <w>kakao</w>

@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-const User = require('db/models/user');
+const User = require('datebase/models/user');
 const { decodeAccessToken, generateAccessToken } = require('../token');
 
 exports.checkedAccessToken = async (req, res, next) => {

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { generatePassword } = require('lib/bcrypt');
+const { generatePassword } = require('lib/bcryptHelper');
 
 const User = new mongoose.Schema({
   email: String,

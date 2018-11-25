@@ -1,4 +1,7 @@
+const request = require('supertest');
+
 const Oauth = require('lib/oauth');
+const app = require('../../testApp');
 
 describe('Test Oauth use', () => {
   test('Success-1', () => {
@@ -24,7 +27,10 @@ describe('Test Oauth authenticate', () => {
     function Strategy() {
       this.name = 'test';
     }
-
     Oauth.use(new Strategy());
+
+    app.get('/', Oauth.authenticate('test', (req, res) => {
+      res.status(201).json({ status: 'success' });
+    }));
   });
 });

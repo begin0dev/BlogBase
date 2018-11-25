@@ -1,8 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="jest" type="JavaScriptTestRunnerJest" factoryName="Jest" editBeforeRun="true">
+  <configuration default="false" name="jest" type="JavaScriptTestRunnerJest" editBeforeRun="true">
     <config-file value="$PROJECT_DIR$/backend/jest.config.js" />
     <node-interpreter value="project" />
     <node-options value="" />
+    <jest-package value="$PROJECT_DIR$/backend/node_modules/jest" />
     <working-dir value="$PROJECT_DIR$/backend" />
     <envs />
     <scope-kind value="ALL" />
