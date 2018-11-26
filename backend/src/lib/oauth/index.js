@@ -37,7 +37,7 @@ class Oauth {
           const profile = await strategy.getUserProfile(accessToken);
           res.json({ accessToken, profile });
         } catch (err) {
-          next(err);
+          return next(err);
         }
       } else {
         const authorizationRedirectURL = strategy.authorizationRedirectURL(redirectURI);

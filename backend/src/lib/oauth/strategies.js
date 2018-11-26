@@ -20,6 +20,21 @@ oAuth.use(new Strategy({
   tokenURL: 'https://graph.facebook.com/v3.2/oauth/access_token',
   profileURL: 'https://graph.facebook.com/v2.5/me',
 },
+['email', 'public_profile'],
+(accessToken, profile) => {
+
+}));
+
+oAuth.use(new Strategy({
+  name: 'kakao',
+  clientID: KAKAO_APP_ID,
+  clientSecret: KAKAO_SECRET,
+  callbackURL: '/api/v1.0/auth/social/kakao',
+  authorizationURL: 'https://kauth.kakao.com/oauth/authorize',
+  tokenURL: 'https://kauth.kakao.com/oauth/token',
+  profileURL: 'https://kapi.kakao.com/v2/user/me',
+  grantType: 'authorization_code',
+},
 [],
 (accessToken, profile) => {
 

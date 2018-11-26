@@ -5,10 +5,10 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-require('lib/oauth/strategies'); // Set Oauth strategies
 const api = require('api/index');
 const db = require('datebase/index');
 const { checkedAccessToken, checkedRefreshToken } = require('lib/middlewares/jwt');
+require('lib/oauth/strategies'); // Set Oauth strategies
 
 const { NODE_ENV, PORT, COOKIE_SECRET } = process.env;
 

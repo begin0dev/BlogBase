@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const url = require('url');
 const axios = require('axios');
+const querystring = require('querystring');
 
 /**
  * options
@@ -12,6 +13,7 @@ const axios = require('axios');
  *   tokenURL: '',
  *   profileURL: '',
  *   callbackURL: '',
+ *   grantType: '',
  * }
  */
 
@@ -32,8 +34,8 @@ class Strategy {
       this[key] = options[key];
     });
 
-    this.scope = _.chain(['email', 'public_profile'])
-      .concat(scope)
+    if (options.grantType) this.grantType = options.grantType;
+    this.scope = _.chain(scope)
       .uniq()
       .join(',')
       .value();
@@ -62,7 +64,17 @@ class Strategy {
           redirect_uri: redirectURI,
           code,
         };
-        const payload = await axios.get(tokenURL, { params });
+        if (this.grantType) {
+          params.grant_type = this.grantType;
+        }
+        const payload = await axios({
+          method: 'post',
+          url: tokenURL,
+          data: querystring.stringify(params),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        });
         const accessToken = payload.data.access_token;
         resolve(accessToken);
       } catch (err) {
@@ -87,6 +99,5 @@ class Strategy {
     });
   }
 }
-
 
 module.exports = Strategy;
