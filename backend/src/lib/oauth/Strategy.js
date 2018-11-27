@@ -1,7 +1,34 @@
 const _ = require('lodash');
-const url = require('url');
 const axios = require('axios');
 const querystring = require('querystring');
+const url = require('url');
+
+const SOCIAL_BASE_URL = {
+  facebook: {
+    authorizationURL: 'https://www.facebook.com/dialog/oauth',
+    tokenURL: 'https://graph.facebook.com/v3.2/oauth/access_token',
+    profileURL: 'https://graph.facebook.com/v2.5/me',
+    defaultScope: ['email', 'public_profile'],
+  },
+  kakao: {
+    authorizationURL: 'https://kauth.kakao.com/oauth/authorize',
+    tokenURL: 'https://kauth.kakao.com/oauth/token',
+    profileURL: 'https://kapi.kakao.com/v2/user/me',
+    defaultScope: [],
+  },
+  github: {
+    authorizationURL: '',
+    tokenURL: '',
+    profileURL: '',
+    defaultScope: [],
+  },
+  google: {
+    authorizationURL: '',
+    tokenURL: '',
+    profileURL: '',
+    defaultScope: [],
+  },
+};
 
 /**
  * options
@@ -9,9 +36,6 @@ const querystring = require('querystring');
  *   name: '',
  *   clientID: '',
  *   clientSecret: '',
- *   authorizationURL: '',
- *   tokenURL: '',
- *   profileURL: '',
  *   callbackURL: '',
  *   grantType: '',
  * }
@@ -19,8 +43,6 @@ const querystring = require('querystring');
 
 class Strategy {
   constructor(options, scope, verify) {
-    const essentialElements = ['name', 'clientID', 'clientSecret', 'authorizationURL', 'tokenURL', 'profileURL', 'callbackURL'];
-
     if (typeof scope === 'function') {
       /* eslint-disable */
       verify = scope;
@@ -29,20 +51,27 @@ class Strategy {
     }
     if (!verify) throw new Error('Strategy requires a verify callback!');
     if (!Array.isArray(scope)) throw new Error('Scope type must be array!');
-    essentialElements.forEach((key) => {
+    ['name', 'clientID', 'clientSecret', 'callbackURL'].forEach((key) => {
       if (!options[key]) throw new Error(`You must provide options the ${key} configuration value`);
       this[key] = options[key];
     });
+    const { name, grantType } = options;
+    ['authorizationURL', 'tokenURL', 'profileURL'].forEach((key) => {
+      this[key] = SOCIAL_BASE_URL[name][key];
+    });
 
-    if (options.grantType) this.grantType = options.grantType;
-    this.scope = _.chain(scope)
+    this.scope = _.chain(SOCIAL_BASE_URL[name].defaultScope)
+      .concat(scope)
       .uniq()
       .join(',')
       .value();
     this.verify = verify;
+    if (grantType) {
+      this.grantType = grantType;
+    }
   }
 
-  authorizationRedirectURL(redirectURI) {
+  authorizeEndPoint(redirectURI) {
     const { clientID, authorizationURL } = this;
     const query = {
       client_id: clientID,

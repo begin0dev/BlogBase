@@ -40,8 +40,8 @@ class Oauth {
           return next(err);
         }
       } else {
-        const authorizationRedirectURL = strategy.authorizationRedirectURL(redirectURI);
-        res.redirect(authorizationRedirectURL);
+        const authorizeEndPoint = strategy.authorizeEndPoint(redirectURI);
+        res.redirect(authorizeEndPoint);
       }
     };
   }
