@@ -46,14 +46,17 @@ app.use('/api', api);
 
 /* 404 error */
 app.use((req, res, next) => {
-  const err = new Error('Not found router');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 /* handle error */
-app.use((err, req, res) => {
-  console.error(err.message);
+app.use((err, req, res, next) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
   res.status(err.status || 500);
   res.json({
     status: 'error',
