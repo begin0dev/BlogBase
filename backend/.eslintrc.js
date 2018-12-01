@@ -12,13 +12,13 @@ module.exports = {
     "jest/globals": true
   },
 	"rules": {
+		"arrow-body-style": 0,
+		"consistent-return": 0,
+		"object-property-newline": 0,
+		"object-curly-newline": 0,
 		"import/no-extraneous-dependencies": 0,
 		"import/prefer-default-export": 0,
 		"no-console": 0,
-		"consistent-return": 0,
-		"arrow-body-style": 0,
-		"object-property-newline": 0,
-		"object-curly-newline": 0,
 		"no-underscore-dangle": [
 			"error",
 			{
@@ -27,5 +27,6 @@ module.exports = {
 				]
 			}
 		],
+		"max-len": 0,
 	},
 };

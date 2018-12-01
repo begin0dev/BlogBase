@@ -29,13 +29,14 @@ class Oauth {
       const redirectURI = url.resolve(originalURL, callbackURL);
 
       if (error) {
-        throw new Error(error);
+        const err = new Error(error);
+        return next(err);
       }
       if (code) {
         try {
           const accessToken = await strategy.getOauthAccessToken(code, redirectURI);
           const profile = await strategy.getUserProfile(accessToken);
-          res.json({ accessToken, profile });
+          strategy.verify(accessToken, profile);
         } catch (err) {
           return next(err);
         }
