@@ -1,7 +1,7 @@
 const moment = require('moment');
 
 const User = require('datebase/models/user');
-const { decodeAccessToken, generateAccessToken } = require('../token');
+const { decodeAccessToken, generateAccessToken } = require('lib/token');
 
 exports.checkedAccessToken = async (req, res, next) => {
   const accessToken = req.get('x-access-token');
@@ -33,15 +33,20 @@ exports.checkedRefreshToken = async (req, res, next) => {
 
     if (!user) {
       req.user = null;
-      res.clearCookie('refresh_token');
+      res.clearCookie('refreshToken');
       return next();
     }
 
     const { expiredAt } = user.oAuth.local;
     if (moment() > moment(expiredAt)) {
       req.user = null;
-      res.clearCookie('refresh_token');
-      await user.updateOne({ $set: { oAuth: { local: { refreshToken: null, expiredAt: null } } } });
+      res.clearCookie('refreshToken');
+      await user.updateOne({
+        $set: {
+          'oAuth.local.refreshToken': null,
+          'oAuth.local.expiredAt': null,
+        },
+      });
       return next();
     }
 
@@ -61,7 +66,7 @@ exports.checkedRefreshToken = async (req, res, next) => {
   } catch (err) {
     console.error(err);
     req.user = null;
-    res.clearCookie('refresh_token');
+    res.clearCookie('refreshToken');
     next();
   }
 };
