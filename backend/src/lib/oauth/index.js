@@ -28,17 +28,24 @@ class Oauth {
       });
       const redirectURI = url.resolve(originalURL, callbackURL);
 
+      const verified = (err, tokens) => {
+        if (err) {
+          req.flash('message', err.message);
+          return res.redirect('');
+        }
+        next();
+      };
+
       if (error) {
-        const err = new Error(error);
-        return next(err);
+        verified({ message: req.query.error_description });
       }
       if (code) {
         try {
           const accessToken = await strategy.getOauthAccessToken(code, redirectURI);
           const profile = await strategy.getUserProfile(accessToken);
-          strategy.verify(accessToken, profile);
+          strategy.verify(accessToken, profile, verified);
         } catch (err) {
-          return next(err);
+          verified(err);
         }
       } else {
         const authorizeEndPoint = strategy.authorizeEndPoint(redirectURI);

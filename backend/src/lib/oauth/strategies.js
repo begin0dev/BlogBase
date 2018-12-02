@@ -1,6 +1,9 @@
+const moment = require('moment');
+
 const oAuth = require('lib/oauth');
 const Strategy = require('lib/oauth/Strategy');
 const User = require('datebase/models/user');
+const { generateAccessToken, generateRefreshToken } = require('lib/token');
 
 const {
   GITHUB_APP_ID,
@@ -13,6 +16,31 @@ const {
   KAKAO_SECRET,
 } = process.env;
 
+const socialLogin = async (provider, id, accessToken, email, displayName, done) => {
+  try {
+    let user = await User.findBySocialId(provider, id);
+    if (!user) {
+      user = await User.socialRegister({ provider, id, accessToken, email, displayName });
+    }
+    const userJson = user.toJSON();
+    // access token and refresh token set cookie
+    const localAccessToken = await generateAccessToken({ user: userJson });
+    const refreshToken = await generateRefreshToken();
+    await user.updateOne({
+      $set: {
+        'oAuth.local.refreshToken': refreshToken,
+        'oAuth.local.expiredAt': moment().add(1, 'hour'),
+      },
+    });
+    done(null, {
+      accessToken: localAccessToken,
+      refreshToken,
+    });
+  } catch (err) {
+    done(err);
+  }
+};
+
 oAuth.use(
   new Strategy({
     name: 'facebook',
@@ -20,8 +48,9 @@ oAuth.use(
     clientSecret: FACEBOOK_SECRET,
     callbackURL: '/api/v1.0/auth/social/facebook',
   },
-  (accessToken, profile) => {
-    console.log(accessToken, profile);
+  (accessToken, profile, done) => {
+    const { id, name, email } = profile;
+    return socialLogin('facebook', id, accessToken, email, name, done);
   }),
 );
 

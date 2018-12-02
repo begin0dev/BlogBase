@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const { generatePassword } = require('lib/bcryptHelper');
 
 const User = new mongoose.Schema({
-  email: String,
+  email: {
+    type: String,
+    unique: true,
+    index: true,
+  },
   password: String,
   commonProfile: {
     displayName: String,
@@ -86,6 +90,22 @@ User.statics.localRegister = async function localRegister({ email, password, dis
     password: hashPassword,
     commonProfile: {
       displayName,
+    },
+  });
+  return user.save();
+};
+
+User.statics.socialRegister = async function socialRegister({ provider, id, accessToken, email, displayName }) {
+  const user = new this({
+    email,
+    commonProfile: {
+      displayName,
+    },
+    oAuth: {
+      [provider]: {
+        id,
+        accessToken,
+      },
     },
   });
   return user.save();

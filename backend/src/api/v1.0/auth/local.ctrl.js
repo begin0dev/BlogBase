@@ -50,7 +50,12 @@ router.post('/register', async (req, res, next) => {
     // access token and refresh token set cookie
     const accessToken = await generateAccessToken({ user: userJson });
     const refreshToken = await generateRefreshToken();
-    await user.updateOne({ $set: { oAuth: { local: { refreshToken, expiredAt: moment().add(12, 'hour') } } } });
+    await user.updateOne({
+      $set: {
+        'oAuth.local.refreshToken': refreshToken,
+        'oAuth.local.expiredAt': moment().add(1, 'hour'),
+      },
+    });
     res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
     res.status(201).json({ status: 'success', data: { user: userJson } });
@@ -84,7 +89,12 @@ router.post('/login', async (req, res, next) => {
     // access token and refresh token set cookie
     const accessToken = await generateAccessToken({ user: userJson });
     const refreshToken = await generateRefreshToken();
-    await user.update({ $set: { oAuth: { local: { refreshToken, expiredAt: moment().add(12, 'hour') } } } });
+    await user.updateOne({
+      $set: {
+        'oAuth.local.refreshToken': refreshToken,
+        'oAuth.local.expiredAt': moment().add(1, 'hour'),
+      },
+    });
     res.set('x-access-token', accessToken);
     res.cookie('refresh_token', refreshToken);
     res.status(200).json({ status: 'success', data: { user: userJson } });
