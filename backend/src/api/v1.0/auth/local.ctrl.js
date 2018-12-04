@@ -53,7 +53,7 @@ router.post('/register', async (req, res, next) => {
     await user.updateOne({
       $set: {
         'oAuth.local.refreshToken': refreshToken,
-        'oAuth.local.expiredAt': moment().add(1, 'hour'),
+        'oAuth.local.expiredAt': moment().add(12, 'hour'),
       },
     });
     res.set('x-access-token', accessToken);
@@ -92,7 +92,7 @@ router.post('/login', async (req, res, next) => {
     await user.updateOne({
       $set: {
         'oAuth.local.refreshToken': refreshToken,
-        'oAuth.local.expiredAt': moment().add(1, 'hour'),
+        'oAuth.local.expiredAt': moment().add(12, 'hour'),
       },
     });
     res.set('x-access-token', accessToken);
