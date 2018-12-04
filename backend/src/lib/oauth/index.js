@@ -28,11 +28,12 @@ class Oauth {
       });
       const redirectURI = url.resolve(originalURL, callbackURL);
 
-      const verified = (err, tokens) => {
+      const verified = (err, user) => {
         if (err) {
-          req.flash('message', err.message);
-          return res.redirect('');
+          res.locals.message = err.message;
+          next(err);
         }
+        req.user = user;
         next();
       };
 

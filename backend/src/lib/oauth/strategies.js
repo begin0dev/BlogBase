@@ -1,9 +1,6 @@
-const moment = require('moment');
-
 const oAuth = require('lib/oauth');
 const Strategy = require('lib/oauth/Strategy');
 const User = require('datebase/models/user');
-const { generateAccessToken, generateRefreshToken } = require('lib/token');
 
 const {
   FACEBOOK_APP_ID,
@@ -26,20 +23,7 @@ const socialLogin = async (provider, id, accessToken, email, displayName, done) 
         return done({ message: '중복된 이메일이 존재합니다. 해당 이메일로 로그인하여 SNS를 통합하세요.' });
       }
     }
-    const userJson = user.toJSON();
-    // access token and refresh token set cookie
-    const localAccessToken = await generateAccessToken({ user: userJson });
-    const refreshToken = await generateRefreshToken();
-    await user.updateOne({
-      $set: {
-        'oAuth.local.refreshToken': refreshToken,
-        'oAuth.local.expiredAt': moment().add(1, 'hour'),
-      },
-    });
-    done(null, {
-      accessToken: localAccessToken,
-      refreshToken,
-    });
+    done(null, user.toJSON());
   } catch (err) {
     done(err);
   }
