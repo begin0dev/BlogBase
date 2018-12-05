@@ -12,7 +12,7 @@ const socialCallback = async (req, res) => {
   if (message) {
     console.error(message);
     req.flash('message', message);
-    res.redirect('');
+    return res.redirect('');
   }
   try {
     const { user: userJson } = req;
