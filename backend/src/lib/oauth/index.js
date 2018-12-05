@@ -31,7 +31,6 @@ class Oauth {
       const verified = (err, user) => {
         if (err) {
           res.locals.message = err.message;
-          next(err);
         }
         req.user = user;
         next();
