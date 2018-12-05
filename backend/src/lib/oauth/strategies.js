@@ -1,5 +1,5 @@
 const oAuth = require('lib/oauth');
-const Strategy = require('lib/oauth/Strategy');
+const Strategy = require('lib/oauth/strategy');
 const User = require('datebase/models/user');
 
 const {
