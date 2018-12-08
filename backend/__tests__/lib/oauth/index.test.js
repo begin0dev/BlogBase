@@ -22,7 +22,7 @@ describe('Test Oauth use', () => {
 describe('Test Oauth authenticate', () => {
   test('Success', () => {
     function Strategy() {
-      this.name = 'test';
+      this.name = 'facebook';
     }
     Oauth.use(new Strategy());
 
