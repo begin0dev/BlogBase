@@ -1,8 +1,8 @@
+const express = require('express');
 const request = require('supertest');
 
 const Oauth = require('lib/oauth');
 const Strategy = require('lib/oauth/strategy');
-const app = require('../../testApp');
 
 describe('Test Oauth use', () => {
   test('Success: strategy', () => {
@@ -21,6 +21,7 @@ describe('Test Oauth use', () => {
 });
 
 describe('Test Oauth authenticate', () => {
+  const app = express();
   Oauth.use(new Strategy({
     name: 'facebook',
     clientID: 'test-id',
@@ -28,12 +29,18 @@ describe('Test Oauth authenticate', () => {
     callbackURL: '/test',
   }, (accessToken, profile, done) => { done(); }));
 
-  app.get('/facebook', Oauth.authenticate('facebook', (req, res) => {
+  app.get('/facebook', Oauth.authenticate('facebook', {}), (req, res) => {
     res.status(201).json({ status: 'success' });
-  }));
+  });
   const agent = request.agent(app);
 
-  test('Success', () => {
-    agent.get('/facebook').expect(302);
+  test('Success', async () => {
+    await agent
+      .get('/facebook')
+      .expect(302)
+      .expect(
+        'Location',
+        'https://www.facebook.com/dialog/oauth?client_id=test-id&redirect_uri=http://127.0.0.1/test&response_type=code',
+      );
   });
 });
