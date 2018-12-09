@@ -1,33 +1,39 @@
 const request = require('supertest');
 
 const Oauth = require('lib/oauth');
+const Strategy = require('lib/oauth/strategy');
 const app = require('../../testApp');
 
 describe('Test Oauth use', () => {
   test('Success: strategy', () => {
-    function Strategy() {
+    function MockStrategy() {
       this.name = 'test';
     }
-    Oauth.use(new Strategy());
+    Oauth.use(new MockStrategy());
     expect(typeof Oauth.strategires.test).toBe('object');
   });
   test('Success: name, strategy', () => {
-    function Strategy() {
+    function MockStrategy() {
     }
-    Oauth.use('test', new Strategy());
+    Oauth.use('test', new MockStrategy());
     expect(typeof Oauth.strategires.test).toBe('object');
   });
 });
 
 describe('Test Oauth authenticate', () => {
-  test('Success', () => {
-    function Strategy() {
-      this.name = 'facebook';
-    }
-    Oauth.use(new Strategy());
+  Oauth.use(new Strategy({
+    name: 'facebook',
+    clientID: 'test-id',
+    clientSecret: 'test-secret',
+    callbackURL: '/test',
+  }, (accessToken, profile, done) => { done(); }));
 
-    app.get('/', Oauth.authenticate('test', (req, res) => {
-      res.status(201).json({ status: 'success' });
-    }));
+  app.get('/facebook', Oauth.authenticate('facebook', (req, res) => {
+    res.status(201).json({ status: 'success' });
+  }));
+  const agent = request.agent(app);
+
+  test('Success', () => {
+    agent.get('/facebook').expect(302);
   });
 });
