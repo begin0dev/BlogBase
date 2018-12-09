@@ -7,8 +7,8 @@ const SOCIAL_BASE_URL = {
   facebook: {
     authorizationURL: 'https://www.facebook.com/dialog/oauth',
     tokenURL: 'https://graph.facebook.com/v3.2/oauth/access_token',
-    profileURL: 'https://graph.facebook.com/v2.5/me',
-    defaultScope: ['email', 'public_profile'],
+    profileURL: 'https://graph.facebook.com/v3.2/me',
+    defaultScope: ['name', 'email'],
   },
   kakao: {
     authorizationURL: 'https://kauth.kakao.com/oauth/authorize',
@@ -118,7 +118,7 @@ class Strategy {
         const { profileURL, scope } = this;
         const params = {
           access_token: accessToken,
-          scope,
+          fields: scope,
         };
         const payload = await axios.get(profileURL, { params });
         resolve(payload.data);
