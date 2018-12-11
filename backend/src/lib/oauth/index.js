@@ -33,6 +33,9 @@ class Oauth {
           req.flash('message', err.message);
           return res.redirect(options.failureRedirect);
         }
+        if (user && options.successRedirect) {
+          return res.redirect(options.successRedirect);
+        }
         if (err) {
           res.locals.message = err.message;
         }
