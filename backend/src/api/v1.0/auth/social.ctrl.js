@@ -8,12 +8,6 @@ const { generateAccessToken, generateRefreshToken } = require('lib/token');
 const router = express.Router();
 
 const socialCallback = async (req, res) => {
-  const { message } = res.locals;
-  if (message) {
-    console.error(message);
-    req.flash('message', message);
-    return res.redirect('');
-  }
   try {
     const { user: userJson } = req;
     // access token and refresh token set cookie
@@ -29,7 +23,7 @@ const socialCallback = async (req, res) => {
     res.cookie('refreshToken', refreshToken);
     res.redirect('');
   } catch (err) {
-    console.error(message);
+    req.flash('message', '소셜 로그인에 실패하였습니다. 다시 시도해주세요.');
     res.redirect('');
   }
 };

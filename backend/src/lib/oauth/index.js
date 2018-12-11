@@ -29,6 +29,10 @@ class Oauth {
       const redirectURI = url.resolve(originalURL, callbackURL);
 
       const verified = (err, user) => {
+        if (err && options.failureRedirect) {
+          req.flash('message', err.message);
+          return res.redirect(options.failureRedirect);
+        }
         if (err) {
           res.locals.message = err.message;
         }
