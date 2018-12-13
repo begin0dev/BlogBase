@@ -5,6 +5,6 @@
     <inspection_tool class="RequiredAttributes" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myAdditionalRequiredHtmlAttributes" value="dispatchChangeAccountFormValue" />
     </inspection_tool>
-    <inspection_tool class="TsLint" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="TsLint" enabled="false" level="ERROR" enabled_by_default="false" />
   </profile>
 </component>

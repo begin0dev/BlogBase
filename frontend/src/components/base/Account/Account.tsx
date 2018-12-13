@@ -10,6 +10,7 @@ import {
 import { IAccountState } from "store/modules/account";
 import { TextInput } from "components";
 import { Kakao } from "assets/svgs";
+
 import styles from "./Account.scss";
 
 const cx = classNames.bind(styles);

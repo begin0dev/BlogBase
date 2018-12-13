@@ -15,14 +15,14 @@ import './styles/main.scss';
 const store = configureStore(createBrowserHistory);
 
 ReactDOM.render(
-<AppContainer>
-          <Provider store={store}>
-            <Router>
-              <App />
-            </Router>
-          </Provider>
-        </AppContainer>,
-        document.getElementById('react-root'),
+  <AppContainer>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </AppContainer>,
+  document.getElementById('react-root'),
 );
 
 serviceWorker.unregister();
