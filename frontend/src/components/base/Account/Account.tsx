@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classNames from "classnames/bind";
+import classNames from "classnames";
 import {
   FaArrowRight,
   FaFacebook as Facebook,

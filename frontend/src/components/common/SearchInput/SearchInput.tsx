@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classNames from "classnames/bind";
+import classNames from "classnames";
 import {MdSearch} from "react-icons/md";
 
 import Spinner from "../Spinner";
