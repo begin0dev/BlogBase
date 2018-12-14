@@ -19,7 +19,7 @@ interface IProps {
 }
 
 class TextInput extends React.Component<IProps, IState> {
-  inputRef: HTMLInputElement;
+  inputRef!: HTMLInputElement;
 
   constructor(props: IProps) {
     super(props);
