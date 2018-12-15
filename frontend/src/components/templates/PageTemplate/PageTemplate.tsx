@@ -1,12 +1,12 @@
-import * as React from "react";
-import classNames from "classnames";
+import * as React from 'react';
+import classNames from 'classnames';
 
 import {
   AccountContainer,
   SidebarContainer,
   HeaderContainer,
-} from "containers";
-import styles from "./PageTemplate.scss";
+} from 'containers';
+import styles from './PageTemplate.scss';
 
 const cx = classNames.bind(styles);
 
@@ -15,12 +15,14 @@ interface IProps {
 }
 
 const PageTemplate: React.SFC<IProps> = ({ children }) => {
-  return <React.Fragment>
-    <HeaderContainer/>
-    <SidebarContainer/>
-    <AccountContainer/>
-    <div className={cx("contents-wrap")}>{children}</div>
-  </React.Fragment>;
+  return (
+    <React.Fragment>
+      <HeaderContainer />
+      <SidebarContainer />
+      <AccountContainer />
+      <div className={cx('contents-wrap')}>{children}</div>
+    </React.Fragment>
+  );
 };
 
 export default PageTemplate;

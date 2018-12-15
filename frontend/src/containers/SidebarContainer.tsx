@@ -1,15 +1,15 @@
-import * as React from "react";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import * as React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import onClickOutside, {
   HandleClickOutside,
-  InjectedOnClickOutProps
-} from "react-onclickoutside";
+  InjectedOnClickOutProps,
+} from 'react-onclickoutside';
 
-import { IStoreState } from "store/modules";
-import { ISidebarState } from "store/modules/sidebar";
-import { Hamburger, Sidebar } from "components";
+import { IStoreState } from 'store/modules';
+import { ISidebarState } from 'store/modules/sidebar';
+import { Hamburger, Sidebar } from 'components';
 
 interface IProps {
   sidebarState: ISidebarState;
@@ -30,10 +30,10 @@ class SidebarContainer extends React.Component<Props> {
     this.hamburgerRef = React.createRef();
   }
   componentDidMount() {
-    window.addEventListener("resize", this.sidebarResizeEvent);
+    window.addEventListener('resize', this.sidebarResizeEvent);
   }
   componentWillUnmount() {
-    window.removeEventListener("resize", this.sidebarResizeEvent);
+    window.removeEventListener('resize', this.sidebarResizeEvent);
   }
 
   handleClickOutside = (e: React.MouseEvent<HTMLElement>): void => {
@@ -86,15 +86,15 @@ class SidebarContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: IStoreState) => ({
-  sidebarState: state.sidebar
+  sidebarState: state.sidebar,
 });
 const mapDispatchToProps = (dispatch: any) => ({
   dispatchToggleSidebar(visible: boolean): void {
-    dispatch({ type: "TOGGLE_SIDEBAR", visible });
+    dispatch({ type: 'TOGGLE_SIDEBAR', visible });
   },
   dispatchExpandedNavi(expand: boolean): void {
-    dispatch({ type: "EXPANDED_NAVI", expand });
-  }
+    dispatch({ type: 'EXPANDED_NAVI', expand });
+  },
 });
 
 const outsideWrap = onClickOutside(SidebarContainer);
@@ -102,6 +102,6 @@ export default compose(
   withRouter,
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  )
+    mapDispatchToProps,
+  ),
 )(outsideWrap);
