@@ -85,6 +85,4 @@ module.exports = {
   globalStyles: resolveApp('src/styles'),
 };
 
-
-
 module.exports.moduleFileExtensions = moduleFileExtensions;

@@ -14,11 +14,11 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const PageTemplate: React.SFC<IProps> = ({ children }) => {
+const PageTemplate: React.FunctionComponent<IProps> = ({ children }) => {
   return (
     <React.Fragment>
       <HeaderContainer />
-      <SidebarContainer />
+      {/*<SidebarContainer />*/}
       <AccountContainer />
       <div className={cx('contents-wrap')}>{children}</div>
     </React.Fragment>

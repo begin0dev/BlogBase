@@ -9,7 +9,7 @@ interface IProps {
   size?: string;
 }
 
-const Spinner: React.SFC<IProps> = ({ size }) => {
+const Spinner: React.FunctionComponent<IProps> = ({ size }) => {
   return (
     <div className={cx("fading-circle")} style={{ width: size, height: size }}>
       <div className={cx("circle", "circle1")} />

@@ -9,7 +9,7 @@ interface IProps {
   visible?: boolean;
 }
 
-const Overlay: React.SFC<IProps> = ({ visible }) => {
+const Overlay: React.FunctionComponent<IProps> = ({ visible }) => {
   return <div className={cx("overlay", { visible })} />;
 };
 

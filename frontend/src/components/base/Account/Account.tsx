@@ -20,7 +20,7 @@ interface IProps {
   changeAccountFormValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const Account: React.SFC<IProps> = ({
+const Account: React.FunctionComponent<IProps> = ({
   accountState,
   changeAccountFormValue
 }) => (

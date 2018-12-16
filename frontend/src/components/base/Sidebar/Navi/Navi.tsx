@@ -38,7 +38,7 @@ interface IProps {
   expandedNavi(expanded: boolean): () => void;
 }
 
-const Navi: React.SFC<IProps> = ({ expanded, expandedNavi }) => (
+const Navi: React.FunctionComponent<IProps> = ({ expanded, expandedNavi }) => (
   <ul className={cx("ul")}>
     {menu.map((item: IMenuObject) => {
       return item.hasChildren ? (

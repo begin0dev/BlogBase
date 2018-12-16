@@ -15,7 +15,7 @@ interface IProps {
   setSearchValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const Sidebar: React.SFC<IProps> = ({
+const Sidebar: React.FunctionComponent<IProps> = ({
   sidebarState,
   setSearchValue,
   expandedNavi

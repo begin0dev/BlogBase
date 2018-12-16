@@ -1,7 +1,7 @@
-import * as React from "react";
-import classNames from "classnames";
+import * as React from 'react';
+import classNames from 'classnames';
 
-import styles from "./Hamburger.scss";
+import styles from './Hamburger.scss';
 
 const cx = classNames.bind(styles);
 
@@ -11,16 +11,16 @@ interface IProps {
   toggleSidebar: () => void;
 }
 
-const Hamburger: React.SFC<IProps> = ({
+const Hamburger: React.FunctionComponent<IProps> = ({
   visible,
   toggleSidebar,
-  hamburgerRef
+  hamburgerRef,
 }) => {
   return (
-    <div className={cx("wrapper")} ref={hamburgerRef} onClick={toggleSidebar}>
+    <div className={cx('wrapper')} ref={hamburgerRef} onClick={toggleSidebar}>
       <div
-        className={`hamburger hamburger--slider ${visible && "is-active"} ${cx(
-          "spin"
+        className={`hamburger hamburger--slider ${visible && 'is-active'} ${cx(
+          'spin',
         )}`}
       >
         <span className="hamburger-box">

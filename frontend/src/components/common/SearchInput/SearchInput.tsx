@@ -14,7 +14,7 @@ interface IProps {
   setValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const SearchInput: React.SFC<IProps> = ({
+const SearchInput: React.FunctionComponent<IProps> = ({
   loading,
   placeholder,
   value,
