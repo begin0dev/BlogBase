@@ -1,5 +1,5 @@
 import * as React from "react";
-import classNames from "classnames";
+import * as classNames from 'classnames/bind';
 import { NavLink } from "react-router-dom";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 

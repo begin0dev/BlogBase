@@ -1,5 +1,5 @@
 import * as React from "react";
-import classNames from "classnames";
+import * as classNames from 'classnames/bind';
 
 import {SearchInput} from "components";
 import Navi from "./Navi/Navi";
