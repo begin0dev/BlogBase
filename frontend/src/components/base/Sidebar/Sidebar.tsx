@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classNames from "classnames/bind";
+import * as classNames from 'classnames/bind';
 
 import {SearchInput} from "components";
 import Navi from "./Navi/Navi";
@@ -15,7 +15,7 @@ interface IProps {
   setSearchValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const Sidebar: React.SFC<IProps> = ({
+const Sidebar: React.FunctionComponent<IProps> = ({
   sidebarState,
   setSearchValue,
   expandedNavi

@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classNames from "classnames/bind";
+import * as classNames from 'classnames/bind';
 
 import styles from "./Overlay.scss";
 
@@ -9,7 +9,7 @@ interface IProps {
   visible?: boolean;
 }
 
-const Overlay: React.SFC<IProps> = ({ visible }) => {
+const Overlay: React.FunctionComponent<IProps> = ({ visible }) => {
   return <div className={cx("overlay", { visible })} />;
 };
 

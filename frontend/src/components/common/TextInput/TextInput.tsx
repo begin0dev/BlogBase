@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classNames from "classnames/bind";
+import * as classNames from 'classnames/bind';
 
 import styles from "./TextInput.scss";
 
@@ -19,7 +19,7 @@ interface IProps {
 }
 
 class TextInput extends React.Component<IProps, IState> {
-  inputRef: HTMLInputElement;
+  inputRef!: HTMLInputElement;
 
   constructor(props: IProps) {
     super(props);
