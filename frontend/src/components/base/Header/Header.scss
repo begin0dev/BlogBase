@@ -23,13 +23,14 @@
     font-size: 1.45rem;
     font-weight: 400;
     margin-left: 54px;
-    letter-spacing: 0.3rem;
+    letter-spacing: .3rem;
     user-select: none;
     :first-letter {
       color: theme('secondary');
     }
     @include media('>=medium') {
-      margin-left: 60px;
+      margin-left: .3rem;
+      width: 240px;
     }
   }
   .spacer {

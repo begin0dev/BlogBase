@@ -40,8 +40,8 @@ class SidebarContainer extends React.Component<Props> {
     const { toggleSidebar, hamburgerRef } = this;
     const { sidebarState } = this.props;
     const node = hamburgerRef.current!;
-    if (node.contains(e.target as HTMLElement)) return;
     if (!sidebarState.visible || window.innerWidth >= 768) return;
+    if (node.contains(e.target as HTMLElement)) return;
     toggleSidebar();
   };
   setSearchValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -74,12 +74,15 @@ class SidebarContainer extends React.Component<Props> {
           setSearchValue={setSearchValue}
           key="sidebar"
         />
-        <Hamburger
-          visible={sidebarState.visible}
-          toggleSidebar={toggleSidebar}
-          hamburgerRef={this.hamburgerRef}
-          key="hamburger"
-        />
+        {
+          window.innerWidth < 768 &&
+          <Hamburger
+            visible={sidebarState.visible}
+            toggleSidebar={toggleSidebar}
+            hamburgerRef={this.hamburgerRef}
+            key="hamburger"
+          />
+        }
       </React.Fragment>
     );
   }

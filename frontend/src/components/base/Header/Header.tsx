@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 const Header: React.FunctionComponent = () => (
   <header className={cx('header')}>
     <div className={cx('title-wrap')}>
-      <Link to="/">BEGINNER</Link>
+      <Link to="/">BEGIN4DEV</Link>
     </div>
     <div className={cx('spacer')} />
     <div className={cx('nav-wrap')}>
