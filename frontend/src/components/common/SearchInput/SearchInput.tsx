@@ -3,7 +3,7 @@ import * as classNames from 'classnames/bind';
 import {MdSearch} from "react-icons/md";
 
 import Spinner from "../Spinner";
-import styles from "./SearchInput.scss";
+import styles from "./SearchInput.module.scss";
 
 const cx = classNames.bind(styles);
 

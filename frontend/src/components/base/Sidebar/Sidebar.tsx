@@ -3,7 +3,7 @@ import * as classNames from 'classnames/bind';
 
 import {SearchInput} from "components";
 import Navi from "./Navi/Navi";
-import styles from "./Sidebar.scss";
+import styles from "./Sidebar.module.scss";
 
 import {ISidebarState} from "store/modules/sidebar";
 

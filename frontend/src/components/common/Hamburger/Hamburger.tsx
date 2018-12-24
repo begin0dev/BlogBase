@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames/bind';
 
-import styles from './Hamburger.scss';
+import styles from './Hamburger.module.scss';
 
 const cx = classNames.bind(styles);
 

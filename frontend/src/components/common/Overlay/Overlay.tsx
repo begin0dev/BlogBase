@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as classNames from 'classnames/bind';
 
-import styles from "./Overlay.scss";
+import styles from "./Overlay.module.scss";
 
 const cx = classNames.bind(styles);
 

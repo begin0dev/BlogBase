@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
-import styles from './Header.scss';
+import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
