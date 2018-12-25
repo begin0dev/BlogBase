@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
 import { routerReducer as routing } from "react-router-redux";
 import sidebar, { ISidebarState } from "./sidebar";
-import account, { IAccountState } from "./account";
+import auth, { IAuthState } from "./auth";
 
 export interface IStoreState {
-  account: IAccountState;
+  auth: IAuthState;
   sidebar: ISidebarState;
 }
 
 const rootReducer = combineReducers({
   routing,
-  account,
+  auth,
   sidebar
 });
 

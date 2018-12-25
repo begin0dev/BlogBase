@@ -1,16 +1,16 @@
 import produce from 'immer';
 
 // actions
-const TOGGLE_ACCOUNT_FORM = 'TOGGLE_ACCOUNT_FORM';
+const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 const INITIALIZE_FORM_DATA = 'INITIALIZE_FORM_DATA';
-const SET_ACCOUNT_FORM_VALUE = 'SET_ACCOUNT_FORM_VALUE';
+const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 
 interface IFormData {
   displayName: string;
   email: string;
   password: string;
 }
-export interface IAccountState {
+export interface IAuthState {
   form: IFormData;
   state: {
     form: string;
@@ -19,8 +19,8 @@ export interface IAccountState {
   };
 }
 
-class TogglAccountForm {
-  readonly type = TOGGLE_ACCOUNT_FORM;
+class ToggleAuthForm {
+  readonly type = TOGGLE_AUTH_FORM;
   constructor(public active: boolean) {}
 }
 
@@ -29,15 +29,12 @@ class InitializeFormData {
   constructor(public payload: IFormData) {}
 }
 
-class SetAccountFormValue {
-  readonly type = SET_ACCOUNT_FORM_VALUE;
+class SetAuthFormValue {
+  readonly type = SET_AUTH_FORM_VALUE;
   constructor(public name: string, public value: string) {}
 }
 
-type AccountActions =
-  | TogglAccountForm
-  | InitializeFormData
-  | SetAccountFormValue;
+type AuthActions = ToggleAuthForm | InitializeFormData | SetAuthFormValue;
 
 const initFormData: IFormData = {
   displayName: '',
@@ -45,7 +42,7 @@ const initFormData: IFormData = {
   password: '',
 };
 
-export const defaultState: IAccountState = {
+export const defaultState: IAuthState = {
   form: {
     ...initFormData,
   },
@@ -56,9 +53,9 @@ export const defaultState: IAccountState = {
   },
 };
 
-export default (state = defaultState, action: AccountActions) => {
+export default (state = defaultState, action: AuthActions) => {
   switch (action.type) {
-    case 'TOGGLE_ACCOUNT_FORM':
+    case 'TOGGLE_AUTH_FORM':
       return produce(state, draft => {
         draft.state.active = action.active;
       });
@@ -66,7 +63,7 @@ export default (state = defaultState, action: AccountActions) => {
       return produce(state, draft => {
         draft.form = initFormData;
       });
-    case 'SET_ACCOUNT_FORM_VALUE':
+    case 'SET_AUTH_FORM_VALUE':
       return produce(state, draft => {
         draft.form[action.name] = action.value;
       });

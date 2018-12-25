@@ -1,4 +1,4 @@
-import Account from './base/Account';
+import Auth from './base/Auth';
 import Header from './base/Header';
 import Sidebar from './base/Sidebar';
 
@@ -12,7 +12,7 @@ import TextInput from './common/TextInput';
 import PageTemplate from './templates/PageTemplate';
 
 export {
-	Account,
+	Auth,
 	Header,
 	Sidebar,
 	Hamburger,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames/bind';
 
 import {
-  AccountContainer,
+  AuthContainer,
   SidebarContainer,
   HeaderContainer,
 } from 'containers';
@@ -19,7 +19,7 @@ const PageTemplate: React.FunctionComponent<IProps> = ({ children }) => {
     <React.Fragment>
       <HeaderContainer />
       <SidebarContainer />
-      <AccountContainer />
+      <AuthContainer />
       <div className={cx('contents-wrap')}>{children}</div>
     </React.Fragment>
   );

@@ -7,24 +7,24 @@ import {
   FaGooglePlusSquare as Google,
 } from 'react-icons/fa';
 
-import { IAccountState } from 'store/reducers/account';
+import { IAuthState } from 'store/reducers/auth';
 import { TextInput } from 'components';
 import { Kakao } from 'assets/svgs';
 
-import styles from './Account.module.scss';
+import styles from './Auth.module.scss';
 
 const cx = classNames.bind(styles);
 
 interface IProps {
-  accountState: IAccountState;
-  changeAccountFormValue(e: React.ChangeEvent<HTMLInputElement>): void;
+  authState: IAuthState;
+  changeAuthFormValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const Account: React.FunctionComponent<IProps> = ({
-  accountState,
-  changeAccountFormValue,
+const Auth: React.FunctionComponent<IProps> = ({
+  authState,
+  changeAuthFormValue,
 }) => (
-  <div className={cx('account')}>
+  <div className={cx('auth')}>
     <div className={cx('sign-in')}>
       <div className={cx('row', 'circle-row')}>
         <div className={cx('circle')} />
@@ -39,10 +39,10 @@ const Account: React.FunctionComponent<IProps> = ({
             type="text"
             name="email"
             label="Email"
-            value={accountState.form.email}
+            value={authState.form.email}
             placeholder="Enter your Email"
             color="#00b0ff"
-            setValue={changeAccountFormValue}
+            setValue={changeAuthFormValue}
           />
         </div>
         <div className={cx('input-row')}>
@@ -50,10 +50,10 @@ const Account: React.FunctionComponent<IProps> = ({
             type="password"
             name="password"
             label="Password"
-            value={accountState.form.password}
+            value={authState.form.password}
             placeholder="Enter your Password"
             color="#00b0ff"
-            setValue={changeAccountFormValue}
+            setValue={changeAuthFormValue}
           />
         </div>
       </div>
@@ -81,4 +81,4 @@ const Account: React.FunctionComponent<IProps> = ({
   </div>
 );
 
-export default Account;
+export default Auth;

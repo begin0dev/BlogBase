@@ -1,9 +1,9 @@
 import HeaderContainer from './HeaderContainer';
 import SidebarContainer from './SidebarContainer';
-import AccountContainer from './AccountContainer';
+import AuthContainer from './AuthContainer';
 
 export {
   HeaderContainer,
   SidebarContainer,
-  AccountContainer,
+  AuthContainer,
 };
