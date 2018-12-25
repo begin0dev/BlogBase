@@ -7,8 +7,8 @@ import onClickOutside, {
   InjectedOnClickOutProps,
 } from 'react-onclickoutside';
 
-import { IStoreState } from 'store/modules';
-import { ISidebarState } from 'store/modules/sidebar';
+import { IStoreState } from 'store/reducers';
+import { ISidebarState } from 'store/reducers/sidebar';
 import { Hamburger, Sidebar } from 'components';
 
 interface IProps {

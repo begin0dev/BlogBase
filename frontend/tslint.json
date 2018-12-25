@@ -12,6 +12,7 @@
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "member-access": false,
+    "max-classes-per-file": false,
     "no-console": false,
     "no-any": false,
     "max-line-length": false,

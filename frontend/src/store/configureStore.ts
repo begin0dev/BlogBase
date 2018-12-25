@@ -3,7 +3,7 @@ import { routerMiddleware } from 'react-router-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 
 import rootSaga from './sagas';
-import rootReducer from './modules';
+import rootReducer from './reducers';
 
 /*
  * @param {Object} initial state to bootstrap our stores with for server-side rendering
@@ -31,8 +31,8 @@ export default function configureStore(history: any) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for modules
-    module.hot.accept('./modules', () => {
-      const nextReducer = require('./modules');
+    module.hot.accept('./reducers', () => {
+      const nextReducer = require('./reducers');
       store.replaceReducer(nextReducer);
     });
   }

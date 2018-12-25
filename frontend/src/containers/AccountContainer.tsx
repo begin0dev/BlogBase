@@ -1,9 +1,9 @@
-import * as React from "react";
-import { connect } from "react-redux";
+import * as React from 'react';
+import { connect } from 'react-redux';
 
-import { IStoreState } from "store/modules";
-import { IAccountState } from "store/modules/account";
-import { Account, Modal } from "components";
+import { IStoreState } from 'store/reducers';
+import { IAccountState } from 'store/reducers/account';
+import { Account, Modal } from 'components';
 
 interface IProps {
   accountState: IAccountState;
@@ -24,7 +24,7 @@ class AccountContainer extends React.Component<IProps> {
       <Modal
         active={accountState.state.active}
         fullScreen={window.innerWidth < 450}
-        size={{ width: "700px" }}
+        size={{ width: '700px' }}
       >
         <Account
           accountState={accountState}
@@ -36,15 +36,15 @@ class AccountContainer extends React.Component<IProps> {
 }
 
 const mapStateToProps = (state: IStoreState) => ({
-  accountState: state.account
+  accountState: state.account,
 });
 const mapDispatchToProps = (dispatch: any) => ({
   dispatchChangeAccountFormValue(name: string, value: string): void {
-    dispatch({ type: "CHANGE_ACCOUNT_FORM_VALUE", name, value });
-  }
+    dispatch({ type: 'CHANGE_ACCOUNT_FORM_VALUE', name, value });
+  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(AccountContainer);

@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 import * as classNames from 'classnames/bind';
 
-import {SearchInput} from "components";
-import Navi from "./Navi/Navi";
-import styles from "./Sidebar.module.scss";
+import { SearchInput } from 'components';
+import Navi from './Navi/Navi';
+import styles from './Sidebar.module.scss';
 
-import {ISidebarState} from "store/modules/sidebar";
+import { ISidebarState } from 'store/reducers/sidebar';
 
 const cx = classNames.bind(styles);
 
@@ -18,11 +18,11 @@ interface IProps {
 const Sidebar: React.FunctionComponent<IProps> = ({
   sidebarState,
   setSearchValue,
-  expandedNavi
+  expandedNavi,
 }) => {
   return (
-    <aside className={cx("sidebar", { open: sidebarState.visible })}>
-      <div className={cx("nav-search")}>
+    <aside className={cx('sidebar', { open: sidebarState.visible })}>
+      <div className={cx('nav-search')}>
         <SearchInput
           value={sidebarState.searchValue}
           loading={sidebarState.searchLoading}

@@ -1,5 +1,19 @@
 import produce from 'immer';
 
+const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+const EXPANDED_NAVI = 'EXPANDED_NAVI';
+
+class ToggleSidebar {
+  readonly type = TOGGLE_SIDEBAR;
+  constructor(public visible: boolean) {}
+}
+class ExpandedNavi {
+  readonly type = EXPANDED_NAVI;
+  constructor(public expand: boolean) {}
+}
+
+type SidebarActions = ToggleSidebar | ExpandedNavi;
+
 export interface ISidebarState {
 	visible: boolean;
   expanded: boolean;
@@ -14,7 +28,7 @@ export const defaultState: ISidebarState = {
   searchLoading: false,
 };
 
-export default (state = defaultState, action: any) => {
+export default (state = defaultState, action: SidebarActions) => {
   switch (action.type) {
     case 'TOGGLE_SIDEBAR':
       return produce(state, draft => {

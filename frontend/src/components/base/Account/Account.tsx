@@ -7,7 +7,7 @@ import {
   FaGooglePlusSquare as Google,
 } from 'react-icons/fa';
 
-import { IAccountState } from 'store/modules/account';
+import { IAccountState } from 'store/reducers/account';
 import { TextInput } from 'components';
 import { Kakao } from 'assets/svgs';
 
