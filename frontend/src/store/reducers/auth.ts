@@ -1,8 +1,9 @@
 import produce from 'immer';
 
 // actions
+const CHANGE_AUTH_FORM = 'CHANGE_AUTH_FORM';
 const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
-const INITIALIZE_FORM_DATA = 'INITIALIZE_FORM_DATA';
+const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 
 interface IFormData {
@@ -19,13 +20,18 @@ export interface IAuthState {
   };
 }
 
+class ChangeAuthForm {
+  readonly type = CHANGE_AUTH_FORM;
+  constructor(public formName: string) {}
+}
+
 class ToggleAuthForm {
   readonly type = TOGGLE_AUTH_FORM;
   constructor(public active: boolean) {}
 }
 
-class InitializeFormData {
-  readonly type = INITIALIZE_FORM_DATA;
+class InitializeAuthFormData {
+  readonly type = INITIALIZE_AUTH_FORM_DATA;
   constructor(public payload: IFormData) {}
 }
 
@@ -34,7 +40,11 @@ class SetAuthFormValue {
   constructor(public name: string, public value: string) {}
 }
 
-type AuthActions = ToggleAuthForm | InitializeFormData | SetAuthFormValue;
+type AuthActions =
+  | ChangeAuthForm
+  | ToggleAuthForm
+  | InitializeAuthFormData
+  | SetAuthFormValue;
 
 const initFormData: IFormData = {
   displayName: '',
@@ -55,11 +65,15 @@ export const defaultState: IAuthState = {
 
 export default (state = defaultState, action: AuthActions) => {
   switch (action.type) {
+    case 'CHANGE_AUTH_FORM':
+      return produce(state, draft => {
+        draft.state.form = action.formName;
+      });
     case 'TOGGLE_AUTH_FORM':
       return produce(state, draft => {
         draft.state.active = action.active;
       });
-    case 'INITIALIZE_FORM_DATA':
+    case 'INITIALIZE_AUTH_FORM_DATA':
       return produce(state, draft => {
         draft.form = initFormData;
       });

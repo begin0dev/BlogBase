@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 import * as classNames from 'classnames/bind';
-import {MdSearch} from "react-icons/md";
+import { MdSearch } from 'react-icons/md';
 
-import Spinner from "../Spinner";
-import styles from "./SearchInput.module.scss";
+import Spinner from '../Spinner';
+import styles from './SearchInput.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -18,23 +18,23 @@ const SearchInput: React.FunctionComponent<IProps> = ({
   loading,
   placeholder,
   value,
-  setValue
+  setValue,
 }) => {
   return (
-    <div className={cx("wrapper")}>
+    <div className={cx('wrapper')}>
       <input
         type="text"
-        className={cx("input", "icon")}
+        className={cx('input', 'icon')}
         value={value}
         placeholder={placeholder}
         onChange={setValue}
       />
       {loading ? (
-        <div className={cx("loading-wrap")}>
+        <div className={cx('loading-wrap')}>
           <Spinner size=".8rem" />
         </div>
       ) : (
-        <i aria-hidden="true" className={cx("icon")}>
+        <i aria-hidden="true" className={cx('icon')}>
           <MdSearch />
         </i>
       )}

@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 import * as classNames from 'classnames/bind';
 
-import styles from "./TextInput.module.scss";
+import styles from './TextInput.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -24,7 +24,7 @@ class TextInput extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      focus: false
+      focus: false,
     };
   }
 
@@ -35,7 +35,7 @@ class TextInput extends React.Component<IProps, IState> {
   };
   toggleInputFocus = (focusing: boolean) => (): void => {
     this.setState({
-      focus: focusing
+      focus: focusing,
     });
   };
   labelPosition = (): object => {
@@ -45,8 +45,8 @@ class TextInput extends React.Component<IProps, IState> {
     let position = {};
     if (focus || placeholder || (inputRef && inputRef.value.length > 0)) {
       position = {
-        transform: "translateY(-1.2rem) scale(0.8)",
-        fontWeight: "400"
+        transform: 'translateY(-1.2rem) scale(0.8)',
+        fontWeight: '400',
       };
     }
     return position;
@@ -62,17 +62,17 @@ class TextInput extends React.Component<IProps, IState> {
       placeholder,
       value,
       color,
-      setValue
+      setValue,
     } = this.props;
     return (
-      <div className={cx("wrapper")}>
+      <div className={cx('wrapper')}>
         <div
-          className={cx("input-slot", { "input-focus": focus })}
+          className={cx('input-slot', { 'input-focus': focus })}
           style={{ color }}
         >
           {label && (
             <label
-              className={cx("label")}
+              className={cx('label')}
               aria-hidden="true"
               style={{ ...labelPosition() }}
               onClick={labelClick}
@@ -81,7 +81,7 @@ class TextInput extends React.Component<IProps, IState> {
             </label>
           )}
           <input
-            className={cx("input")}
+            className={cx('input')}
             type={type}
             name={name}
             value={value}
@@ -89,7 +89,7 @@ class TextInput extends React.Component<IProps, IState> {
             onFocus={toggleInputFocus(true)}
             onBlur={toggleInputFocus(false)}
             onChange={setValue}
-            ref={(input: HTMLInputElement) => this.inputRef = input}
+            ref={(input: HTMLInputElement) => (this.inputRef = input)}
           />
         </div>
       </div>

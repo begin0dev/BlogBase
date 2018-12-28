@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 import * as classNames from 'classnames/bind';
-import { NavLink } from "react-router-dom";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { NavLink } from 'react-router-dom';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
-import styles from "./Navi.scss";
+import styles from './Navi.scss';
 
 const cx = classNames.bind(styles);
 
@@ -19,18 +19,18 @@ interface IMenuObject {
 }
 
 const menu: IMenuObject[] = [
-  { name: "HOME", url: "/", hasChildren: false, children: [] },
-  { name: "PROFILE", url: "/profile", hasChildren: false, children: [] },
+  { name: 'HOME', url: '/', hasChildren: false, children: [] },
+  { name: 'PROFILE', url: '/profile', hasChildren: false, children: [] },
   {
-    name: "DEVELOPMENT",
-    url: "",
+    name: 'DEVELOPMENT',
+    url: '',
     hasChildren: true,
     children: [
-      { name: "All", url: "/category/all" },
-      { name: "Node", url: "/category/node" },
-      { name: "Javascript", url: "/category/javascript" }
-    ]
-  }
+      { name: 'All', url: '/category/all' },
+      { name: 'Node', url: '/category/node' },
+      { name: 'Javascript', url: '/category/javascript' },
+    ],
+  },
 ];
 
 interface IProps {
@@ -39,29 +39,29 @@ interface IProps {
 }
 
 const Navi: React.FunctionComponent<IProps> = ({ expanded, expandedNavi }) => (
-  <ul className={cx("ul")}>
+  <ul className={cx('ul')}>
     {menu.map((item: IMenuObject) => {
       return item.hasChildren ? (
-        <li className={cx("li")} key={item.name}>
-          <div className={cx("spacer")} />
+        <li className={cx('li')} key={item.name}>
+          <div className={cx('spacer')} />
           <div
-            className={cx("li-wrap", "expand-li", { expanded })}
+            className={cx('li-wrap', 'expand-li', { expanded })}
             onClick={expandedNavi(!expanded)}
           >
             {item.name}
             {expanded ? (
-              <MdKeyboardArrowUp className={cx("expand-icon")} />
+              <MdKeyboardArrowUp className={cx('expand-icon')} />
             ) : (
-              <MdKeyboardArrowDown className={cx("expand-icon")} />
+              <MdKeyboardArrowDown className={cx('expand-icon')} />
             )}
           </div>
-          <ul className={cx("children-ul")}>
+          <ul className={cx('children-ul')}>
             {item.children.map(children => {
               return (
-                <li className={cx("li")} key={children.name}>
+                <li className={cx('li')} key={children.name}>
                   <NavLink
-                    className={cx("li-wrap", "children-li")}
-                    activeClassName={cx("active")}
+                    className={cx('li-wrap', 'children-li')}
+                    activeClassName={cx('active')}
                     to={children.url}
                   >
                     {children.name}
@@ -72,11 +72,11 @@ const Navi: React.FunctionComponent<IProps> = ({ expanded, expandedNavi }) => (
           </ul>
         </li>
       ) : (
-        <li className={cx("li")} key={item.name}>
+        <li className={cx('li')} key={item.name}>
           <NavLink
             exact
-            className={cx("li-wrap")}
-            activeClassName={cx("active")}
+            className={cx('li-wrap')}
+            activeClassName={cx('active')}
             to={item.url}
           >
             {item.name}
