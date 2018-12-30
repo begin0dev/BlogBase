@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
 
 import { PageTemplate } from 'components';
 import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
@@ -19,4 +18,4 @@ const App = () => (
   </PageTemplate>
 );
 
-export default hot(module)(App);
+export default App;

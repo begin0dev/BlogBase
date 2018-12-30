@@ -12,9 +12,9 @@ interface IProps {
 }
 
 class HeaderContainer extends React.Component<IProps> {
-  toggleAuthForm = (name: string): void => {
-    const { authState, dispatchToggleAuthForm } = this.props;
-    dispatchToggleAuthForm(!authState.state.active);
+  toggleAuthForm = (name: string, active: boolean): void => {
+    const { dispatchToggleAuthForm } = this.props;
+    dispatchToggleAuthForm(active);
   };
 
   render() {
@@ -28,14 +28,8 @@ const mapStateToProps = (state: IStoreState) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch<AuthActions>) => {
   return {
-    dispatchInitializeFormData() {
-      return dispatch({ type: 'INITIALIZE_FORM_DATA' });
-    },
     dispatchToggleAuthForm(active: boolean) {
       return dispatch({ type: 'TOGGLE_AUTH_FORM', active });
-    },
-    dispatchSetAuthFormValue(name: string, value: string) {
-      return dispatch({ type: 'SET_AUTH_FORM_VALUE', name, value });
     },
   };
 };

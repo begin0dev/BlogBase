@@ -8,26 +8,26 @@ import { Auth, Modal } from 'components';
 
 interface IProps {
   authState: IAuthState;
-  dispatchChangeAuthFormValue(name: string, value: string): void;
+  dispatchSetAuthFormValue(name: string, value: string): void;
 }
 
 class AuthContainer extends React.Component<IProps> {
-  changeAuthFormValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { dispatchChangeAuthFormValue } = this.props;
+  setAuthFormValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { dispatchSetAuthFormValue } = this.props;
     const { name, value } = e.target;
-    dispatchChangeAuthFormValue(name, value);
+    dispatchSetAuthFormValue(name, value);
   };
 
   render() {
     const { authState } = this.props;
-    const { changeAuthFormValue } = this;
+    const { setAuthFormValue } = this;
     return (
       <Modal
         active={authState.state.active}
         fullScreen={window.innerWidth < 450}
         size={{ width: '700px' }}
       >
-        <Auth authState={authState} changeAuthFormValue={changeAuthFormValue} />
+        <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
       </Modal>
     );
   }
@@ -37,8 +37,8 @@ const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
 });
 const mapDispatchToProps = (dispatch: Dispatch<AuthActions>) => ({
-  dispatchChangeAuthFormValue(name: string, value: string) {
-    return dispatch({ type: 'CHANGE_AUTH_FORM_VALUE', name, value });
+  dispatchSetAuthFormValue(name: string, value: string) {
+    return dispatch({ type: 'SET_AUTH_FORM_VALUE', name, value });
   },
 });
 

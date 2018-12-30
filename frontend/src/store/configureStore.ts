@@ -1,6 +1,7 @@
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootSaga from './sagas';
 import rootReducer from './reducers';
@@ -18,13 +19,10 @@ export default function configureStore(history: any) {
   const middleware = [sagaMiddleware, routerMiddleware(history)];
   // Installs hooks that always keep react-router and redux
   // store in sync
-	const enhancer = process.env.NODE_ENV === 'development' ?
-    compose(
-      applyMiddleware(...middleware),
-      typeof window === 'object' && typeof (window as any).devToolsExtension !== 'undefined' ? (window as any).devToolsExtension() : (f: any) => f,
-    )
-    :
-    compose(applyMiddleware(...middleware));
+  const enhancer =
+    process.env.NODE_ENV === 'development'
+      ? composeWithDevTools(applyMiddleware(...middleware))
+      : compose(applyMiddleware(...middleware));
 
   const store = createStore(rootReducer, enhancer);
   sagaMiddleware.run(rootSaga);

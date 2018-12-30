@@ -52,6 +52,8 @@
       }
       &.sign {
         cursor: pointer;
+        color: theme('secondary');
+        font-weight: 400;
       }
     }
   }

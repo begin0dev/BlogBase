@@ -17,12 +17,12 @@ const cx = classNames.bind(styles);
 
 interface IProps {
   authState: IAuthState;
-  changeAuthFormValue(e: React.ChangeEvent<HTMLInputElement>): void;
+  setAuthFormValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 const Auth: React.FunctionComponent<IProps> = ({
   authState,
-  changeAuthFormValue,
+  setAuthFormValue,
 }) => (
   <div className={cx('auth')}>
     <div className={cx('sign-in')}>
@@ -42,7 +42,7 @@ const Auth: React.FunctionComponent<IProps> = ({
             value={authState.form.email}
             placeholder="Enter your Email"
             color="#00b0ff"
-            setValue={changeAuthFormValue}
+            setValue={setAuthFormValue}
           />
         </div>
         <div className={cx('input-row')}>
@@ -53,7 +53,7 @@ const Auth: React.FunctionComponent<IProps> = ({
             value={authState.form.password}
             placeholder="Enter your Password"
             color="#00b0ff"
-            setValue={changeAuthFormValue}
+            setValue={setAuthFormValue}
           />
         </div>
       </div>
