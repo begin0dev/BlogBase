@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import onClickOutside, {
@@ -8,7 +8,7 @@ import onClickOutside, {
 } from 'react-onclickoutside';
 
 import { IStoreState } from 'store/reducers';
-import { ISidebarState } from 'store/reducers/sidebar';
+import { ISidebarState, SidebarActions } from 'store/reducers/sidebar';
 import { Hamburger, Sidebar } from 'components';
 
 interface IProps {
@@ -74,15 +74,14 @@ class SidebarContainer extends React.Component<Props> {
           setSearchValue={setSearchValue}
           key="sidebar"
         />
-        {
-          window.innerWidth < 768 &&
+        {window.innerWidth < 768 && (
           <Hamburger
             visible={sidebarState.visible}
             toggleSidebar={toggleSidebar}
             hamburgerRef={this.hamburgerRef}
             key="hamburger"
           />
-        }
+        )}
       </React.Fragment>
     );
   }
@@ -91,12 +90,12 @@ class SidebarContainer extends React.Component<Props> {
 const mapStateToProps = (state: IStoreState) => ({
   sidebarState: state.sidebar,
 });
-const mapDispatchToProps = (dispatch: any) => ({
-  dispatchToggleSidebar(visible: boolean): void {
-    dispatch({ type: 'TOGGLE_SIDEBAR', visible });
+const mapDispatchToProps = (dispatch: Dispatch<SidebarActions>) => ({
+  dispatchToggleSidebar(visible: boolean) {
+    return dispatch({ type: 'TOGGLE_SIDEBAR', visible });
   },
-  dispatchExpandedNavi(expand: boolean): void {
-    dispatch({ type: 'EXPANDED_NAVI', expand });
+  dispatchExpandedNavi(expand: boolean) {
+    return dispatch({ type: 'EXPANDED_NAVI', expand });
   },
 });
 

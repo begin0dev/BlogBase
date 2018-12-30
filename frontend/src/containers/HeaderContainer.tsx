@@ -1,34 +1,44 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { Header } from 'components';
 import { IStoreState } from '../store/reducers';
-import { IAuthState } from 'store/reducers/auth';
+import { IAuthState, AuthActions } from 'store/reducers/auth';
 
 interface IProps {
   authState: IAuthState;
+  dispatchToggleAuthForm(active: boolean): void;
 }
 
 class HeaderContainer extends React.Component<IProps> {
+  toggleAuthForm = (name: string): void => {
+    const { authState, dispatchToggleAuthForm } = this.props;
+    dispatchToggleAuthForm(!authState.state.active);
+  };
+
   render() {
-    return <Header />;
+    const { toggleAuthForm } = this;
+    return <Header toggleAuthForm={toggleAuthForm} />;
   }
 }
 
 const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
 });
-const mapDispatchToProps = (dispatch: any) => ({
-  dispatchToggleAuthForm(active: boolean): void {
-    dispatch({ type: 'TOGGLE_AUTH_FORM', active });
-  },
-  dispatchInitializeFormData(): void {
-    dispatch({ type: 'INITIALIZE_FORM_DATA' });
-  },
-  dispatchSetAuthFormValue(name: string, value: string): void {
-    dispatch({ type: 'SET_AUTH_FORM_VALUE', name, value });
-  },
-});
+const mapDispatchToProps = (dispatch: Dispatch<AuthActions>) => {
+  return {
+    dispatchInitializeFormData() {
+      return dispatch({ type: 'INITIALIZE_FORM_DATA' });
+    },
+    dispatchToggleAuthForm(active: boolean) {
+      return dispatch({ type: 'TOGGLE_AUTH_FORM', active });
+    },
+    dispatchSetAuthFormValue(name: string, value: string) {
+      return dispatch({ type: 'SET_AUTH_FORM_VALUE', name, value });
+    },
+  };
+};
 
 export default connect(
   mapStateToProps,

@@ -12,13 +12,13 @@ class ExpandedNavi {
   constructor(public expand: boolean) {}
 }
 
-type SidebarActions = ToggleSidebar | ExpandedNavi;
+export type SidebarActions = ToggleSidebar | ExpandedNavi;
 
 export interface ISidebarState {
-	visible: boolean;
+  visible: boolean;
   expanded: boolean;
-	searchValue: string;
-	searchLoading: boolean;
+  searchValue: string;
+  searchLoading: boolean;
 }
 
 export const defaultState: ISidebarState = {
@@ -32,11 +32,11 @@ export default (state = defaultState, action: SidebarActions) => {
   switch (action.type) {
     case 'TOGGLE_SIDEBAR':
       return produce(state, draft => {
-        draft.visible = action.visible
+        draft.visible = action.visible;
       });
     case 'EXPANDED_NAVI':
       return produce(state, draft => {
-        draft.expanded = action.expand
+        draft.expanded = action.expand;
       });
     default:
       return state;

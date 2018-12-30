@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/reducers';
-import { IAuthState } from 'store/reducers/auth';
+import { IAuthState, AuthActions } from 'store/reducers/auth';
 import { Auth, Modal } from 'components';
 
 interface IProps {
@@ -26,10 +27,7 @@ class AuthContainer extends React.Component<IProps> {
         fullScreen={window.innerWidth < 450}
         size={{ width: '700px' }}
       >
-        <Auth
-          authState={authState}
-          changeAuthFormValue={changeAuthFormValue}
-        />
+        <Auth authState={authState} changeAuthFormValue={changeAuthFormValue} />
       </Modal>
     );
   }
@@ -38,9 +36,9 @@ class AuthContainer extends React.Component<IProps> {
 const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
 });
-const mapDispatchToProps = (dispatch: any) => ({
-  dispatchChangeAuthFormValue(name: string, value: string): void {
-    dispatch({ type: 'CHANGE_AUTH_FORM_VALUE', name, value });
+const mapDispatchToProps = (dispatch: Dispatch<AuthActions>) => ({
+  dispatchChangeAuthFormValue(name: string, value: string) {
+    return dispatch({ type: 'CHANGE_AUTH_FORM_VALUE', name, value });
   },
 });
 

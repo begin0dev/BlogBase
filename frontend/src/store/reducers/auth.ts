@@ -40,7 +40,7 @@ class SetAuthFormValue {
   constructor(public name: string, public value: string) {}
 }
 
-type AuthActions =
+export type AuthActions =
   | ChangeAuthForm
   | ToggleAuthForm
   | InitializeAuthFormData

@@ -6,10 +6,14 @@ import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Header: React.FunctionComponent = () => (
+interface IProps {
+  toggleAuthForm(name: string): void;
+}
+
+const Header: React.FunctionComponent<IProps> = ({ toggleAuthForm }) => (
   <header className={cx('header')}>
     <div className={cx('title-wrap')}>
-      <Link to="/">BEGIN4DEV</Link>
+      <Link to="/">BEGIN0DEV</Link>
     </div>
     <div className={cx('spacer')} />
     <div className={cx('nav-wrap')}>
