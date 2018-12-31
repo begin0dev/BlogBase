@@ -32,3 +32,6 @@ div, article, main, header, footer, nav, section {
   border: 0;
   position: relative;
 }
+button {
+  user-select: none;
+}

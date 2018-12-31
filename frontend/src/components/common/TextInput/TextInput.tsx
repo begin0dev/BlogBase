@@ -45,7 +45,7 @@ class TextInput extends React.Component<IProps, IState> {
     let position = {};
     if (focus || placeholder || (inputRef && inputRef.value.length > 0)) {
       position = {
-        transform: 'translateY(-1.2rem) scale(0.8)',
+        transform: 'translateY(-1.2rem) scale(0.88)',
         fontWeight: '400',
       };
     }

@@ -41,7 +41,7 @@ const Auth: React.FunctionComponent<IProps> = ({
             label="Email"
             value={authState.form.email}
             placeholder="Enter your Email"
-            color="#00b0ff"
+            color="#5c7cfa"
             setValue={setAuthFormValue}
           />
         </div>
@@ -52,7 +52,7 @@ const Auth: React.FunctionComponent<IProps> = ({
             label="Password"
             value={authState.form.password}
             placeholder="Enter your Password"
-            color="#00b0ff"
+            color="#5c7cfa"
             setValue={setAuthFormValue}
           />
         </div>

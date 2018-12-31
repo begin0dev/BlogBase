@@ -6,20 +6,6 @@ const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 
-interface IFormData {
-  displayName: string;
-  email: string;
-  password: string;
-}
-export interface IAuthState {
-  form: IFormData;
-  state: {
-    form: string;
-    active: boolean;
-    loading: boolean;
-  };
-}
-
 class ChangeAuthForm {
   readonly type = CHANGE_AUTH_FORM;
   constructor(public formName: string) {}
@@ -32,7 +18,13 @@ class ToggleAuthForm {
 
 class InitializeAuthFormData {
   readonly type = INITIALIZE_AUTH_FORM_DATA;
-  constructor(public payload: IFormData) {}
+  constructor(
+    public payload: {
+      displayName: string;
+      email: string;
+      password: string;
+    },
+  ) {}
 }
 
 class SetAuthFormValue {
@@ -46,11 +38,25 @@ export type AuthActions =
   | InitializeAuthFormData
   | SetAuthFormValue;
 
+interface IFormData {
+  displayName: string;
+  email: string;
+  password: string;
+}
 const initFormData: IFormData = {
   displayName: '',
   email: '',
   password: '',
 };
+
+export interface IAuthState {
+  form: IFormData;
+  state: {
+    form: string;
+    active: boolean;
+    loading: boolean;
+  };
+}
 
 export const defaultState: IAuthState = {
   form: {

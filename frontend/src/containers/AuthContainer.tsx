@@ -25,7 +25,7 @@ class AuthContainer extends React.Component<IProps> {
       <Modal
         active={authState.state.active}
         fullScreen={window.innerWidth < 450}
-        size={{ width: '700px' }}
+        size={{ width: '800px' }}
       >
         <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
       </Modal>
