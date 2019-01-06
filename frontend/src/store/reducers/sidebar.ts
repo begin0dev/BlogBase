@@ -14,18 +14,23 @@ class ExpandedNavi {
 
 export type SidebarActions = ToggleSidebar | ExpandedNavi;
 
+// reducer
 export interface ISidebarState {
   visible: boolean;
   expanded: boolean;
-  searchValue: string;
-  searchLoading: boolean;
+  search: {
+    keyword: string,
+    loading: boolean,
+  }
 }
 
 export const defaultState: ISidebarState = {
   visible: window.innerWidth >= 768,
   expanded: true,
-  searchValue: '',
-  searchLoading: false,
+  search: {
+    keyword: '',
+    loading: false,
+  }
 };
 
 export default (state = defaultState, action: SidebarActions) => {

@@ -1,10 +1,14 @@
 import produce from 'immer';
 
 // actions
+const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const CHANGE_AUTH_FORM = 'CHANGE_AUTH_FORM';
 const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
-const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
+
+class InitializeAuthFormData {
+  readonly type = INITIALIZE_AUTH_FORM_DATA;
+}
 
 class ChangeAuthForm {
   readonly type = CHANGE_AUTH_FORM;
@@ -16,41 +20,31 @@ class ToggleAuthForm {
   constructor(public active: boolean) {}
 }
 
-class InitializeAuthFormData {
-  readonly type = INITIALIZE_AUTH_FORM_DATA;
-  constructor(
-    public payload: {
-      displayName: string;
-      email: string;
-      password: string;
-    },
-  ) {}
-}
-
 class SetAuthFormValue {
   readonly type = SET_AUTH_FORM_VALUE;
   constructor(public name: string, public value: string) {}
 }
 
 export type AuthActions =
+  | InitializeAuthFormData
   | ChangeAuthForm
   | ToggleAuthForm
-  | InitializeAuthFormData
   | SetAuthFormValue;
 
+// reducer
 interface IFormData {
   displayName: string;
   email: string;
   password: string;
 }
-const initFormData: IFormData = {
+const initFormValue: IFormData = {
   displayName: '',
   email: '',
   password: '',
 };
 
 export interface IAuthState {
-  form: IFormData;
+  formValue: IFormData;
   state: {
     form: string;
     active: boolean;
@@ -59,8 +53,8 @@ export interface IAuthState {
 }
 
 export const defaultState: IAuthState = {
-  form: {
-    ...initFormData,
+  formValue: {
+    ...initFormValue,
   },
   state: {
     form: 'signin',
@@ -71,6 +65,10 @@ export const defaultState: IAuthState = {
 
 export default (state = defaultState, action: AuthActions) => {
   switch (action.type) {
+    case 'INITIALIZE_AUTH_FORM_DATA':
+      return produce(state, draft => {
+        draft.formValue = initFormValue;
+      });
     case 'CHANGE_AUTH_FORM':
       return produce(state, draft => {
         draft.state.form = action.formName;
@@ -79,13 +77,9 @@ export default (state = defaultState, action: AuthActions) => {
       return produce(state, draft => {
         draft.state.active = action.active;
       });
-    case 'INITIALIZE_AUTH_FORM_DATA':
-      return produce(state, draft => {
-        draft.form = initFormData;
-      });
     case 'SET_AUTH_FORM_VALUE':
       return produce(state, draft => {
-        draft.form[action.name] = action.value;
+        draft.formValue[action.name] = action.value;
       });
     default:
       return state;
