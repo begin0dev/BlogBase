@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { IStoreState } from 'store/reducers';
-import { IAuthState, AuthActions } from 'store/reducers/auth';
+import { IStoreState } from 'store/modules';
+import { IAuthState, AuthActions } from 'store/modules/auth';
 import { Auth, Modal } from 'components';
 
 interface IProps {

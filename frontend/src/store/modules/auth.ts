@@ -20,7 +20,7 @@ class ToggleAuthForm {
   constructor(public active: boolean) {}
 }
 
-class SetAuthFormValue {
+export class SetAuthFormValue {
   readonly type = SET_AUTH_FORM_VALUE;
   constructor(public name: string, public value: string) {}
 }
@@ -48,7 +48,7 @@ export interface IAuthState {
   state: {
     form: string;
     active: boolean;
-    loading: boolean;
+    isLoading: boolean;
   };
 }
 
@@ -59,7 +59,7 @@ export const defaultState: IAuthState = {
   state: {
     form: 'signin',
     active: false,
-    loading: false,
+    isLoading: false,
   },
 };
 

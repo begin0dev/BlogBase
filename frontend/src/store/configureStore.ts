@@ -4,7 +4,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootSaga from './sagas';
-import rootReducer from './reducers';
+import rootReducer from './modules';
 
 /*
  * @param {Object} initial state to bootstrap our stores with for server-side rendering
@@ -29,8 +29,8 @@ export default function configureStore(history: any) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for modules
-    module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers');
+    module.hot.accept('./modules', () => {
+      const nextReducer = require('./modules');
       store.replaceReducer(nextReducer);
     });
   }

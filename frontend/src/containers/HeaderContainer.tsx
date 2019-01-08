@@ -3,8 +3,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { Header } from 'components';
-import { IStoreState } from '../store/reducers';
-import { IAuthState, AuthActions } from 'store/reducers/auth';
+import { IStoreState } from '../store/modules';
+import { IAuthState, AuthActions } from 'store/modules/auth';
 
 interface IProps {
   authState: IAuthState;

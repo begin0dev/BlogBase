@@ -5,7 +5,7 @@ import { SearchInput } from 'components';
 import Navi from './Navi/Navi';
 import styles from './Sidebar.module.scss';
 
-import { ISidebarState } from 'store/reducers/sidebar';
+import { ISidebarState } from 'store/modules/sidebar';
 
 const cx = classNames.bind(styles);
 
@@ -20,12 +20,13 @@ const Sidebar: React.FunctionComponent<IProps> = ({
   setSearchValue,
   expandedNavi,
 }) => {
+  const { keyword, loading } = sidebarState.search;
   return (
     <aside className={cx('sidebar', { open: sidebarState.visible })}>
       <div className={cx('nav-search')}>
         <SearchInput
-          value={sidebarState.searchValue}
-          loading={sidebarState.searchLoading}
+          value={keyword}
+          loading={loading}
           setValue={setSearchValue}
           placeholder="Search..."
         />

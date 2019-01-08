@@ -7,7 +7,7 @@ import {
   FaGooglePlusSquare as Google,
 } from 'react-icons/fa';
 
-import { IAuthState } from 'store/reducers/auth';
+import { IAuthState } from 'store/modules/auth';
 import { TextInput } from 'components';
 import { Kakao } from 'assets/svgs';
 
@@ -39,7 +39,7 @@ const Auth: React.FunctionComponent<IProps> = ({
             type="text"
             name="email"
             label="Email"
-            value={authState.form.email}
+            value={authState.formValue.email}
             placeholder="Enter your Email"
             color="#5c7cfa"
             setValue={setAuthFormValue}
@@ -50,7 +50,7 @@ const Auth: React.FunctionComponent<IProps> = ({
             type="password"
             name="password"
             label="Password"
-            value={authState.form.password}
+            value={authState.formValue.password}
             placeholder="Enter your Password"
             color="#5c7cfa"
             setValue={setAuthFormValue}
