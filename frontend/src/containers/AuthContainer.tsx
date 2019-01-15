@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
-import { IAuthState, AuthActions } from 'store/modules/auth';
+import { IAuthState } from 'store/modules/auth';
 import { Auth, Modal } from 'components';
 
 interface IProps {
@@ -36,7 +36,7 @@ class AuthContainer extends React.Component<IProps> {
 const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
 });
-const mapDispatchToProps = (dispatch: Dispatch<AuthActions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchSetAuthFormValue(name: string, value: string) {
     return dispatch({ type: 'SET_AUTH_FORM_VALUE', name, value });
   },

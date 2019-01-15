@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Header } from 'components';
 import { IStoreState } from '../store/modules';
-import { IAuthState, AuthActions } from 'store/modules/auth';
+import { IAuthState } from 'store/modules/auth';
 
 interface IProps {
   authState: IAuthState;
@@ -26,7 +26,7 @@ class HeaderContainer extends React.Component<IProps> {
 const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
 });
-const mapDispatchToProps = (dispatch: Dispatch<AuthActions>) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     dispatchToggleAuthForm(active: boolean) {
       return dispatch({ type: 'TOGGLE_AUTH_FORM', active });

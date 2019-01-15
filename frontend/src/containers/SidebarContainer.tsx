@@ -8,7 +8,7 @@ import onClickOutside, {
 } from 'react-onclickoutside';
 
 import { IStoreState } from 'store/modules';
-import { ISidebarState, SidebarActions } from 'store/modules/sidebar';
+import { ISidebarState } from 'store/modules/sidebar';
 import { Hamburger, Sidebar } from 'components';
 
 interface IProps {
@@ -90,7 +90,7 @@ class SidebarContainer extends React.Component<Props> {
 const mapStateToProps = (state: IStoreState) => ({
   sidebarState: state.sidebar,
 });
-const mapDispatchToProps = (dispatch: Dispatch<SidebarActions>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchToggleSidebar(visible: boolean) {
     return dispatch({ type: 'TOGGLE_SIDEBAR', visible });
   },

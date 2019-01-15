@@ -9,18 +9,15 @@ const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 class InitializeAuthFormData {
   readonly type = INITIALIZE_AUTH_FORM_DATA;
 }
-
 class ChangeAuthForm {
   readonly type = CHANGE_AUTH_FORM;
   constructor(public formName: string) {}
 }
-
 class ToggleAuthForm {
   readonly type = TOGGLE_AUTH_FORM;
   constructor(public active: boolean) {}
 }
-
-export class SetAuthFormValue {
+class SetAuthFormValue {
   readonly type = SET_AUTH_FORM_VALUE;
   constructor(public name: string, public value: string) {}
 }
