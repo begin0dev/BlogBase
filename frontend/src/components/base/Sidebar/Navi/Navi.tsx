@@ -3,7 +3,7 @@ import * as classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
-import styles from './Navi.scss';
+import styles from './Navi.module.scss';
 
 const cx = classNames.bind(styles);
 
