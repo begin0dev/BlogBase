@@ -62,19 +62,19 @@ export const defaultState: IAuthState = {
 
 export default (state = defaultState, action: AuthActions) => {
   switch (action.type) {
-    case 'INITIALIZE_AUTH_FORM_DATA':
+    case INITIALIZE_AUTH_FORM_DATA:
       return produce(state, draft => {
         draft.formValue = initFormValue;
       });
-    case 'CHANGE_AUTH_FORM':
+    case CHANGE_AUTH_FORM:
       return produce(state, draft => {
         draft.state.form = action.formName;
       });
-    case 'TOGGLE_AUTH_FORM':
+    case TOGGLE_AUTH_FORM:
       return produce(state, draft => {
         draft.state.active = action.active;
       });
-    case 'SET_AUTH_FORM_VALUE':
+    case SET_AUTH_FORM_VALUE:
       return produce(state, draft => {
         draft.formValue[action.name] = action.value;
       });

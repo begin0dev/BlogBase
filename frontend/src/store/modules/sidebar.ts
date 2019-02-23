@@ -35,11 +35,11 @@ export const defaultState: ISidebarState = {
 
 export default (state = defaultState, action: SidebarActions) => {
   switch (action.type) {
-    case 'TOGGLE_SIDEBAR':
+    case TOGGLE_SIDEBAR:
       return produce(state, draft => {
         draft.visible = action.visible;
       });
-    case 'EXPANDED_NAVI':
+    case EXPANDED_NAVI:
       return produce(state, draft => {
         draft.expanded = action.expand;
       });
