@@ -13,12 +13,12 @@ const {
   GOOGLE_SECRET,
 } = process.env;
 
-const socialLogin = async (provider, id, accessToken, email, displayName, done) => {
+const socialLogin = async (provider, id, email, displayName, done) => {
   try {
     let user = await User.findBySocialId(provider, id);
     if (!user) {
       try {
-        user = await User.socialRegister({ provider, id, accessToken, email, displayName });
+        user = await User.socialRegister({ provider, id, email, displayName });
       } catch (err) {
         return done({ message: '중복된 이메일이 존재합니다. 해당 이메일로 로그인하여 SNS를 통합하세요.' });
       }
@@ -38,7 +38,7 @@ oAuth.use(
   },
   (accessToken, profile, done) => {
     const { id, name, email } = profile;
-    return socialLogin('facebook', id, accessToken, email, name, done);
+    return socialLogin('facebook', id, email, name, done);
   }),
 );
 

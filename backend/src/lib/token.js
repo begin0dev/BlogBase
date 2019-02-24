@@ -14,7 +14,6 @@ exports.generateAccessToken = (payload, expiresIn = '1h') => {
       );
       resolve(token);
     } catch (err) {
-      console.error(err);
       reject(err);
     }
   });
@@ -26,7 +25,6 @@ exports.decodeAccessToken = (token) => {
       const decoded = await jwt.verify(token, JWT_SECRET);
       resolve(decoded);
     } catch (err) {
-      console.error(err);
       reject(err.name);
     }
   });
@@ -38,7 +36,6 @@ exports.generateRefreshToken = () => {
       const token = await crypto.randomBytes(refreshTokenSize).toString('hex');
       resolve(token);
     } catch (err) {
-      console.error(err);
       reject(err);
     }
   });

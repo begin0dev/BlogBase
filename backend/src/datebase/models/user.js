@@ -5,6 +5,7 @@ const User = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
+    sparse: true,
     index: true,
   },
   password: String,
@@ -26,7 +27,6 @@ const User = new mongoose.Schema({
         unique: true,
         index: true,
       },
-      accessToken: String,
     },
     facebook: {
       id: {
@@ -34,7 +34,6 @@ const User = new mongoose.Schema({
         unique: true,
         index: true,
       },
-      accessToken: String,
     },
     google: {
       id: {
@@ -42,7 +41,6 @@ const User = new mongoose.Schema({
         unique: true,
         index: true,
       },
-      accessToken: String,
     },
     kakao: {
       id: {
@@ -50,7 +48,6 @@ const User = new mongoose.Schema({
         unique: true,
         index: true,
       },
-      accessToken: String,
     },
   },
 }, { timestamps: true });
@@ -95,7 +92,7 @@ User.statics.localRegister = async function localRegister({ email, password, dis
   return user.save();
 };
 
-User.statics.socialRegister = async function socialRegister({ provider, id, accessToken, email, displayName }) {
+User.statics.socialRegister = async function socialRegister({ provider, id, email, displayName }) {
   const user = new this({
     email,
     commonProfile: {
@@ -104,7 +101,6 @@ User.statics.socialRegister = async function socialRegister({ provider, id, acce
     oAuth: {
       [provider]: {
         id,
-        accessToken,
       },
     },
   });

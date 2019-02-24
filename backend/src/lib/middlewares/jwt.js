@@ -4,12 +4,13 @@ const User = require('datebase/models/user');
 const { decodeAccessToken, generateAccessToken } = require('lib/token');
 
 exports.checkedAccessToken = async (req, res, next) => {
-  const accessToken = req.get('x-access-token');
-
+  let accessToken = req.get('x-access-token') || req.get('authorization');
   if (!accessToken) {
     req.user = null;
     return next();
   }
+  if (accessToken.startsWith('Bearer ')) accessToken = accessToken.slice(7, accessToken.length);
+
   try {
     const decoded = await decodeAccessToken(accessToken);
     req.user = decoded.user;
@@ -23,14 +24,13 @@ exports.checkedAccessToken = async (req, res, next) => {
 
 exports.checkedRefreshToken = async (req, res, next) => {
   const { refreshToken } = req.cookies;
-
   if (!refreshToken) {
     req.user = null;
     return next();
   }
+
   try {
     const user = await User.findByLocalRefreshToken(refreshToken);
-
     if (!user) {
       req.user = null;
       res.clearCookie('refreshToken');

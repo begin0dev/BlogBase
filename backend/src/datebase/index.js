@@ -10,6 +10,7 @@ module.exports = {
   connect() {
     return new Promise(async (resolve, reject) => {
       const connectMongoose = () => {
+        console.log('Mongodb connected');
         return mongoose.connect(MONGO_URI, {
           user: MONGO_USER,
           pass: MONGO_PWD,
@@ -20,7 +21,6 @@ module.exports = {
 
       try {
         await connectMongoose();
-        console.log('Mongodb connected');
         mongoose.connection.on('error', (err) => {
           console.error('Mongodb connection error', err);
         });
