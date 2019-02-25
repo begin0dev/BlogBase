@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
-import { IAuthState } from 'store/modules/auth';
+import { IAuthState, Actions as authActions } from 'store/modules/auth';
 import { Auth, Modal } from 'components';
 
 interface IProps {
@@ -38,7 +38,7 @@ const mapStateToProps = (state: IStoreState) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchSetAuthFormValue(name: string, value: string) {
-    return dispatch({ type: 'SET_AUTH_FORM_VALUE', name, value });
+    return dispatch(authActions.setAuthFormValue({ name, value }));
   },
 });
 

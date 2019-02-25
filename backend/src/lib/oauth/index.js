@@ -17,7 +17,7 @@ class Oauth {
     return this;
   }
 
-  authenticate(name, options) {
+  authenticate(name, { failureRedirect, successRedirect }) {
     return async (req, res, next) => {
       const strategy = this.strategires[name];
       const { callbackURL } = strategy;
@@ -29,12 +29,12 @@ class Oauth {
       const redirectURI = url.resolve(originalURL, callbackURL);
 
       const verified = (err, user) => {
-        if (err && options.failureRedirect) {
+        if (err && failureRedirect) {
           req.flash('message', err.message);
-          return res.redirect(options.failureRedirect);
+          return res.redirect(failureRedirect);
         }
-        if (user && options.successRedirect) {
-          return res.redirect(options.successRedirect);
+        if (user && successRedirect) {
+          return res.redirect(successRedirect);
         }
         if (err) {
           res.locals.message = err.message;

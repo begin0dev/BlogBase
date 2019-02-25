@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Header } from 'components';
 import { IStoreState } from '../store/modules';
-import { IAuthState } from 'store/modules/auth';
+import { IAuthState, Actions as authActions } from 'store/modules/auth';
 
 interface IProps {
   authState: IAuthState;
@@ -29,7 +29,7 @@ const mapStateToProps = (state: IStoreState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     dispatchToggleAuthForm(active: boolean) {
-      return dispatch({ type: 'TOGGLE_AUTH_FORM', active });
+      return dispatch(authActions.toggleAuthForm(active));
     },
   };
 };

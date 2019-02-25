@@ -1,32 +1,21 @@
 import produce from 'immer';
 
+import { ActionsUnion } from 'utils/types';
+import { createAction } from 'utils/actionHelper';
+
 // actions
 const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const CHANGE_AUTH_FORM = 'CHANGE_AUTH_FORM';
 const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 
-class InitializeAuthFormData {
-  readonly type = INITIALIZE_AUTH_FORM_DATA;
-}
-class ChangeAuthForm {
-  readonly type = CHANGE_AUTH_FORM;
-  constructor(public formName: string) {}
-}
-class ToggleAuthForm {
-  readonly type = TOGGLE_AUTH_FORM;
-  constructor(public active: boolean) {}
-}
-class SetAuthFormValue {
-  readonly type = SET_AUTH_FORM_VALUE;
-  constructor(public name: string, public value: string) {}
-}
-
-export type AuthActions =
-  | InitializeAuthFormData
-  | ChangeAuthForm
-  | ToggleAuthForm
-  | SetAuthFormValue;
+export const Actions = {
+  initializeAuthFormData: () => createAction(INITIALIZE_AUTH_FORM_DATA),
+  changeAuthForm: (formName: string) => createAction(CHANGE_AUTH_FORM, formName),
+  toggleAuthForm: (active: boolean) => createAction(TOGGLE_AUTH_FORM, active),
+  setAuthFormValue: (payload: { name: string; value: string; }) => createAction(SET_AUTH_FORM_VALUE, payload),
+};
+export type Actions = ActionsUnion<typeof Actions>
 
 // reducer
 interface IFormData {
@@ -60,7 +49,7 @@ export const defaultState: IAuthState = {
   },
 };
 
-export default (state = defaultState, action: AuthActions) => {
+export default (state = defaultState, action: Actions) => {
   switch (action.type) {
     case INITIALIZE_AUTH_FORM_DATA:
       return produce(state, draft => {
@@ -68,15 +57,15 @@ export default (state = defaultState, action: AuthActions) => {
       });
     case CHANGE_AUTH_FORM:
       return produce(state, draft => {
-        draft.state.form = action.formName;
+        draft.state.form = action.payload;
       });
     case TOGGLE_AUTH_FORM:
       return produce(state, draft => {
-        draft.state.active = action.active;
+        draft.state.active = action.payload;
       });
     case SET_AUTH_FORM_VALUE:
       return produce(state, draft => {
-        draft.formValue[action.name] = action.value;
+        draft.formValue[action.payload.name] = action.payload.value;
       });
     default:
       return state;
