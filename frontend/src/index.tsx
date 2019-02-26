@@ -2,7 +2,6 @@ import 'react-app-polyfill/ie11';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -15,13 +14,11 @@ import './styles/main.scss';
 const store = configureStore(createBrowserHistory);
 
 ReactDOM.render(
-  <AppContainer>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
-  </AppContainer>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById('react-root'),
 );
 
