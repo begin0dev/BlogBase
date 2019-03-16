@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const CategoryPage = () => {
-  return <main>category</main>;
+  return <div>category</div>;
 };
 
 export default CategoryPage;

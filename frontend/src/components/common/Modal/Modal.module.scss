@@ -19,11 +19,8 @@
   }
   .modal {
     min-width: 280px;
-    overflow-y: hidden;
+    overflow: hidden;
     padding: 1rem;
-    &.scrollable {
-      overflow-y: scroll;
-    }
     &.full-screen {
       width: 100%;
       height: 100%;

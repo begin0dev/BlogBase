@@ -10,7 +10,6 @@ interface IProps {
   style?: object;
   active?: boolean;
   fullScreen?: boolean;
-  scrollable?: boolean;
   hideOverlay?: boolean;
   children: React.ReactNode;
 }
@@ -21,7 +20,6 @@ const Modal: React.FunctionComponent<IProps> = ({
   style,
   hideOverlay,
   fullScreen,
-  scrollable,
   children,
 }) => {
   return (
@@ -33,7 +31,7 @@ const Modal: React.FunctionComponent<IProps> = ({
       )}
     >
       <div
-        className={cx('modal', { 'full-screen': fullScreen }, { scrollable })}
+        className={cx('modal', { 'full-screen': fullScreen })}
         style={{ ...style, ...(!fullScreen && size) }}
       >
         {children}

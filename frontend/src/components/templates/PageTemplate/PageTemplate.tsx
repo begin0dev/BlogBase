@@ -15,7 +15,7 @@ const PageTemplate: React.FunctionComponent<IProps> = ({ children }) => (
     <HeaderContainer />
     <SidebarContainer />
     <AuthContainer />
-    <div className={cx('contents-wrap')}>{children}</div>
+    <main className={cx('contents-wrap')}>{children}</main>
   </React.Fragment>
 );
 
