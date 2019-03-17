@@ -3,17 +3,13 @@
 .wrapper {
   z-index: z-index('hamburger');
   position: fixed;
-  top: 7px;
-  left: 7px;
+  top: 10px;
+  left: 8px;
   height: 40px;
   width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  @include media('>medium') {
-    left: 10px;
-    top: 10px;
-  }
   &:before {
     content: '';
     position: absolute;
@@ -33,7 +29,7 @@
   }
 
   .spin {
-    padding-top: 5px !important;
+    line-height: 0;
   }
 }
 // Settings

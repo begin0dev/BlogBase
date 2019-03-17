@@ -65,7 +65,8 @@ export default (state = defaultState, action: Actions) => {
       });
     case SET_AUTH_FORM_VALUE:
       return produce(state, draft => {
-        draft.formValue[action.payload.name] = action.payload.value;
+        const { name, value } = action.payload;
+        draft.formValue[name] = value;
       });
     default:
       return state;

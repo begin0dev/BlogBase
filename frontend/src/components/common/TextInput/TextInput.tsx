@@ -20,8 +20,7 @@ const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeho
   const [focus, setFocus] = React.useState<boolean>(false);
 
   const labelClick = (): void => {
-    if (!inputRef || !inputRef.current) return;
-    if (!focus) inputRef.current.focus();
+    if (inputRef.current && !focus) inputRef.current.focus();
   };
 
   const toggleInputFocus = (focusing: boolean) => (): void => {

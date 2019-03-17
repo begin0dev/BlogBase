@@ -18,6 +18,12 @@ $z-indexes: (
   modal: 180,
 );
 
+$header-size: 60px;
+$sidebar-size: 240px;
+@include media('>medium') {
+  $header-size: 54px;
+}
+
 @function theme($key) {
   @return map-get($themes, $key);
 }
