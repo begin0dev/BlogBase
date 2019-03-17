@@ -91,9 +91,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default onClickOutside(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(SidebarContainer),
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(onClickOutside(SidebarContainer));
