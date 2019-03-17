@@ -23,11 +23,14 @@
     font-size: 1.45rem;
     font-weight: 400;
     margin-left: 54px;
-    letter-spacing: .3rem;
     user-select: none;
     color: theme('secondary');
+    a {
+      letter-spacing: .3rem;
+      margin-right: -.3rem;
+    }
     @include media('>medium') {
-      margin-left: .3rem;
+      margin-left: 0;
       width: $sidebar-size;
     }
   }
