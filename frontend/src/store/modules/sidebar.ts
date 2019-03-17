@@ -11,16 +11,16 @@ export const Actions = {
   toggleSidebar: (visible: boolean) => createAction(TOGGLE_SIDEBAR, visible),
   expandedNavi: (expand: boolean) => createAction(EXPANDED_NAVI, expand),
 };
-export type Actions = ActionsUnion<typeof Actions>
+export type Actions = ActionsUnion<typeof Actions>;
 
 // reducer
 export interface ISidebarState {
   visible: boolean;
   expanded: boolean;
   search: {
-    keyword: string,
-    loading: boolean,
-  }
+    keyword: string;
+    loading: boolean;
+  };
 }
 
 export const defaultState: ISidebarState = {
@@ -29,7 +29,7 @@ export const defaultState: ISidebarState = {
   search: {
     keyword: '',
     loading: false,
-  }
+  },
 };
 
 export default (state = defaultState, action: Actions) => {

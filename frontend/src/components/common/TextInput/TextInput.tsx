@@ -15,15 +15,7 @@ interface IProps {
   setValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const TextInput: React.FunctionComponent<IProps> = ({
-  type,
-  name,
-  label,
-  placeholder,
-  value,
-  color,
-  setValue,
-}) => {
+const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeholder, value, color, setValue }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [focus, setFocus] = React.useState<boolean>(false);
 
@@ -37,11 +29,7 @@ const TextInput: React.FunctionComponent<IProps> = ({
   };
   const labelPosition = (): object => {
     let position = {};
-    if (
-      focus ||
-      placeholder ||
-      (inputRef && inputRef.current && inputRef.current.value.length > 0)
-    ) {
+    if (focus || placeholder || (inputRef && inputRef.current && inputRef.current.value.length > 0)) {
       position = {
         transform: 'translateY(-1.2rem) scale(0.88)',
         fontWeight: '400',
@@ -52,17 +40,9 @@ const TextInput: React.FunctionComponent<IProps> = ({
 
   return (
     <div className={cx('wrapper')}>
-      <div
-        className={cx('input-slot', { 'input-focus': focus })}
-        style={{ color }}
-      >
+      <div className={cx('input-slot', { 'input-focus': focus })} style={{ color }}>
         {label && (
-          <label
-            className={cx('label')}
-            aria-hidden="true"
-            style={{ ...labelPosition() }}
-            onClick={labelClick}
-          >
+          <label className={cx('label')} aria-hidden="true" style={{ ...labelPosition() }} onClick={labelClick}>
             {label}
           </label>
         )}

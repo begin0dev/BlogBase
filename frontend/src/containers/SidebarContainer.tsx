@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import onClickOutside, { InjectedOnClickOutProps } from 'react-onclickoutside';
 
 import { IStoreState } from 'store/modules';
-import {
-  ISidebarState,
-  Actions as sidebarActions,
-} from 'store/modules/sidebar';
+import { ISidebarState, Actions as sidebarActions } from 'store/modules/sidebar';
 import { Hamburger, Sidebar } from 'components';
 
 interface IProps {

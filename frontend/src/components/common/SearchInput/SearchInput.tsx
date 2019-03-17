@@ -14,21 +14,10 @@ interface IProps {
   setValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const SearchInput: React.FunctionComponent<IProps> = ({
-  loading,
-  placeholder,
-  value,
-  setValue,
-}) => {
+const SearchInput: React.FunctionComponent<IProps> = ({ loading, placeholder, value, setValue }) => {
   return (
     <div className={cx('wrapper')}>
-      <input
-        type="text"
-        className={cx('input', 'icon')}
-        value={value}
-        placeholder={placeholder}
-        onChange={setValue}
-      />
+      <input type="text" className={cx('input', 'icon')} value={value} placeholder={placeholder} onChange={setValue} />
       {loading ? (
         <div className={cx('loading-wrap')}>
           <Spinner size=".8rem" />

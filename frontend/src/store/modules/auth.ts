@@ -13,9 +13,9 @@ export const Actions = {
   initializeAuthFormData: () => createAction(INITIALIZE_AUTH_FORM_DATA),
   changeAuthForm: (formName: string) => createAction(CHANGE_AUTH_FORM, formName),
   toggleAuthForm: (active: boolean) => createAction(TOGGLE_AUTH_FORM, active),
-  setAuthFormValue: (payload: { name: string; value: string; }) => createAction(SET_AUTH_FORM_VALUE, payload),
+  setAuthFormValue: (payload: { name: string; value: string }) => createAction(SET_AUTH_FORM_VALUE, payload),
 };
-export type Actions = ActionsUnion<typeof Actions>
+export type Actions = ActionsUnion<typeof Actions>;
 
 // reducer
 interface IFormData {

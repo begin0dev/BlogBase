@@ -17,7 +17,9 @@ const Header: React.FunctionComponent<IProps> = ({ toggleAuthForm }) => (
     </div>
     <div className={cx('spacer')} />
     <div className={cx('nav-wrap')}>
-      <span className={cx('nav-item', 'sign')} onClick={() => toggleAuthForm('signin', true)}>SIGN IN</span>
+      <span className={cx('nav-item', 'sign')} onClick={() => toggleAuthForm('signin', true)}>
+        SIGN IN
+      </span>
       <span className={cx('nav-item')}>or</span>
       <span className={cx('nav-item', 'sign')}>SIGN UP</span>
     </div>

@@ -25,9 +25,7 @@
     margin-left: 54px;
     letter-spacing: .3rem;
     user-select: none;
-    :first-letter {
-      color: theme('secondary');
-    }
+    color: theme('secondary');
     @include media('>medium') {
       margin-left: .3rem;
       width: 240px;

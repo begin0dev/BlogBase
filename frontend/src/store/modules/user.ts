@@ -11,7 +11,7 @@ export interface IUserState {
   _id: string;
   email: string;
   commonProfile: {
-    displayName: string
+    displayName: string;
   };
   login: boolean;
 }
@@ -20,7 +20,7 @@ export const Actions = {
   setUser: (payload: IUserState) => createAction(SET_USER, payload),
   removeUser: () => createAction(REMOVE_USER),
 };
-export type Actions = ActionsUnion<typeof Actions>
+export type Actions = ActionsUnion<typeof Actions>;
 
 // reducer
 const defaultState: IUserState = {

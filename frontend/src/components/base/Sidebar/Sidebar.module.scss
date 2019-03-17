@@ -9,8 +9,8 @@
   flex-direction: column;
   background-color: $oc-gray-0;
   margin-top: 54px;
+  height: calc(100vh - 54px);
   width: 240px;
-  height: 100vh;
   border-right: 1px solid $oc-gray-2;
   backface-visibility: hidden;
   transform: translate(-100%);
@@ -20,12 +20,9 @@
   }
   @include media('>medium') {
     margin-top: 60px;
+    height: calc(100vh - 60px);
   }
-  .nav-search {
+  .search {
     padding: 1.2rem 2rem;
-  }
-  .spacer {
-    margin: 0 0 1rem;
-    border-bottom: 1px solid $oc-gray-2;
   }
 }

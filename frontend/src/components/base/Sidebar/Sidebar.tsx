@@ -15,21 +15,12 @@ interface IProps {
   setSearchValue(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const Sidebar: React.FunctionComponent<IProps> = ({
-  sidebarState,
-  setSearchValue,
-  expandedNavi,
-}) => {
+const Sidebar: React.FunctionComponent<IProps> = ({ sidebarState, setSearchValue, expandedNavi }) => {
   const { keyword, loading } = sidebarState.search;
   return (
     <aside className={cx('sidebar', { open: sidebarState.visible })}>
-      <div className={cx('nav-search')}>
-        <SearchInput
-          value={keyword}
-          loading={loading}
-          setValue={setSearchValue}
-          placeholder="Search..."
-        />
+      <div className={cx('search')}>
+        <SearchInput value={keyword} loading={loading} setValue={setSearchValue} placeholder="Search..." />
       </div>
       <Navi expanded={sidebarState.expanded} expandedNavi={expandedNavi} />
     </aside>

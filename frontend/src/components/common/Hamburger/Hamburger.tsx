@@ -11,18 +11,10 @@ interface IProps {
   toggleSidebar: () => void;
 }
 
-const Hamburger: React.FunctionComponent<IProps> = ({
-  visible,
-  toggleSidebar,
-  hamburgerRef,
-}) => {
+const Hamburger: React.FunctionComponent<IProps> = ({ visible, toggleSidebar, hamburgerRef }) => {
   return (
     <div className={cx('wrapper')} ref={hamburgerRef} onClick={toggleSidebar}>
-      <div
-        className={`hamburger hamburger--slider ${visible && 'is-active'} ${cx(
-          'spin',
-        )}`}
-      >
+      <div className={`hamburger hamburger--slider ${visible && 'is-active'} ${cx('spin')}`}>
         <span className="hamburger-box">
           <span className="hamburger-inner" />
         </span>
