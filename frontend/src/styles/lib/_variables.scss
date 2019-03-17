@@ -11,12 +11,13 @@ $themes: (
   secondary: $oc-indigo-5,
 );
 $z-indexes: (
-  'header': 100,
-  'overlay': 140,
-  'sidebar': 80,
-  'hamburger': 100,
-  'modal': 180,
+  sidebar: 80,
+  header: 100,
+  hamburger: 100,
+  overlay: 140,
+  modal: 180,
 );
+
 @function theme($key) {
   @return map-get($themes, $key);
 }

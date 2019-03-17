@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader';
 import { Route, Switch } from 'react-router-dom';
 
 import { PageTemplate } from 'components';

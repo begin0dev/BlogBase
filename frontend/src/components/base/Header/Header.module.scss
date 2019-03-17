@@ -13,7 +13,7 @@
   color: theme('primary');
   box-shadow: 0 1px 2px $oc-gray-1;
   overflow: hidden;
-  @include media('>=medium') {
+  @include media('>medium') {
     height: 60px;
   }
   .title-wrap {
@@ -28,7 +28,7 @@
     :first-letter {
       color: theme('secondary');
     }
-    @include media('>=medium') {
+    @include media('>medium') {
       margin-left: .3rem;
       width: 240px;
     }
@@ -43,7 +43,7 @@
     align-items: center;
     user-select: none;
     margin-right: 15px;
-    @include media('>=medium') {
+    @include media('>medium') {
       margin-right: 30px;
     }
     .nav-item {

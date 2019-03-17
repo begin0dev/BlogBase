@@ -24,7 +24,7 @@ export interface ISidebarState {
 }
 
 export const defaultState: ISidebarState = {
-  visible: window.innerWidth >= 768,
+  visible: window.innerWidth > 768,
   expanded: true,
   search: {
     keyword: '',
