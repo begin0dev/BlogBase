@@ -26,13 +26,11 @@ class HeaderContainer extends React.Component<IProps> {
 const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
 });
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    dispatchToggleAuthForm(active: boolean) {
-      return dispatch(authActions.toggleAuthForm(active));
-    },
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  dispatchToggleAuthForm(active: boolean) {
+    return dispatch(authActions.toggleAuthForm(active));
+  },
+});
 
 export default connect(
   mapStateToProps,

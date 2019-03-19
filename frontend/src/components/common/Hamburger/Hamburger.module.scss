@@ -22,7 +22,7 @@
     opacity: .05;
     transition: .3s cubic-bezier(.25, .8, .5, 1);
   }
-  &:hover, &:focus {
+  &:active {
     &:before {
       background-color: currentColor;
     }

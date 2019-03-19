@@ -29,6 +29,9 @@
           background-color: $oc-gray-1;
         }
       }
+      ~.children-ul {
+        display: none;
+      }
       &.expanded {
         ~.children-ul {
           display: block;
@@ -40,9 +43,6 @@
         top: .4rem;
         font-size: 1rem;
       }
-    }
-    .children-ul {
-      display: none;
     }
   }
 }
