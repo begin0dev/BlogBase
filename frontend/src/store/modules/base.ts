@@ -7,8 +7,7 @@ import { createAction } from 'utils/actionHelper';
 const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
 
 export const Actions = {
-  setViewType: (payload: { typeName: 'isMobile' | 'isTablet'; bool: boolean }) =>
-    createAction(SET_VIEW_TYPE, payload),
+  setViewType: (payload: { typeName: 'isMobile' | 'isTablet'; bool: boolean }) => createAction(SET_VIEW_TYPE, payload),
 };
 export type Actions = ActionsUnion<typeof Actions>;
 

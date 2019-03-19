@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import onClickOutside, { InjectedOnClickOutProps } from 'react-onclickoutside';
 
 import { IStoreState } from 'store/modules';
+import { IBaseState } from 'store/modules/base';
 import { ISidebarState, Actions as sidebarActions } from 'store/modules/sidebar';
 import { Hamburger, Sidebar } from 'components';
 
 interface IProps {
+  baseState: IBaseState;
   sidebarState: ISidebarState;
   dispatchToggleSidebar(visible: boolean): void;
   dispatchExpandedNavi(expand: boolean): void;
@@ -21,12 +23,6 @@ class SidebarContainer extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.hamburgerRef = React.createRef();
-  }
-  componentDidMount() {
-    window.addEventListener('resize', this.sidebarResizeEvent);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.sidebarResizeEvent);
   }
 
   handleClickOutside = (e: React.MouseEvent<HTMLElement>): void => {
@@ -44,12 +40,6 @@ class SidebarContainer extends React.Component<Props> {
     const { sidebarState, dispatchToggleSidebar } = this.props;
     dispatchToggleSidebar(!sidebarState.visible);
   };
-  sidebarResizeEvent = (): void => {
-    const { sidebarState, dispatchToggleSidebar } = this.props;
-    const { visible } = sidebarState;
-    if (!visible && window.innerWidth > 768) dispatchToggleSidebar(true);
-    if (visible && window.innerWidth <= 768) dispatchToggleSidebar(false);
-  };
   expandedNavi = (expand: boolean) => (): void => {
     const { dispatchExpandedNavi } = this.props;
     dispatchExpandedNavi(expand);
@@ -57,16 +47,13 @@ class SidebarContainer extends React.Component<Props> {
 
   render() {
     const { toggleSidebar, expandedNavi, setSearchValue } = this;
-    const { sidebarState } = this.props;
+    const {
+      baseState: { isTablet },
+      sidebarState,
+    } = this.props;
     return (
       <React.Fragment>
-        <Sidebar
-          sidebarState={sidebarState}
-          expandedNavi={expandedNavi}
-          setSearchValue={setSearchValue}
-          key="sidebar"
-        />
-        {window.innerWidth <= 768 && (
+        {isTablet && (
           <Hamburger
             visible={sidebarState.visible}
             toggleSidebar={toggleSidebar}
@@ -74,12 +61,19 @@ class SidebarContainer extends React.Component<Props> {
             key="hamburger"
           />
         )}
+        <Sidebar
+          sidebarState={sidebarState}
+          expandedNavi={expandedNavi}
+          setSearchValue={setSearchValue}
+          key="sidebar"
+        />
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = (state: IStoreState) => ({
+  baseState: state.base,
   sidebarState: state.sidebar,
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
