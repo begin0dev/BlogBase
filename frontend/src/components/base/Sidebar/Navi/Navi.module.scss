@@ -12,17 +12,21 @@
     .li-wrap {
       display: block;
       font-weight: 300;
-      padding: .8rem 2rem;
-      border-right: 2px solid transparent;
+      padding: .8rem 1.8rem;
+      border-right: 2.5px solid transparent;
       &.expand-li {
         font-weight: 400;
         font-size: .65rem;
-        padding: .6rem 2rem;
         color: $oc-gray-5;
+        padding: .8rem 1.75rem;
+        margin-top: .6rem;
+        @include media('>medium') {
+          margin-top: 1rem;
+        }
       }
       &.active {
         color: theme('secondary');
-        border-right: 2px solid theme('secondary');
+        border-right: 2.5px solid theme('secondary');
       }
       &:hover, &:active {
         &:not(.expand-li) {

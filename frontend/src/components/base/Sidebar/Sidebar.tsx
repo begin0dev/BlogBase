@@ -19,10 +19,12 @@ const Sidebar: React.FunctionComponent<IProps> = ({ sidebarState, setSearchValue
   const { keyword, loading } = sidebarState.search;
   return (
     <aside className={cx('sidebar', { open: sidebarState.visible })}>
-      <div className={cx('search')}>
-        <SearchInput value={keyword} loading={loading} setValue={setSearchValue} placeholder="Search..." />
+      <div className={cx('wrapper')}>
+        <Navi expanded={sidebarState.expanded} expandedNavi={expandedNavi} />
+        <div className={cx('search')}>
+          <SearchInput value={keyword} loading={loading} setValue={setSearchValue} placeholder="Search..." />
+        </div>
       </div>
-      <Navi expanded={sidebarState.expanded} expandedNavi={expandedNavi} />
     </aside>
   );
 };

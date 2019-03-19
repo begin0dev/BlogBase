@@ -27,9 +27,11 @@ class SidebarContainer extends React.Component<Props> {
 
   handleClickOutside = (e: React.MouseEvent<HTMLElement>): void => {
     const { toggleSidebar, hamburgerRef } = this;
-    const { sidebarState } = this.props;
+    const {
+      sidebarState: { visible },
+    } = this.props;
     const node = hamburgerRef.current!;
-    if (!sidebarState.visible || window.innerWidth > 768) return;
+    if (!visible || window.innerWidth > 768) return;
     if (node.contains(e.target as HTMLElement)) return;
     toggleSidebar();
   };
@@ -53,6 +55,12 @@ class SidebarContainer extends React.Component<Props> {
     } = this.props;
     return (
       <React.Fragment>
+        <Sidebar
+          sidebarState={sidebarState}
+          expandedNavi={expandedNavi}
+          setSearchValue={setSearchValue}
+          key="sidebar"
+        />
         {isTablet && (
           <Hamburger
             visible={sidebarState.visible}
@@ -61,12 +69,6 @@ class SidebarContainer extends React.Component<Props> {
             key="hamburger"
           />
         )}
-        <Sidebar
-          sidebarState={sidebarState}
-          expandedNavi={expandedNavi}
-          setSearchValue={setSearchValue}
-          key="sidebar"
-        />
       </React.Fragment>
     );
   }

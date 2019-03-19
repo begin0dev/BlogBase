@@ -2,10 +2,10 @@
 
 .auth {
   position: relative;
+  display: flex;
   font-size: 14px;
-  padding: 5.5rem 2rem;
+  padding: 5.5rem 3rem;
   color: theme('primary');
-  background: url('../../../assets/images/backgroundSigns.png') no-repeat center;
   .sign-in, .sign-up {
     display: flex;
     flex-flow: row wrap;

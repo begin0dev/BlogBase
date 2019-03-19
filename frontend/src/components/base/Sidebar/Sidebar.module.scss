@@ -7,7 +7,7 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  background-color: $oc-gray-0;
+  background-color: #ffffff;
   margin-top: $header-size;
   height: calc(100vh - #{$header-size});
   width: $sidebar-size;
@@ -22,7 +22,15 @@
     margin-top: $header-size;
     height: calc(100vh - #{$header-size});
   }
-  .search {
-    padding: 1.2rem 2rem;
+  .wrapper {
+    position: relative;
+    height: 100%;
+    padding: 1.2rem 0 4.4rem;
+    .search {
+      padding: 1.2rem 2rem;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
   }
 }

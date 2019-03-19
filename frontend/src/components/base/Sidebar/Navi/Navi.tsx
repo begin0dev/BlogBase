@@ -39,7 +39,6 @@ const Navi: React.FunctionComponent<IProps> = ({ expanded, expandedNavi }) => {
       {naviList.map((navi: IMenu) => {
         return navi.children ? (
           <li className={cx('li')} key={navi.name}>
-            <div className={cx('spacer')} />
             <div className={cx('li-wrap', 'expand-li', { expanded })} onClick={expandedNavi(!expanded)}>
               {navi.name}
               {expanded ? (

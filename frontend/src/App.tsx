@@ -18,8 +18,8 @@ interface IProps {
 }
 
 const App: React.FunctionComponent<IProps> = ({
-  baseState,
-  sidebarState,
+  baseState: { isMobile, isTablet },
+  sidebarState: { visible },
   dispatchSetViewType,
   dispatchToggleSidebar,
 }) => {
@@ -35,8 +35,6 @@ const App: React.FunctionComponent<IProps> = ({
     };
   }, []);
   React.useEffect(() => {
-    const { isMobile, isTablet } = baseState;
-    const { visible } = sidebarState;
     switch (true) {
       case innerWidth <= 450:
         if (!isMobile) dispatchSetViewType('isMobile', true);

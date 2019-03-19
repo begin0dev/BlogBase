@@ -25,13 +25,17 @@
     margin-left: 54px;
     user-select: none;
     color: theme('secondary');
-    a {
-      letter-spacing: .3rem;
-      margin-right: -.3rem;
-    }
     @include media('>medium') {
       margin-left: 0;
       width: $sidebar-size;
+    }
+    a {
+      letter-spacing: .2rem;
+      margin-right: -.2rem;
+      @include media('>medium') {
+        letter-spacing: .5rem;
+        margin-right: -.5rem;
+      }
     }
   }
   .spacer {
