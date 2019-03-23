@@ -25,9 +25,9 @@ const Modal: React.FunctionComponent<IProps> = ({
   children,
 }) => {
   return (
-    <div className={cx('modal-overlay', { 'hide-overlay': hideOverlay }, { active })}>
+    <div className={cx('modalOverlay', { hideOverlay }, { active })}>
       <div
-        className={cx('modal', { 'full-screen': fullScreen })}
+        className={cx('modal', { fullScreen })}
         style={{ backgroundColor, ...style, ...(!fullScreen && size) }}
       >
         {children}

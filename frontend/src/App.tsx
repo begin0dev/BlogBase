@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import { Route, Switch } from 'react-router-dom';
 
 import { PageTemplate } from 'components';
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export default hot(module)(
+export default hot(
   connect(
     mapStateToProps,
     mapDispatchToProps,

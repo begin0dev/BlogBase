@@ -27,10 +27,10 @@ a {
 ol, ul {
   list-style: none;
 }
-div, article, main, header, footer, nav, section {
+div, article, main, header, footer, nav, section, ol, ul {
+  position: relative;
   padding: 0;
   border: 0;
-  position: relative;
 }
 button {
   user-select: none;
