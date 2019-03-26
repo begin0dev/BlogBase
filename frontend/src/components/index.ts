@@ -1,6 +1,5 @@
 import Auth from './base/Auth';
 import Header from './base/Header';
-import Sidebar from './base/Sidebar';
 
 import Hamburger from './common/Hamburger';
 import Modal from './common/Modal';
@@ -14,7 +13,6 @@ import PageTemplate from './templates/PageTemplate';
 export {
 	Auth,
 	Header,
-	Sidebar,
 	Hamburger,
 	Modal,
 	Overlay,

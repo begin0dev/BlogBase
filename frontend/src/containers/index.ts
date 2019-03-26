@@ -1,9 +1,7 @@
-import HeaderContainer from './HeaderContainer';
-import SidebarContainer from './SidebarContainer';
 import AuthContainer from './AuthContainer';
+import HeaderContainer from './HeaderContainer';
 
 export {
-  HeaderContainer,
-  SidebarContainer,
   AuthContainer,
+  HeaderContainer,
 };

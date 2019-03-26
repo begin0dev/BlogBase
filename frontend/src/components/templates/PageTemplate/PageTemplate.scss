@@ -5,7 +5,7 @@
   width: 100%;
   padding-top: $header-size;
   min-height: calc(100vh - #{$header-size});
-  @include media ('>medium') {
+  @include media ('>md') {
     padding-left: $sidebar-size;
     padding-top: $header-size;
     min-height: calc(100vh - #{$header-size});

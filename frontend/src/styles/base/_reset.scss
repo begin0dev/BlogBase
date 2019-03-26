@@ -9,7 +9,7 @@ body {
   height: 100%;
   overflow: scroll;
   color: $oc-gray-9;
-  background-color: $oc-gray-0;
+  background-color: theme('background');
 }
 * {
   margin: 0;

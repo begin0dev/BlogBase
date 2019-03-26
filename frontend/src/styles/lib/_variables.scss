@@ -2,14 +2,15 @@
 @import '~include-media/dist/include-media';
 
 $breakpoints: (
-  small: 450px,
-  medium: 768px,
-  large: 1024px,
-  huge: 1200px,
+  sm: 450px,
+  md: 768px,
+  lg: 1024px,
+  hg: 1200px,
 );
 $themes: (
   primary: $oc-gray-9,
   secondary: $oc-indigo-5,
+  background: #353535,
 );
 $z-indexes: (
   sidebar: 80,
@@ -21,9 +22,6 @@ $z-indexes: (
 
 $header-size: 60px;
 $sidebar-size: 240px;
-@include media('>medium') {
-  $header-size: 54px;
-}
 
 @function theme($key) {
   @return map-get($themes, $key);
