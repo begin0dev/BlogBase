@@ -1,13 +1,8 @@
 @import 'utils';
 
-.contents-wrap {
+.contents {
   display: flex;
   width: 100%;
+  height: 100vh;
   padding-top: $header-size;
-  min-height: calc(100vh - #{$header-size});
-  @include media ('>md') {
-    padding-left: $sidebar-size;
-    padding-top: $header-size;
-    min-height: calc(100vh - #{$header-size});
-  }
 }

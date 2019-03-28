@@ -9,18 +9,18 @@ $breakpoints: (
 );
 $themes: (
   primary: $oc-gray-9,
-  secondary: $oc-indigo-5,
+  secondary: #adb7be,
   background: #353535,
 );
 $z-indexes: (
-  sidebar: 80,
-  header: 100,
-  hamburger: 100,
-  overlay: 140,
-  modal: 180,
+  header: 80,
+  sidebar: 120,
+  hamburger: 160,
+  overlay: 200,
+  modal: 240,
 );
 
-$header-size: 60px;
+$header-size: 73px;
 $sidebar-size: 240px;
 
 @function theme($key) {

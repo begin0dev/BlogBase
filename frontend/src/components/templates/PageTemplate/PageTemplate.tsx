@@ -13,7 +13,7 @@ interface IProps {
 const PageTemplate: React.FunctionComponent<IProps> = ({ children }) => (
   <React.Fragment>
     <HeaderContainer />
-    <main className={cx('contents-wrap')}>{children}</main>
+    <main className={cx('contents')}>{children}</main>
   </React.Fragment>
 );
 

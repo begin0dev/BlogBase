@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
 import { IBaseState } from 'store/modules/base';
+import { Header } from 'components';
 
 interface IProps {
   baseState: IBaseState;
@@ -16,7 +17,7 @@ class HeaderContainer extends React.Component<IProps> {
 
   render() {
     return (
-      <header>test</header>
+      <Header />
     );
   }
 }

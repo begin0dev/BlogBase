@@ -1,27 +1,23 @@
 import * as React from 'react';
 import * as classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
 
+import { Logo } from 'assets/svgs';
 import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
-interface IProps {
-  toggleAuthForm(name: string, active: boolean): void;
-}
+// interface IProps {
+// }
 
-const Header: React.FunctionComponent<IProps> = ({ toggleAuthForm }) => (
+const Header: React.FunctionComponent = () => (
   <header className={cx('header')}>
-    <div className={cx('title-wrap')}>
-      <Link to="/">BEGIN0DEV</Link>
-    </div>
-    <div className={cx('spacer')} />
-    <div className={cx('nav-wrap')}>
-      <span className={cx('nav-item', 'sign')} onClick={() => toggleAuthForm('signin', true)}>
-        SIGN IN
-      </span>
-      <span className={cx('nav-item')}>or</span>
-      <span className={cx('nav-item', 'sign')}>SIGN UP</span>
+    <div className={cx('wrapper')}>
+      <div className={cx('left')}>
+        <div className={cx('logo')}>
+          <Logo />
+        </div>
+      </div>
+      <div className={cx('right')}>right</div>
     </div>
   </header>
 );

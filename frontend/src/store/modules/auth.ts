@@ -22,6 +22,7 @@ interface IFormData {
   displayName: string;
   email: string;
   password: string;
+  [key: string]: string;
 }
 const initFormValue: IFormData = {
   displayName: '',
