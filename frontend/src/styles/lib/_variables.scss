@@ -8,9 +8,9 @@ $breakpoints: (
   hg: 1200px,
 );
 $themes: (
-  primary: $oc-gray-9,
-  secondary: #adb7be,
-  background: #353535,
+  primary: #353535,
+  secondary: #232323,
+  fontColor: #adb7be,
 );
 $z-indexes: (
   header: 80,

@@ -1,0 +1,22 @@
+@import 'utils';
+
+.navi {
+  z-index: z-index('sidebar');
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 246px;
+  height: 100vh;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: #2c2c2c;
+  padding: #{$header-size} 0;
+
+  @include media('>sm') {
+    position: relative;
+    flex-flow: column wrap;
+    width: auto;
+    height: auto;
+    background-color: theme('secondary');
+  }
+}
