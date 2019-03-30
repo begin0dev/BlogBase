@@ -25,13 +25,13 @@ const navi: INavi[] = [
   },
 ];
 
-// interface IProps {
-// }
+interface IProps {
+  isMobile: boolean;
+  visible: boolean;
+}
 
-const Navi: React.FunctionComponent = () => (
-  <nav className={cx('navi')}>
-    test
-  </nav>
+const Navi: React.FunctionComponent<IProps> = ({ isMobile, visible }) => (
+  <nav className={cx('navi', { isMobile }, { active: visible })}>test</nav>
 );
 
 export default Navi;

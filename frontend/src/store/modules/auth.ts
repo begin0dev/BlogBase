@@ -4,16 +4,16 @@ import { ActionsUnion } from 'utils/types';
 import { createAction } from 'utils/actionHelper';
 
 // actions
-const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const CHANGE_AUTH_FORM = 'CHANGE_AUTH_FORM';
+const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 
 export const Actions = {
-  initializeAuthFormData: () => createAction(INITIALIZE_AUTH_FORM_DATA),
   changeAuthForm: (formName: string) => createAction(CHANGE_AUTH_FORM, formName),
-  toggleAuthForm: (active: boolean) => createAction(TOGGLE_AUTH_FORM, active),
+  initializeAuthFormData: () => createAction(INITIALIZE_AUTH_FORM_DATA),
   setAuthFormValue: (payload: { name: string; value: string }) => createAction(SET_AUTH_FORM_VALUE, payload),
+  toggleAuthForm: (active: boolean) => createAction(TOGGLE_AUTH_FORM, active),
 };
 export type Actions = ActionsUnion<typeof Actions>;
 
@@ -33,8 +33,8 @@ const initFormValue: IFormData = {
 export interface IAuthState {
   formValue: IFormData;
   state: {
-    form: string;
     active: boolean;
+    form: string;
     isLoading: boolean;
   };
 }
@@ -44,30 +44,30 @@ export const defaultState: IAuthState = {
     ...initFormValue,
   },
   state: {
-    form: 'signin',
     active: false,
+    form: 'signin',
     isLoading: false,
   },
 };
 
 export default (state = defaultState, action: Actions) => {
   switch (action.type) {
-    case INITIALIZE_AUTH_FORM_DATA:
-      return produce(state, draft => {
-        draft.formValue = initFormValue;
-      });
     case CHANGE_AUTH_FORM:
       return produce(state, draft => {
         draft.state.form = action.payload;
       });
-    case TOGGLE_AUTH_FORM:
+    case INITIALIZE_AUTH_FORM_DATA:
       return produce(state, draft => {
-        draft.state.active = action.payload;
+        draft.formValue = initFormValue;
       });
     case SET_AUTH_FORM_VALUE:
       return produce(state, draft => {
         const { name, value } = action.payload;
         draft.formValue[name] = value;
+      });
+    case TOGGLE_AUTH_FORM:
+      return produce(state, draft => {
+        draft.state.active = action.payload;
       });
     default:
       return state;

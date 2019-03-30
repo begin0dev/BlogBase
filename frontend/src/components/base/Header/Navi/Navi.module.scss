@@ -2,21 +2,27 @@
 
 .navi {
   z-index: z-index('sidebar');
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 246px;
-  height: 100vh;
+  position: relative;
   display: flex;
-  flex-flow: row wrap;
-  background-color: #2c2c2c;
-  padding: #{$header-size} 0;
+  flex-flow: column wrap;
+  padding: 0;
 
-  @include media('>sm') {
-    position: relative;
-    flex-flow: column wrap;
-    width: auto;
-    height: auto;
-    background-color: theme('secondary');
+  &.isMobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 256px;
+    height: 100vh;
+    flex-flow: row wrap;
+    padding: #{$header-size} 0;
+    background-color: #2c2c2c;
+    backface-visibility: hidden;
+    transform: translate(100%);
+    transition: all .2s ease-in-out;
+
+    &.active {
+      transform: translate(0%);
+    }
   }
+
 }

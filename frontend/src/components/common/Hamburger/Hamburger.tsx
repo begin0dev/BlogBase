@@ -7,13 +7,12 @@ const cx = classNames.bind(styles);
 
 interface IProps {
   visible: boolean;
-  hamburgerRef: React.RefObject<HTMLDivElement>;
-  toggleSidebar: () => void;
+  toggleSidebar(bool: boolean): void;
 }
 
-const Hamburger: React.FunctionComponent<IProps> = ({ visible, toggleSidebar, hamburgerRef }) => {
+const Hamburger: React.FunctionComponent<IProps> = ({ visible, toggleSidebar }) => {
   return (
-    <div className={cx('wrapper')} ref={hamburgerRef} onClick={toggleSidebar}>
+    <div className={cx('wrapper')} onClick={() => toggleSidebar(!visible)}>
       <div className={`hamburger hamburger--slider ${visible && 'is-active'} ${cx('spin')}`}>
         <span className="hamburger-box">
           <span className="hamburger-inner" />

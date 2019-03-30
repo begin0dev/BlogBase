@@ -1,7 +1,7 @@
 import AuthContainer from './AuthContainer';
-import HeaderContainer from './HeaderContainer';
+import BaseTemplateContainer from './BaseTemplateContainer';
 
 export {
   AuthContainer,
-  HeaderContainer,
+  BaseTemplateContainer,
 };

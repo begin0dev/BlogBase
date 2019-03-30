@@ -13,11 +13,11 @@ $themes: (
   fontColor: #adb7be,
 );
 $z-indexes: (
-  header: 80,
-  sidebar: 120,
-  hamburger: 160,
+  header: 100,
   overlay: 200,
-  modal: 240,
+  modal: 300,
+  sidebar: 400,
+  hamburger: 500,
 );
 
 $header-size: 73px;
