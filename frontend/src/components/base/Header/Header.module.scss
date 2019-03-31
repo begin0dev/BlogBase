@@ -14,18 +14,53 @@
     align-items: center;
     height: $header-size;
     max-width: 1440px;
-    padding: 0 36px;
+    padding: 0 30px;
+
+    @include media('>sm') {
+      padding: 0 36px;
+    }
 
     .left, .right {
       display: flex;
-      flex: 0 1 100%;
       align-items: center;
       height: 100%;
+      color: theme('fontColor');
+      font-size: 12px;
+      font-weight: 400;
 
       .logo {
         color: theme('secondary');
-        margin-right: 12px;
+        margin-right: 15px;
         line-height: 0;
+      }
+    }
+    .right {
+      justify-content: flex-end;
+
+      button {
+        padding: 10px 10px;
+        color: theme('fontColor');
+        background-color: transparent;
+        &:hover {
+          color: #ffffff;
+        }
+        &:active, &:focus, &:hover {
+          outline:none;
+        }
+        @include media('>sm') {
+          padding: 10px 20px;
+        }
+      }
+      .signup {
+        @include media('>sm') {
+          text-transform: uppercase;
+          color: #ffffff;
+          background: linear-gradient(-180deg,#399dff 0%,#297dcf 98%);
+          border-radius: 4px;
+          &:hover {
+            background: #297dcf;
+          }
+        }
       }
     }
   }

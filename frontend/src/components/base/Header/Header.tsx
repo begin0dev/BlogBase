@@ -25,6 +25,8 @@ const Header: React.FunctionComponent<IProps> = ({ isMobile, visible, toggleSide
         <Navi visible={visible} isMobile={isMobile} />
       </div>
       <div className={cx('right')}>
+        <button type='button' className={cx('login')}>Log In</button>
+        <button type='button' className={cx('signup')}>Sign Up</button>
         {isMobile && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}
       </div>
     </div>

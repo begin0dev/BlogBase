@@ -1,10 +1,9 @@
 @import 'utils';
+$sidebar-color: #2c2c2c;
 
 .navi {
   z-index: z-index('sidebar');
   position: relative;
-  display: flex;
-  flex-flow: column wrap;
   padding: 0;
 
   &.isMobile {
@@ -13,16 +12,46 @@
     right: 0;
     width: 256px;
     height: 100vh;
-    flex-flow: row wrap;
     padding: #{$header-size} 0;
-    background-color: #2c2c2c;
+    background-color: $sidebar-color;
     backface-visibility: hidden;
     transform: translate(100%);
-    transition: all .2s ease-in-out;
-
+    //transition: all .2s ease-in-out;
     &.active {
       transform: translate(0%);
     }
   }
 
+  .list {
+    @include media('>sm') {
+      display: flex;
+      flex-flow: row wrap;
+    }
+    .wrapper {
+      .dropdown {
+        @include media('>sm') {
+          position: absolute;
+          top: calc(100% + 9px);
+          left: 0;
+          width: 250px;
+          background-color: $sidebar-color;
+        }
+      }
+    }
+    .type {
+      display: flex;
+      padding: 21px 40px;
+      cursor: pointer;
+      &:hover {
+        color: #ffffff;
+      }
+      @include media('>sm') {
+        padding: 20px;
+      }
+      .expandIcon {
+        font-size: 14px;
+        margin-left: 5px;
+      }
+    }
+  }
 }

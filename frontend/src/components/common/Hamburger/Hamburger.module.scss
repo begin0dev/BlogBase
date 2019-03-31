@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 5px;
   &:before {
     content: '';
     position: absolute;
@@ -37,8 +38,8 @@ $hamburger-layer-width                     : 16px;
 $hamburger-layer-height                    : 2px;
 $hamburger-layer-spacing                   : 4px;
 $hamburger-layer-color                     : #ffffff;
-$hamburger-layer-border-radius             : 1px;
-$hamburger-hover-opacity                   : .9;
+$hamburger-layer-border-radius             : 2px;
+$hamburger-hover-opacity                   : 1;
 $hamburger-active-layer-color              : $hamburger-layer-color;
 $hamburger-active-hover-opacity            : $hamburger-hover-opacity;
 
