@@ -14,16 +14,13 @@ interface IProps {
 class BaseTemplateContainer extends React.Component<IProps> {
   toggleSidebar = (bool: boolean) => {
     const { dispatchToggleSidebar } = this.props;
-    const { isMobile } = this.props.baseState;
-    if (isMobile) dispatchToggleSidebar(bool);
+    dispatchToggleSidebar(bool);
   };
 
   render() {
     const { toggleSidebar } = this;
-    const { isMobile, sidebar } = this.props.baseState;
-    return (
-      <Header visible={sidebar} isMobile={isMobile} toggleSidebar={toggleSidebar} />
-    );
+    const { isTablet, sidebar } = this.props.baseState;
+    return <Header visible={sidebar} isTablet={isTablet} toggleSidebar={toggleSidebar} />;
   }
 }
 

@@ -16,7 +16,7 @@
     max-width: 1440px;
     padding: 0 30px;
 
-    @include media('>sm') {
+    @include media('>md') {
       padding: 0 36px;
     }
 
@@ -47,12 +47,12 @@
         &:active, &:focus, &:hover {
           outline:none;
         }
-        @include media('>sm') {
+        @include media('>md') {
           padding: 10px 20px;
         }
       }
       .signup {
-        @include media('>sm') {
+        @include media('>md') {
           text-transform: uppercase;
           color: #ffffff;
           background: linear-gradient(-180deg,#399dff 0%,#297dcf 98%);

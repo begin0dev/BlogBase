@@ -34,19 +34,25 @@ const navi: INavi[] = [
 ];
 
 interface IProps {
-  isMobile: boolean;
+  isTablet: boolean;
   visible: boolean;
+  toggleSidebar(bool: boolean): void;
 }
 
-const Navi: React.FunctionComponent<IProps> = ({ isMobile, visible }) => (
-  <nav className={cx('navi', { isMobile }, { active: visible })}>
+const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSidebar }) => (
+  <nav className={cx('navi', { active: isTablet && visible })}>
     <div className={cx('list')}>
       {navi.map((link: INavi) => {
         return link.hasChildren ? (
-          <div className={cx('wrapper')} key={link.name}>
+          <div
+            className={cx('wrapper', { active: !isTablet && visible })}
+            onMouseEnter={() => !isTablet && toggleSidebar(true)}
+            onMouseLeave={() => !isTablet && toggleSidebar(false)}
+            key={link.name}
+          >
             <div className={cx('type')}>
               {link.name}
-              {!isMobile && <MdArrowDropDown className={cx('expandIcon')} />}
+              {!isTablet && <MdArrowDropDown className={cx('expandIcon')} />}
             </div>
             <div className={cx('dropdown')}>
               {link.children &&

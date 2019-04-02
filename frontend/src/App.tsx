@@ -11,10 +11,15 @@ import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 
 interface IProps {
   baseState: IBaseState;
+  dispatchToggleSidebar(bool: boolean): void;
   dispatchSetViewType(typeName: 'isMobile' | 'isTablet', bool: boolean): void;
 }
 
-const App: React.FunctionComponent<IProps> = ({ baseState: { isMobile, isTablet }, dispatchSetViewType }) => {
+const App: React.FunctionComponent<IProps> = ({
+  baseState: { isMobile, isTablet },
+  dispatchSetViewType,
+  dispatchToggleSidebar,
+}) => {
   const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
 
   React.useEffect(() => {
@@ -41,6 +46,9 @@ const App: React.FunctionComponent<IProps> = ({ baseState: { isMobile, isTablet 
         if (isTablet) dispatchSetViewType('isTablet', false);
     }
   }, [innerWidth]);
+  React.useEffect(() => {
+    dispatchToggleSidebar(false);
+  }, [isTablet]);
 
   return (
     <PageTemplate>
@@ -60,6 +68,9 @@ const mapStateToProps = (state: IStoreState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchSetViewType(typeName: 'isMobile' | 'isTablet', bool: boolean) {
     return dispatch(baseActions.setViewType({ typeName, bool }));
+  },
+  dispatchToggleSidebar(bool: boolean) {
+    return dispatch(baseActions.toggleSidebar(bool));
   },
 });
 
