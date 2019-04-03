@@ -39,16 +39,14 @@
 
       button {
         padding: 10px 10px;
+        font-size: 12px;
         color: theme('fontColor');
         background-color: transparent;
-        &:hover {
-          color: #ffffff;
-        }
-        &:active, &:focus, &:hover {
-          outline:none;
-        }
         @include media('>md') {
           padding: 10px 20px;
+        }
+        &:hover {
+          color: #ffffff;
         }
       }
       .signup {

@@ -11,10 +11,8 @@ interface INaviChild {
   name: string;
   url: string;
 }
-interface INavi {
-  name: string;
+interface INavi extends INaviChild {
   hasChildren: boolean;
-  url: string;
   children?: INaviChild[];
 }
 
