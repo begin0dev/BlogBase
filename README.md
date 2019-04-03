@@ -1,3 +1,6 @@
+# Project Deprecated
+This project is no longer maintained. This project read only
+
 # BEGINNER BLOG
 This project is the framework on which the blog is based.
 
